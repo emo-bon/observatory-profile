@@ -5,7 +5,8 @@
             "@id": "./",
             "@type": "Dataset",
             "datePublished": "2023-02-22T11:38:29+00:00",
-            "crateRepo": "https://github.com/emo-bon/emo-bon-profile-0.1.git"
+            "crateRepo": "https://github.com/emo-bon/emo-bon-profile-0.1.git",
+            "sembenchConfigPath": "./sembench.json"
         },
         {
             "@id": "ro-crate-metadata.json",
