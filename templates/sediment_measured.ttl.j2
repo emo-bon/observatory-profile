@@ -1,1 +1,4 @@
-
+<{{uritexpand("todo_base_uri" + "/id/material-sample{/source_mat_id}", _)}}>
+    a todo:MaterialSample;
+    todo:predicate_for_sea_surf_temp_method {{_.sea_surf_temp_method | ttl("xsd:string") | safe}};
+.
