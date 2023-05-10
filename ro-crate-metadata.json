@@ -6,6 +6,7 @@
             "@type": "Dataset",
             "datePublished": "2023-05-10T11:38:29+00:00",
             "crateRepo": "https://github.com/emo-bon/emo-bon-profile-0.1.git",
+            "crateRepoRelease": "v0.1.0",
             "sembenchConfigPath": "./sembench.json"
         },
         {
