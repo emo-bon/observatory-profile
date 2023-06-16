@@ -1,9 +1,9 @@
 {
-    "@context": "https://w3id.org/ro/crate/1.1/context",
+    "@context": "https://w3id.org/ro/crate/1.2-DRAFT/context",
     "@graph": [
         {
             "@id": "./",
-            "@type": "Dataset",
+            "@type": ["Dataset", "Profile"],
             "datePublished": "2023-05-10T11:38:29+00:00",
             "downloadUrl": "https://github.com/emo-bon/observatory-profile/archive/refs/tags/0.1.zip",
             "sembenchConfigPath": "./sembench.json"
@@ -15,7 +15,7 @@
                 "@id": "./"
             },
             "conformsTo": {
-                "@id": "https://w3id.org/ro/crate/1.1"
+                "@id": "https://w3id.org/ro/crate/1.2-DRAFT"
             }
         }
     ]
