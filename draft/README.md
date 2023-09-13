@@ -4,7 +4,7 @@
 
 ## quality control configuration (for py-data-rules)
 
-The columns of the EMO BON sampling logsheets are defined in the [metadata spreadsheet](https://github.com/emo-bon/emobon-ontology-design/blob/master/vocabulary/EMOBON-logsheet-metadata.csv) parked here.
+The columns of the EMO BON sampling logsheets are defined in the [logsheet schema](https://github.com/emo-bon/observatory-profile/blob/main/logsheet_schema_extended.csv) parked here.
 
 The metadata included in this spreadsheet are the following:
 * An column that tells us if all the information for the column has been found, or comments to keep an eye on (for internal management use only)
@@ -18,7 +18,7 @@ The metadata included in this spreadsheet are the following:
 * The particular type of logsheet this applies to - being currently water, soil, or water;soil. (The hard-bottom still need to be added)
 * The tab of the googlesheet (which are the source of the logsheets) that the column will be found in
 * The optional/mandatory requirement
-* The defintion of the column
+* The definition of the column
 * An example
 * A yes if we need to define this particular column ourselves, in our own vocab (blank if not)
 * Comments (for internal management use only)
