@@ -3,6 +3,13 @@
         "type": "pysubyt",
         "input": "logsheets-transformed/sediment_measured.csv",
         "output": "id/material-sample/{source_mat_id}.ttl",
-        "template": {"jinja_root": "templates", "file_name": "sediment_measured.ldt.ttl.j2"}
+        "template": {"jinja_root": "templates", "file_name": "sediment_measured.ldt.ttl.j2"},
+        "sets": {
+            "mapping": "mapping.csv"
+        },
+        "variables": {
+            "obs_id": "obs_id",
+            "env_package": "env_package"
+        }
     }
 ]
