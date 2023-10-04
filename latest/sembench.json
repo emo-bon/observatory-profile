@@ -28,5 +28,17 @@
             "jinja_root": "templates",
             "file_name": "water_observatory.ldt.ttl.j2"
         }
+    },
+    {
+        "type": "pysubyt",
+        "input": "logsheets-transformed/water_sampling.csv",
+        "output": "water/sampling/{sampling_event}.ttl",
+        "template": {
+            "jinja_root": "templates",
+            "file_name": "water_sampling.ldt.ttl.j2"
+        },
+        "sets": {
+            "observatory": "logsheets-transformed/water_observatory.csv"
+        }
     }
 ]
