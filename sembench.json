@@ -1,6 +1,19 @@
 [
     {
         "type": "pysubyt",
+        "input": "logsheets-transformed/sediment_measured.csv",
+        "output": "sediment/measured/{source_mat_id}.ttl",
+        "template": {
+            "jinja_root": "templates",
+            "file_name": "sediment_measured.ldt.ttl.j2"
+        },
+        "sets": {
+            "observatory": "logsheets-transformed/sediment_observatory.csv",
+            "mapping": "~sembench_data_cache/logsheet_schema_extended.csv"
+        }
+    },
+    {
+        "type": "pysubyt",
         "input": "logsheets-transformed/sediment_observatory.csv",
         "output": "sediment/observatory/{obs_id}.ttl",
         "template": {
@@ -18,6 +31,19 @@
         },
         "sets": {
             "observatory": "logsheets-transformed/sediment_observatory.csv"
+        }
+    },
+    {
+        "type": "pysubyt",
+        "input": "logsheets-transformed/water_measured.csv",
+        "output": "water/measured/{source_mat_id}.ttl",
+        "template": {
+            "jinja_root": "templates",
+            "file_name": "water_measured.ldt.ttl.j2"
+        },
+        "sets": {
+            "observatory": "logsheets-transformed/water_observatory.csv",
+            "mapping": "~sembench_data_cache/logsheet_schema_extended.csv"
         }
     },
     {
