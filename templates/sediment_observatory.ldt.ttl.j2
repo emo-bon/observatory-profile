@@ -1,6 +1,8 @@
 {#- 
 Template: sediment_observatory.ldt.ttl.j2 
 Input: /observatory-bpns-data/downloads/gdoc-csv/sediment_observatory.csv
+Sets: 
+    - observatory-profile/emobon-logsheet-metadata.csv as schema 
 Description: Template to generate triples from {SampleType}_observatory.csv data collected in context of EMOBON. 
 -#}
 
@@ -23,7 +25,7 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
         a schema:Project ; 
         schema:name {{_.project_name | ttl("xsd:string") | safe }} ; 
         schema:description "The EMO BON project"^^xsd:string ; 
-        emobon:enaProjAccNum {{_.ENA_accession_number_umbrella | ttl("xsd:string") | safe }} ; 
+        emobon:enaProjAccNum <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'ENA_accession_number_umbrella'}}{%- endfor%}{{_.ENA_accession_number_umbrella | safe }}> ; 
     ] ; 
     emobon:siteInfo {{ _.extra_site_info | ttl("xsd:string") | safe }} ; 
     
@@ -33,15 +35,15 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
     {#- marine region info #}
     emobon:marineRegionName {{_.loc_broad_ocean | ttl("xsd:string") | safe }} ; 
     {%- if _.loc_broad_ocean_mrgid %}
-    emobon:marineRegion <{{uritexpand("http://marineregions.org/mrgid/{loc_broad_ocean_mrgid}", _)}}> ; 
+    emobon:marineRegion <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'loc_broad_ocean_mrgid'}}{%- endfor%}{{_.loc_broad_ocean_mrgid}}> ; 
     {%- endif %}
     emobon:marineRegionName {{_.loc_regional | ttl("xsd:string") | safe }} ; 
     {%- if _.loc_regional_mrgid %}
-    emobon:marineRegion <{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _)}}> ;  
+    emobon:marineRegion <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'loc_regional_mrgid'}}{%- endfor%}{{_.loc_regional_mrgid}}> ; 
     {%- endif %}
     emobon:marineRegionName {{_.loc_loc | ttl("xsd:string") | safe }} ; 
     {%- if _.loc_loc_mrgid %}
-    emobon:marineRegion <{{uritexpand("http://marineregions.org/mrgid/{loc_loc_mrgid}", _)}}> ;
+    emobon:marineRegion <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'loc_loc_mrgid'}}{%- endfor%}{{_.loc_loc_mrgid}}> ; 
     {%- endif %}
 
     emobon:geoLocation [ 
@@ -53,7 +55,7 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
     schema:contactPoint [ 
         a emobon:Organization ; 
         schema:legalName {{ item.strip() | ttl("xsd:string") | safe }} ; 
-        emobon:edmoId {{ _.organization_edmoid.split(';')[loop.index0].strip() | ttl("xsd:anyURI") | safe }} ; {# xsd:integer ~  pysubyt processing failed due to <int format does not round-trip [  449 <> 449 ]>#}
+        emobon:edmoId <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'organization_edmoid'}}{%- endfor%}{{ _.organization_edmoid.split(';')[loop.index0].strip() | safe }}> ; 
         schema:address [
             a schema:PostalAddress ; 
             schema:addressCountry {{ _.organization_country | ttl("xsd:string") | safe }} ; 
@@ -69,7 +71,7 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
             schema:email {{ _.contact_email | ttl("xsd:string") | safe }} ; 
             {%- endif %}
             {%- if _.contact_orcid %}
-            schema:identifier <https://{{_.contact_orcid}}> ; 
+            schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'contact_orcid'}}{%- endfor%}{{_.contact_orcid}}> ; {#<https://orcid.org/{{_.contact_orcid}}> #}
             {%- endif %}
         ]
         {%- endif %}
@@ -80,7 +82,7 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
     {#- emobon ontology extension predicates #}
     emobon:waterColumnDepth {{_.tot_depth_water_col | ttl("xsd:string") | safe }} ; {#- usefull to also connect to sampling_event/sample #} 
     emobon:originCountry {{_.geo_loc_name | ttl("xsd:string") | safe }} ; {#- usefull to also connect to sampling_event/sample #}          
-    emobon:enaStudyAccNum {{_.ENA_accession_number_project | ttl("xsd:string") | safe }} ; 
+    emobon:enaStudyAccNum <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'ENA_accession_number_project'}}{%- endfor%}{{_.ENA_accession_number_project | safe }}> ; 
     emobon:hasMixsPackage {{_.env_package | ttl("xsd:string") | safe }} ; {#double check w/ Katrina whether column is correct #}
     {%- if _.sediment_type %}
     emobon:soilType {{_.sediment_type | ttl("xsd:string") | safe }} ; {#from list: biogenous,cosmogenous,hydrogenous,lithogenous#}

@@ -1,8 +1,9 @@
 {#- 
 Template: sediment_measured.ldt.ttl.j2 
 Input: /observatory-bpns-data/downloads/gdoc-csv/sediment_measured.csv
-Sets:   - observatory /observatory-bpns-data/downloads/gdoc-csv/sediment_observatory.csv
-        - mapping /emobon-ontology-design/vocabulary/EMOBON-logsheet-metadata.csv
+Sets:   
+    - observatory-bpns-data/downloads/gdoc-csv/sediment_observatory.csv as observatory
+    - observatory-profile/emobon-logsheet-metadata.csv as schema 
 Description: Template to generate triples from {SampleType}_measured.csv data collected in context of EMOBON.
 -#}
 
@@ -13,7 +14,7 @@ Description: Template to generate triples from {SampleType}_measured.csv data co
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}
 
-{%- for row in sets['mapping']%}
+{%- for row in sets['schema']%}
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] %}
 
 <http://www.embrc.eu/emobon/id/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}/{{row['LogsheetColumnTitle']}}>
