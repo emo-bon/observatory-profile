@@ -1,7 +1,9 @@
 {#- 
 Template: sediment_sampling.ldt.ttl.j2 
 Input: /observatory-bpns-data/downloads/gdoc-csv/sediment_sampling.csv
-Sets:   - observatory /observatory-bpns-data/downloads/gdoc-csv/sediment_observatory.csv 
+Sets:   
+    - observatory-bpns-data/downloads/gdoc-csv/sediment_observatory.csv as observatory 
+    - observatory-profile/emobon-logsheet-metadata.csv as schema 
 Description: Template to generate triples from {SampleType}_sampling.csv data collected in context of EMOBON.
 -#}
 
@@ -20,7 +22,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
         a prov:Person, schema:Person ;
         schema:name {{ _.sampl_person | ttl("xsd:string") | safe }} ;
         {%- if _.sampl_person_orcid %}
-        schema:identifier <{{uritexpand("https://orcid.org/{sampl_person_orcid}", _) }}> ; 
+        schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'sampl_person_orcid'}}{%- endfor%}{{_.sampl_person_orcid | safe }}> ;
         {%- endif %}
     ] ;
     {# properties #}
@@ -45,7 +47,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
     sosa:hasFeatureOfInterest {{_.investigation_type | ttl("xsd:string") | safe }} ;
     {%- endif %}
     {%- if _.tax_id %}
-    sosa:hasFeatureOfInterest <{{uritexpand("https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={tax_id}", _) }}> ; 
+    sosa:hasFeatureOfInterest <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'tax_id'}}{%- endfor%}{{_.tax_id | safe }}> ;
     {%- endif %} {# scientific_name is name associated with this #}
     {%- if _.comm_samp %}
     sosa:hasFeatureOfInterest {{ _.comm_samp | ttl("xsd:string") | safe }} ; 
@@ -65,7 +67,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
     sosa:isSampleOf {{_.investigation_type | ttl("xsd:string") | safe }} ;
     {%- endif %}
     {%- if _.tax_id %}
-    sosa:isSampleOf <{{uritexpand("https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={tax_id}", _) }}> ; 
+    sosa:isSampleOf <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'tax_id'}}{%- endfor%}{{_.tax_id | safe }}> ; 
     {%- endif %} {# scientific_name is name associated with this #}
     {%- if _.comm_samp %}
     sosa:isSampleOf {{ _.comm_samp | ttl("xsd:string") | safe }} ; 
@@ -81,7 +83,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
     rdfs:label {{ _.source_mat_id_orig | ttl("xsd:string") | safe }} ; 
     dct:description {{ _.samp_description | ttl("xsd:string") | safe }} ; 
     {%- if _.ENA_accession_number_sample %}
-    emobon:enaSampleAccNum {{ _.ENA_accession_number_sample | ttl("xsd:string") | safe }} ;
+    emobon:enaSampleAccNum <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'ENA_accession_number_sample'}}{%- endfor%}{{_.ENA_accession_number_sample | safe }}> ;
     {%- endif %}
     emobon:sampleReplicate {{ _.replicate | ttl("xsd:string") | safe }} ;
     {%- if _.long_store == "Y" %}
@@ -129,7 +131,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
     sosa:isSampleOf {{_.investigation_type | ttl("xsd:string") | safe }} ;
     {%- endif %}
     {%- if _.tax_id %}
-    sosa:isSampleOf <{{uritexpand("https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={tax_id}", _) }}> ; 
+    sosa:isSampleOf <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'tax_id'}}{%- endfor%}{{_.tax_id | safe }}> ;
     {%- endif %} {# scientific_name is name associated with this #}
     {%- if _.comm_samp %}
     sosa:isSampleOf {{ _.comm_samp | ttl("xsd:string") | safe }} ; 
@@ -140,19 +142,19 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
         a prov:Person, schema:Person ;
         schema:name {{ _.sampl_person | ttl("xsd:string") | safe }} ;
         {%- if _.sampl_person_orcid %}
-        schema:identifier <{{uritexpand("https://orcid.org/{sampl_person_orcid}", _) }}> ; 
+        schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'sampl_person_orcid'}}{%- endfor%}{{_.sampl_person_orcid | safe }}> ;
         {%- endif %}
     ] , [
         a prov:Person, schema:Person ;
         schema:name {{ _.store_person | ttl("xsd:string") | safe }} ;
         {%- if _.store_person_orcid %}
-        schema:identifier <{{uritexpand("https://orcid.org/{store_person_orcid}", _) }}> ;
+        schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'store_person_orcid'}}{%- endfor%}{{_.store_person_orcid | safe }}> ;
         {%- endif %}
     ] {% if _.other_person %}, [
         a prov:Person, schema:Person ;
         schema:name {{ _.other_person | ttl("xsd:string") | safe }} ;
         {%- if _.other_person_orcid %}
-        schema:identifier <{{uritexpand("https://orcid.org/{other_person_orcid}", _) }}> ;
+        schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'other_person_orcid'}}{%- endfor%}{{_.other_person_orcid | safe }}> ;
         {%- endif %}
     ] ; {% else %} ; {% endif %}
 
@@ -198,7 +200,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
                         prov:wasAssociatedWith [
                             prov:Person, schema:Person ;
                             schema:name {{ _.store_person | ttl("xsd:string") }} ;
-                        schema:identifier <{{uritexpand("https://orcid.org/{store_person_orcid}", _) }}> ;
+                        schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'store_person_orcid'}}{%- endfor%}{{_.store_person_orcid | safe }}> ;
                         ] ;
                         emobon:storageTemp {{ _.samp_store_temp | ttl("xsd:string") }} ; {#mix of string and float|string#}
                         emobon:storageLoc {{ _.samp_store_loc | ttl("xsd:string") | safe }} ; 
@@ -239,7 +241,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
                 prov:wasAssociatedWith [
                     prov:Person, schema:Person ;
                     schema:name {{ _.store_person | ttl("xsd:string") }} ;
-                schema:identifier <{{uritexpand("https://orcid.org/{store_person_orcid}", _) }}> ;
+                    schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'store_person_orcid'}}{%- endfor%}{{_.store_person_orcid | safe }}> ;
                 ] ;
                 emobon:storageTemp {{ _.samp_store_temp | ttl("xsd:string") }} ; {#mix of string and float|string#}
                 emobon:storageLoc {{ _.samp_store_loc | ttl("xsd:string") | safe }} ; 
@@ -269,7 +271,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
             prov:wasAssociatedWith [
                 prov:Person, schema:Person ;
                 schema:name {{ _.store_person | ttl("xsd:string") }} ;
-            schema:identifier <{{uritexpand("https://orcid.org/{store_person_orcid}", _) }}> ;
+            schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'store_person_orcid'}}{%- endfor%}{{_.store_person_orcid | safe }}> ;
             ] ;
             emobon:storageTemp {{ _.samp_store_temp | ttl("xsd:string") }} ; {#mix of string and float|string#}
             emobon:storageLoc {{ _.samp_store_loc | ttl("xsd:string") | safe }} ; 
@@ -289,7 +291,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
         prov:wasAssociatedWith [
             prov:Person, schema:Person ;
             schema:name {{ _.store_person | ttl("xsd:string") }} ;
-        schema:identifier <{{uritexpand("https://orcid.org/{store_person_orcid}", _) }}> ;
+            schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'store_person_orcid'}}{%- endfor%}{{_.store_person_orcid | safe }}> ;
         ] ;
         emobon:storageTemp {{ _.samp_store_temp | ttl("xsd:string") }} ; {#mix of string and float|string#}
         emobon:storageLoc {{ _.samp_store_loc | ttl("xsd:string") | safe }} ; 
