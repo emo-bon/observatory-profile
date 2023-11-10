@@ -17,7 +17,7 @@ Description: Template to generate triples from {SampleType}_measured.csv data co
 {%- for row in sets['schema']%}
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] %}
 
-<http://www.embrc.eu/emobon/id/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}/{{row['LogsheetColumnTitle']}}>
+<http://data.emobon.embrc.eu/emobon/id/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}/{{row['LogsheetColumnTitle']}}>
     a sosa:Observation, schema:Observation ; 
     {%- if row['Observable_property_url'] %}
     sosa:observedProperty <{{ row['Observable_property_url'].strip() | safe }}> ;
@@ -41,7 +41,7 @@ Description: Template to generate triples from {SampleType}_measured.csv data co
     {%- endif %}
 
     {#- link back to sample uri (see sediment_sampling.ldt.ttl.j2) #}
-    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}> ; 
+    sosa:hasFeatureOfInterest <http://data.emobon.embrc.eu/emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}> ; 
 .
 
 {%- endif %}

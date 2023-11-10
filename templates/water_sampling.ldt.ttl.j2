@@ -3,7 +3,6 @@ Template: sediment_sampling.ldt.ttl.j2
 Input: /observatory-bpns-data/downloads/gdoc-csv/sediment_sampling.csv
 Sets:   
     - observatory-bpns-data/downloads/gdoc-csv/sediment_observatory.csv as observatory 
-    - observatory-profile/emobon-logsheet-metadata.csv as schema 
 Description: Template to generate triples from {SampleType}_sampling.csv data collected in context of EMOBON.
 -#}
 
@@ -13,7 +12,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
 
 {% for observatory in sets['observatory'] %}
 {#- SAMPLING EVENT -#}
-<http://www.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> 
+<http://data.emobon.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> 
     a sosa:Sampling, prov:Activity ;  
     {# provenance part #}
     dct:type "sampling"^^xsd:string ; 
@@ -22,7 +21,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
         a prov:Person, schema:Person ;
         schema:name {{ _.sampl_person | ttl("xsd:string") | safe }} ;
         {%- if _.sampl_person_orcid %}
-        schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'sampl_person_orcid'}}{%- endfor%}{{_.sampl_person_orcid | safe }}> ;
+        schema:identifier {{_.sampl_person_orcid | ttl("xsd:anyURI")}} ;
         {%- endif %}
     ] ;
     {# properties #}
@@ -47,17 +46,17 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
     sosa:hasFeatureOfInterest {{_.investigation_type | ttl("xsd:string") | safe }} ;
     {%- endif %}
     {%- if _.tax_id %}
-    sosa:hasFeatureOfInterest <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'tax_id'}}{%- endfor%}{{_.tax_id | safe }}> ;
+    sosa:hasFeatureOfInterest {{_.tax_id | ttl("xsd:anyURI")}} ;
     {%- endif %} {# scientific_name is name associated with this #}
     {%- if _.comm_samp %}
     sosa:hasFeatureOfInterest {{ _.comm_samp | ttl("xsd:string") | safe }} ; 
     {%- endif %}
     {# result sample ~ sample from which observations are made #}
-    sosa:hasResult <http://www.embrc.eu/emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ;
+    sosa:hasResult <http://data.emobon.embrc.eu/emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ;
 .
 
 {#- SAMPLE from which observations are made #}
-<http://www.embrc.eu/emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}>
+<http://data.emobon.embrc.eu/emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}>
     a sosa:Sample, prov:Entity ;
     {# features of interest #}
     {%- if _.env_material %}
@@ -67,23 +66,23 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
     sosa:isSampleOf {{_.investigation_type | ttl("xsd:string") | safe }} ;
     {%- endif %}
     {%- if _.tax_id %}
-    sosa:isSampleOf <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'tax_id'}}{%- endfor%}{{_.tax_id | safe }}> ; 
+    sosa:isSampleOf {{_.tax_id | ttl("xsd:anyURI")}} ; 
     {%- endif %} {# scientific_name is name associated with this #}
     {%- if _.comm_samp %}
     sosa:isSampleOf {{ _.comm_samp | ttl("xsd:string") | safe }} ; 
     {%- endif %}
     {# result sample replicates #}
-    sosa:hasResult <http://www.embrc.eu/emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}> ;
+    sosa:hasResult <http://data.emobon.embrc.eu/emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}> ;
 .
 
 {#- SAMPLE replicate #}
-<http://www.embrc.eu/emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}>
+<http://data.emobon.embrc.eu/emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}>
     a sosa:Sample, prov:Entity ;
     {# properties #}
     rdfs:label {{ _.source_mat_id_orig | ttl("xsd:string") | safe }} ; 
     dct:description {{ _.samp_description | ttl("xsd:string") | safe }} ; 
     {%- if _.ENA_accession_number_sample %}
-    emobon:enaSampleAccNum <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'ENA_accession_number_sample'}}{%- endfor%}{{_.ENA_accession_number_sample | safe }}> ;
+    emobon:enaSampleAccNum {{_.ENA_accession_number_sample | ttl("xsd:anyURI")}} ;
     {%- endif %}
     emobon:sampleReplicate {{ _.replicate | ttl("xsd:string") | safe }} ;
     {%- if _.long_store == "Y" %}
@@ -131,7 +130,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
     sosa:isSampleOf {{_.investigation_type | ttl("xsd:string") | safe }} ;
     {%- endif %}
     {%- if _.tax_id %}
-    sosa:isSampleOf <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'tax_id'}}{%- endfor%}{{_.tax_id | safe }}> ;
+    sosa:isSampleOf {{_.tax_id | ttl("xsd:anyURI")}} ;
     {%- endif %} {# scientific_name is name associated with this #}
     {%- if _.comm_samp %}
     sosa:isSampleOf {{ _.comm_samp | ttl("xsd:string") | safe }} ; 
@@ -142,19 +141,19 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
         a prov:Person, schema:Person ;
         schema:name {{ _.sampl_person | ttl("xsd:string") | safe }} ;
         {%- if _.sampl_person_orcid %}
-        schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'sampl_person_orcid'}}{%- endfor%}{{_.sampl_person_orcid | safe }}> ;
+        schema:identifier {{_.sampl_person_orcid | ttl("xsd:anyURI")}} ;
         {%- endif %}
     ] , [
         a prov:Person, schema:Person ;
         schema:name {{ _.store_person | ttl("xsd:string") | safe }} ;
         {%- if _.store_person_orcid %}
-        schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'store_person_orcid'}}{%- endfor%}{{_.store_person_orcid | safe }}> ;
+        schema:identifier {{_.store_person_orcid | ttl("xsd:anyURI")}} ;
         {%- endif %}
     ] {% if _.other_person %}, [
         a prov:Person, schema:Person ;
         schema:name {{ _.other_person | ttl("xsd:string") | safe }} ;
         {%- if _.other_person_orcid %}
-        schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'other_person_orcid'}}{%- endfor%}{{_.other_person_orcid | safe }}> ;
+        schema:identifier {{_.other_person_orcid | ttl("xsd:anyURI")}} ;
         {%- endif %}
     ] ; {% else %} ; {% endif %}
 
@@ -200,12 +199,12 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
                         prov:wasAssociatedWith [
                             prov:Person, schema:Person ;
                             schema:name {{ _.store_person | ttl("xsd:string") }} ;
-                        schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'store_person_orcid'}}{%- endfor%}{{_.store_person_orcid | safe }}> ;
+                        schema:identifier {{_.store_person_orcid | ttl("xsd:anyURI")}} ;
                         ] ;
                         emobon:storageTemp {{ _.samp_store_temp | ttl("xsd:string") }} ; {#mix of string and float|string#}
                         emobon:storageLoc {{ _.samp_store_loc | ttl("xsd:string") | safe }} ; 
 
-                        prov:wasInformedBy <http://www.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ; 
+                        prov:wasInformedBy <http://data.emobon.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ; 
                     ] ; 
                 ] ; 
             ] ; 
@@ -241,12 +240,12 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
                 prov:wasAssociatedWith [
                     prov:Person, schema:Person ;
                     schema:name {{ _.store_person | ttl("xsd:string") }} ;
-                    schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'store_person_orcid'}}{%- endfor%}{{_.store_person_orcid | safe }}> ;
+                    schema:identifier {{_.store_person_orcid | ttl("xsd:anyURI")}} ;
                 ] ;
                 emobon:storageTemp {{ _.samp_store_temp | ttl("xsd:string") }} ; {#mix of string and float|string#}
                 emobon:storageLoc {{ _.samp_store_loc | ttl("xsd:string") | safe }} ; 
 
-                prov:wasInformedBy <http://www.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ; 
+                prov:wasInformedBy <http://data.emobon.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ; 
             ] ; 
         ] ; 
     ] ;
@@ -271,12 +270,12 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
             prov:wasAssociatedWith [
                 prov:Person, schema:Person ;
                 schema:name {{ _.store_person | ttl("xsd:string") }} ;
-            schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'store_person_orcid'}}{%- endfor%}{{_.store_person_orcid | safe }}> ;
+            schema:identifier {{_.store_person_orcid | ttl("xsd:anyURI")}} ;
             ] ;
             emobon:storageTemp {{ _.samp_store_temp | ttl("xsd:string") }} ; {#mix of string and float|string#}
             emobon:storageLoc {{ _.samp_store_loc | ttl("xsd:string") | safe }} ; 
 
-            prov:wasInformedBy <http://www.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ; 
+            prov:wasInformedBy <http://data.emobon.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ; 
         ] ; 
     ] ; 
 
@@ -291,15 +290,15 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
         prov:wasAssociatedWith [
             prov:Person, schema:Person ;
             schema:name {{ _.store_person | ttl("xsd:string") }} ;
-            schema:identifier <{%- for row in sets['schema']%}{{- row['BaseURI'] if row['LogsheetColumnTitle'] == 'store_person_orcid'}}{%- endfor%}{{_.store_person_orcid | safe }}> ;
+            schema:identifier {{_.store_person_orcid | ttl("xsd:anyURI")}} ;
         ] ;
         emobon:storageTemp {{ _.samp_store_temp | ttl("xsd:string") }} ; {#mix of string and float|string#}
         emobon:storageLoc {{ _.samp_store_loc | ttl("xsd:string") | safe }} ; 
 
-        prov:wasInformedBy <http://www.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ;
+        prov:wasInformedBy <http://data.emobon.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ;
     ] ; 
     {%- else %}
-    prov:wasGeneratedBy <http://www.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ;
+    prov:wasGeneratedBy <http://data.emobon.embrc.eu/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> ;
     {%- endif %}
 .
 
