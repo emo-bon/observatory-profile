@@ -19,9 +19,6 @@
         "template": {
             "jinja_root": "templates",
             "file_name": "sediment_observatory.ldt.ttl.j2"
-        },
-        "sets": {
-            "schema": "~sembench_data_cache/logsheet_schema_extended.csv"
         }
     },
     {
@@ -33,8 +30,7 @@
             "file_name": "sediment_sampling.ldt.ttl.j2"
         },
         "sets": {
-            "observatory": "logsheets-transformed/sediment_observatory.csv",
-            "schema": "~sembench_data_cache/logsheet_schema_extended.csv"
+            "observatory": "logsheets-transformed/sediment_observatory.csv"
         }
     },
     {
@@ -57,9 +53,6 @@
         "template": {
             "jinja_root": "templates",
             "file_name": "water_observatory.ldt.ttl.j2"
-        },
-        "sets": {
-            "schema": "~sembench_data_cache/logsheet_schema_extended.csv"
         }
     },
     {
@@ -71,8 +64,7 @@
             "file_name": "water_sampling.ldt.ttl.j2"
         },
         "sets": {
-            "observatory": "logsheets-transformed/water_observatory.csv",
-            "schema": "~sembench_data_cache/logsheet_schema_extended.csv"
+            "observatory": "logsheets-transformed/water_observatory.csv"
         }
     }
 ]
