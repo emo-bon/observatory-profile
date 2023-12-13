@@ -6,7 +6,9 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
 
 {% include 'includes/prefixes.ttl' %}
 
-<{{uritexpand("http://data.emobon.embrc.eu/emobon/observatory/{obs_id}/{env_package}", _)}}> {# need to agree on baseuri for this #}
+@base <{{baseref()}}/emobon/observatory/{{_.obs_id}}/{{_.env_package}}> . {# baseref() ~ http://data.emobon.embrc.eu #}
+
+<> 
     a emobon:Observatory ;
     {%- if _.wa_id %} {# water #}
     emobon:sampleType emobon:Water ;
@@ -23,7 +25,7 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
         a schema:Project ; 
         schema:name {{_.project_name | ttl("xsd:string") | safe }} ; 
         schema:description "The EMO BON project"^^xsd:string ; 
-        emobon:enaProjAccNum {{_.ENA_accession_number_umbrella | ttl("xsd:anyURI")}} ; 
+        emobon:enaProjAccNum {{_.ENA_accession_number_umbrella | ttl("xsd:anyURI") | safe }} ; 
     ] ; 
     emobon:siteInfo {{ _.extra_site_info | ttl("xsd:string") | safe }} ; 
     
@@ -33,15 +35,15 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
     {#- marine region info #}
     emobon:marineRegionName {{_.loc_broad_ocean | ttl("xsd:string") | safe }} ; 
     {%- if _.loc_broad_ocean_mrgid %}
-    emobon:marineRegion {{_.loc_broad_ocean_mrgid | ttl("xsd:anyURI")}} ; 
+    emobon:marineRegion {{_.loc_broad_ocean_mrgid | ttl("xsd:anyURI") | safe }} ; 
     {%- endif %}
     emobon:marineRegionName {{_.loc_regional | ttl("xsd:string") | safe }} ; 
     {%- if _.loc_regional_mrgid %}
-    emobon:marineRegion {{_.loc_regional_mrgid | ttl("xsd:anyURI")}} ; 
+    emobon:marineRegion {{_.loc_regional_mrgid | ttl("xsd:anyURI") | safe }} ; 
     {%- endif %}
     emobon:marineRegionName {{_.loc_loc | ttl("xsd:string") | safe }} ; 
     {%- if _.loc_loc_mrgid %}
-    emobon:marineRegion {{_.loc_loc_mrgid | ttl("xsd:anyURI")}} ; 
+    emobon:marineRegion {{_.loc_loc_mrgid | ttl("xsd:anyURI") | safe }} ; 
     {%- endif %}
 
     emobon:geoLocation [ 
@@ -53,7 +55,7 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
     schema:contactPoint [ 
         a emobon:Organization ; 
         schema:legalName {{ item.strip() | ttl("xsd:string") | safe }} ; 
-        emobon:edmoId {{ _.organization_edmoid.split(';')[loop.index0].strip() | ttl("xsd:anyURI") }} ; 
+        emobon:edmoId {{ _.organization_edmoid.split(';')[loop.index0].strip() | ttl("xsd:anyURI") | safe }} ; 
         schema:address [
             a schema:PostalAddress ; 
             schema:addressCountry {{ _.organization_country | ttl("xsd:string") | safe }} ; 
@@ -69,7 +71,7 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
             schema:email {{ _.contact_email | ttl("xsd:string") | safe }} ; 
             {%- endif %}
             {%- if _.contact_orcid %}
-            schema:identifier {{_.contact_orcid | ttl("xsd:anyURI")}} ;
+            schema:identifier {{_.contact_orcid | ttl("xsd:anyURI") | safe }} ;
             {%- endif %}
         ]
         {%- endif %}
@@ -80,7 +82,7 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
     {#- emobon ontology extension predicates #}
     emobon:waterColumnDepth {{_.tot_depth_water_col | ttl("xsd:integer") | safe }} ; {#- usefull to also connect to sampling_event/sample #} 
     emobon:originCountry {{_.geo_loc_name | ttl("xsd:string") | safe }} ; {#- usefull to also connect to sampling_event/sample #}    
-    emobon:enaStudyAccNum {{_.ENA_accession_number_project | ttl("xsd:anyURI")}} ; 
+    emobon:enaStudyAccNum {{_.ENA_accession_number_project | ttl("xsd:anyURI") | safe }} ; 
     emobon:hasMixsPackage {{_.env_package | ttl("xsd:string") | safe }} ; {#double check w/ Katrina whether column is correct #}
 .
 
