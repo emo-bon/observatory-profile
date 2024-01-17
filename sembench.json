@@ -10,6 +10,9 @@
         "sets": {
             "observatory": "logsheets-transformed/sediment_observatory.csv",
             "schema": "~sembench_data_cache/logsheet_schema_extended.csv"
+        },
+        "variables": {
+            "baseref": "http://data.emobon.embrc.eu"
         }
     },
     {
@@ -19,6 +22,9 @@
         "template": {
             "jinja_root": "templates",
             "file_name": "sediment_observatory.ldt.ttl.j2"
+        },
+        "variables": {
+            "baseref": "http://data.emobon.embrc.eu"
         }
     },
     {
@@ -31,6 +37,9 @@
         },
         "sets": {
             "observatory": "logsheets-transformed/sediment_observatory.csv"
+        },
+        "variables": {
+            "baseref": "http://data.emobon.embrc.eu"
         }
     },
     {
@@ -44,6 +53,9 @@
         "sets": {
             "observatory": "logsheets-transformed/water_observatory.csv",
             "schema": "~sembench_data_cache/logsheet_schema_extended.csv"
+        },
+        "variables": {
+            "baseref": "http://data.emobon.embrc.eu"
         }
     },
     {
@@ -53,6 +65,9 @@
         "template": {
             "jinja_root": "templates",
             "file_name": "water_observatory.ldt.ttl.j2"
+        },
+        "variables": {
+            "baseref": "http://data.emobon.embrc.eu"
         }
     },
     {
@@ -65,6 +80,9 @@
         },
         "sets": {
             "observatory": "logsheets-transformed/water_observatory.csv"
+        },
+        "variables": {
+            "baseref": "http://data.emobon.embrc.eu"
         }
     }
 ]
