@@ -2,7 +2,7 @@
     {
         "type": "pysubyt",
         "input": "logsheets-transformed/sediment_measured.csv",
-        "output": "sediment/measured/{source_mat_id}.ttl",
+        "output": "rdf/sediment/measured/{source_mat_id}.ttl",
         "template": {
             "jinja_root": "templates",
             "file_name": "sediment_measured.ldt.ttl.j2"
@@ -15,7 +15,7 @@
     {
         "type": "pysubyt",
         "input": "logsheets-transformed/sediment_observatory.csv",
-        "output": "sediment/observatory/{obs_id}.ttl",
+        "output": "rdf/sediment/observatory/{obs_id}.ttl",
         "template": {
             "jinja_root": "templates",
             "file_name": "sediment_observatory.ldt.ttl.j2"
@@ -24,7 +24,7 @@
     {
         "type": "pysubyt",
         "input": "logsheets-transformed/sediment_sampling.csv",
-        "output": "sediment/sampling/{sampling_event}.ttl",
+        "output": "rdf/sediment/sampling/{sampling_event}.ttl",
         "template": {
             "jinja_root": "templates",
             "file_name": "sediment_sampling.ldt.ttl.j2"
@@ -36,7 +36,7 @@
     {
         "type": "pysubyt",
         "input": "logsheets-transformed/water_measured.csv",
-        "output": "water/measured/{source_mat_id}.ttl",
+        "output": "rdf/water/measured/{source_mat_id}.ttl",
         "template": {
             "jinja_root": "templates",
             "file_name": "water_measured.ldt.ttl.j2"
@@ -49,7 +49,7 @@
     {
         "type": "pysubyt",
         "input": "logsheets-transformed/water_observatory.csv",
-        "output": "water/observatory/{obs_id}.ttl",
+        "output": "rdf/water/observatory/{obs_id}.ttl",
         "template": {
             "jinja_root": "templates",
             "file_name": "water_observatory.ldt.ttl.j2"
@@ -58,7 +58,7 @@
     {
         "type": "pysubyt",
         "input": "logsheets-transformed/water_sampling.csv",
-        "output": "water/sampling/{sampling_event}.ttl",
+        "output": "rdf/water/sampling/{sampling_event}.ttl",
         "template": {
             "jinja_root": "templates",
             "file_name": "water_sampling.ldt.ttl.j2"
