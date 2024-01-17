@@ -13,7 +13,7 @@ Description: Template to generate triples from {SampleType}_measured.csv data co
 
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}
-@base <{{baseref()}}/emobon/observation/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}> . {# baseref() ~ http://data.emobon.embrc.eu #}
+@base <{{baseref}}/emobon/observation/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {%- for row in sets['schema']%}
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] %}

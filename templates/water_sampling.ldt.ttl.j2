@@ -11,7 +11,7 @@ Description: Template to generate triples from {SampleType}_sampling.csv data co
 {%- endif %}
 
 {%- for observatory in sets['observatory'] %}
-@base <{{baseref()}}/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> . {# baseref() ~ http://data.emobon.embrc.eu #}
+@base <{{baseref}}/emobon/sampling/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.sampling_event.split(' ') |join("_")}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {#- SAMPLING EVENT -#}
 <> 

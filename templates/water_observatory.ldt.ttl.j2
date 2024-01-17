@@ -6,7 +6,7 @@ Description: Template to generate triples from {SampleType}_observatory.csv data
 
 {% include 'includes/prefixes.ttl' %}
 
-@base <{{baseref()}}/emobon/observatory/{{_.obs_id}}/{{_.env_package}}> . {# baseref() ~ http://data.emobon.embrc.eu #}
+@base <{{baseref}}/emobon/observatory/{{_.obs_id}}/{{_.env_package}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 <> 
     a emobon:Observatory ;
