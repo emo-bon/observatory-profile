@@ -13,7 +13,7 @@ Description: Template to generate triples from {SampleType}_measured.csv data co
 
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}
-@base <{{baseref}}/emobon/observation/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+@base <{{baseref}}/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sample-replicate/{{_.source_mat_id}}/observation/> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {%- for row in sets['schema']%}
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] %}
@@ -41,8 +41,8 @@ Description: Template to generate triples from {SampleType}_measured.csv data co
     schema:measurementTechnique {{ _[row['LogsheetColumnTitle']+'_method'] | ttl("xsd:string") | safe }} ; 
     {%- endif %}
     
-    {#- link back to sample uri (see sediment_sampling.ldt.ttl.j2) #}
-    sosa:hasFeatureOfInterest </emobon/sample/{{observatory.obs_id}}/{{observatory.env_package}}/{{_.source_mat_id}}> ; 
+    {#- link back to sample-replicate uri (see sediment_sampling.ldt.ttl.j2) #}
+    sosa:hasFeatureOfInterest </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sample-replicate/{{_.source_mat_id}}> ; 
 .
 
 {%- endif %}
