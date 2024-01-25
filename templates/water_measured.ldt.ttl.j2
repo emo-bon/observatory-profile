@@ -44,7 +44,7 @@ Description: Template to generate triples from {SampleType}_measured.csv data co
     {%- endif %}
     
     {#- link back to sample-replicate uri (see sediment_sampling.ldt.ttl.j2) #}
-    sosa:hasFeatureOfInterest <observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sample-replicate/{{_.source_mat_id}}> ; 
+    sosa:hasFeatureOfInterest </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sample-replicate/{{_.source_mat_id}}> ; 
 .
 
 {%- endif %}
