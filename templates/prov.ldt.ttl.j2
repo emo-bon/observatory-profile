@@ -1,0 +1,83 @@
+{#- 
+Template: prov.ldt.ttl.j2 
+Input:  ro-crate-metadata.json
+Sets:   - observatory --> /observatory-bpns-data/downloads/gdoc-csv/sediment_observatory.csv
+        - github --> object that holds github related information
+        - googlesheets --> object that holds information relating to the googlesheets
+        - memory --> object that holds "in memory"-information, e.g. start and end date calculated from various spreadsheets
+
+Description: Template to generate provenance information 
+-#}
+
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@base {#<{{github.main_url}}>#} {#e.g. https://github.com/emo-bon/observatory-bpns-data in the example case#}
+
+
+/prov.ttl
+        a       prov:Entity, schema:CreativeWork, dct:ProvenanceStatement ; 
+        
+        schema:about {#{{github.main_url}}#} {#e.g. https://github.com/emo-bon/observatory-bpns-data in the example case#}
+        prov:generatedAtTime {#{{ github.time | ttl('xsd:dateTime')}}#} ; {#will/should be close to date published from ro-crate-metadata.json#}
+        prov:wasGeneratedBy {#{{ github.action }}#} ; {#the name of the github action that did the harvesting#}
+
+        {%- for row in sets['observatory'] %}
+        {%- if row.organization and row.organization_edmoid %}
+        prov:wasAssociatedWith 
+        {%- for item in row.organization_edmoid.split(',') %} {#check if delimiter is correct #}
+        [
+                a prov:Organization, schema:Organization ; 
+                schema:name {{ row.organization.split(',')[loop.index0].strip() | ttl('xsd:string') | safe }} ;
+                schema:identifier <https://edmo.seadatanet.org/report/{{item.strip()}}> ;
+        ] {% if not loop.last %} , {% endif %}
+        {%- endfor %} ; 
+
+        dct:creator 
+        {%- for item in row.organization_edmoid.split(',') %} {#check if delimiter is correct #}
+        [
+                a prov:Organization, schema:Organization ; 
+                schema:name {{ row.organization.split(',')[loop.index0].strip() | ttl('xsd:string') | safe }} ;
+                schema:identifier <https://edmo.seadatanet.org/report/{{item.strip()}}> ;
+                {%- if loop.first %}
+                schema:member [
+                        a       prov:Person, schema:Person ; 
+                        schema:name {{ row.contact_name | ttl("xsd:string") | safe }} ; 
+                        schema:email {{ row.contact_email | ttl("xsd:string") | safe }} ; 
+                        schema:identifier <{{uritexpand("https://orcid.org/{contact_orchid}", row) | safe }}> ; 
+                ] ;
+                {%- endif %}
+        ] {% if not loop.last %} , {% endif %}
+        {%- endfor %} ; 
+        {%- endif %}
+        {%- endfor %}
+.
+
+        
+{%- for item in _["@graph"] %}
+{%- for key in item %}
+{%- if item[key] == "File" %}
+{{item["@id"] | safe}}
+        a schema:File ; 
+        {% for row in googlesheets %}
+        {% if row.name == item["@id"] %}
+        prov:wasDerivedFrom {#{{row.url}} #} ; {#link to the google sheet from which this file was derived --> match on file name? #}
+        {% endif %}
+        {% endfor %}
+        
+        dct:temporal [
+                a dct:PeriodOfTime, schema:Thing ; 
+                schema:startDate {#{{ memory.earliest_date | ttl('xsd:date')}}#} ; {#the earliest date in the data #}
+                schema:endDate {#{{ memory.latest_date | ttl('xsd:date')}}#} ; {#the latest date in the data #}
+        ] ;
+
+        {% for row in sets['observatory']%}
+        prov:atLocation <{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", row)}}> ; 
+        dct:spatial <{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", row)}}> ;
+        {% endfor %}
+.
+{%- endif%}
+{%- endfor %}     
+{%- endfor %}

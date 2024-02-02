@@ -1,0 +1,154 @@
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@base <https://github.com/emo-bon/observatory-bpns-data> .  
+
+
+/prov.ttl
+        a       prov:Entity, schema:CreativeWork, dct:ProvenanceStatement ; 
+        
+        schema:about <https://github.com/emo-bon/observatory-bpns-data> ;  
+        prov:generatedAtTime  ; 
+        prov:wasGeneratedBy  ; 
+        prov:wasAssociatedWith 
+        [
+                a prov:Organization, schema:Organization ; 
+                schema:name 'Flanders Marine Institute (VLIZ)'^^xsd:string ;
+                schema:identifier <https://edmo.seadatanet.org/report/422> ;
+        ]  ,  
+        [
+                a prov:Organization, schema:Organization ; 
+                schema:name 'Ghent University'^^xsd:string ;
+                schema:identifier <https://edmo.seadatanet.org/report/449> ;
+        ]  ,  
+        [
+                a prov:Organization, schema:Organization ; 
+                schema:name 'Royal Belgian Institute of Natural Sciences'^^xsd:string ;
+                schema:identifier <https://edmo.seadatanet.org/report/432> ;
+        ]  ,  
+        [
+                a prov:Organization, schema:Organization ; 
+                schema:name 'Katholieke Universiteit Leuven'^^xsd:string ;
+                schema:identifier <https://edmo.seadatanet.org/report/2248> ;
+        ]  ; 
+
+        dct:creator 
+        [
+                a prov:Organization, schema:Organization ; 
+                schema:name 'Flanders Marine Institute (VLIZ)'^^xsd:string ;
+                schema:identifier <https://edmo.seadatanet.org/report/422> ;
+                schema:member [
+                        a       prov:Person, schema:Person ; 
+                        schema:name 'Klaas Deneudt'^^xsd:string ; 
+                        schema:email 'klaas.deneudt@vliz.be'^^xsd:string ; 
+                        schema:identifier <https://orcid.org/orcid.org%2F0000-0002-8559-3508> ; 
+                ] ;
+        ]  ,  
+        [
+                a prov:Organization, schema:Organization ; 
+                schema:name 'Ghent University'^^xsd:string ;
+                schema:identifier <https://edmo.seadatanet.org/report/449> ;
+        ]  ,  
+        [
+                a prov:Organization, schema:Organization ; 
+                schema:name 'Royal Belgian Institute of Natural Sciences'^^xsd:string ;
+                schema:identifier <https://edmo.seadatanet.org/report/432> ;
+        ]  ,  
+        [
+                a prov:Organization, schema:Organization ; 
+                schema:name 'Katholieke Universiteit Leuven'^^xsd:string ;
+                schema:identifier <https://edmo.seadatanet.org/report/2248> ;
+        ]  ;
+.
+./downloads/gdoc-csv/sediment_measurement.csv
+        a schema:File ; 
+        
+        
+        dct:temporal [
+                a dct:PeriodOfTime, schema:Thing ; 
+                schema:startDate  ; 
+                schema:endDate  ; 
+        ] ;
+
+        
+        prov:atLocation <http://marineregions.org/mrgid/2353> ; 
+        dct:spatial <http://marineregions.org/mrgid/2353> ;
+        
+.
+./downloads/gdoc-csv/sediment_observatory.csv
+        a schema:File ; 
+        
+        
+        dct:temporal [
+                a dct:PeriodOfTime, schema:Thing ; 
+                schema:startDate  ; 
+                schema:endDate  ; 
+        ] ;
+
+        
+        prov:atLocation <http://marineregions.org/mrgid/2353> ; 
+        dct:spatial <http://marineregions.org/mrgid/2353> ;
+        
+.
+./downloads/gdoc-csv/sediment_sampling.csv
+        a schema:File ; 
+        
+        
+        dct:temporal [
+                a dct:PeriodOfTime, schema:Thing ; 
+                schema:startDate  ; 
+                schema:endDate  ; 
+        ] ;
+
+        
+        prov:atLocation <http://marineregions.org/mrgid/2353> ; 
+        dct:spatial <http://marineregions.org/mrgid/2353> ;
+        
+.
+./downloads/gdoc-csv/water_measurement.csv
+        a schema:File ; 
+        
+        
+        dct:temporal [
+                a dct:PeriodOfTime, schema:Thing ; 
+                schema:startDate  ; 
+                schema:endDate  ; 
+        ] ;
+
+        
+        prov:atLocation <http://marineregions.org/mrgid/2353> ; 
+        dct:spatial <http://marineregions.org/mrgid/2353> ;
+        
+.
+./downloads/gdoc-csv/water_observatory.csv
+        a schema:File ; 
+        
+        
+        dct:temporal [
+                a dct:PeriodOfTime, schema:Thing ; 
+                schema:startDate  ; 
+                schema:endDate  ; 
+        ] ;
+
+        
+        prov:atLocation <http://marineregions.org/mrgid/2353> ; 
+        dct:spatial <http://marineregions.org/mrgid/2353> ;
+        
+.
+./downloads/gdoc-csv/water_sampling.csv
+        a schema:File ; 
+        
+        
+        dct:temporal [
+                a dct:PeriodOfTime, schema:Thing ; 
+                schema:startDate  ; 
+                schema:endDate  ; 
+        ] ;
+
+        
+        prov:atLocation <http://marineregions.org/mrgid/2353> ; 
+        dct:spatial <http://marineregions.org/mrgid/2353> ;
+        
+.
