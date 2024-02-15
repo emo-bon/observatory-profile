@@ -1,10 +1,13 @@
 {#- 
 Template: sediment_measured.ldt.ttl.j2 
-Input: /observatory-bpns-data/downloads/gdoc-csv/sediment_measured.csv
+Description: Template to generate triples from sediment_measured.csv data collected in context of EMOBON.
+Input: 
+    - observatory-{obs_id}-crate/logsheets-transformed/sediment_measured.csv
 Sets:   
-    - observatory-bpns-data/downloads/gdoc-csv/sediment_observatory.csv as observatory
-    - observatory-profile/emobon-logsheet-metadata.csv as schema 
-Description: Template to generate triples from {SampleType}_measured.csv data collected in context of EMOBON.
+    - observatory-{obs_id}-crate/logsheets-transformed/sediment_observatory.csv as observatory
+    - observatory-profile/logsheet_schema_extended.csv as schema 
+Output: 
+    - observatory-{obs_id}-crate/rdf/sediment/measured/{source_mat_id}.ttl
 -#}
 
 {%- if ctrl.isFirst %}
