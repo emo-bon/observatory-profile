@@ -7,7 +7,7 @@ Input:
 
 {% include 'includes/prefixes.ttl' %}
 
-@base <{{baseref}}/emobon/observatory/{{_.obs_id}}/{{_.env_package}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+@base <{{baseref}}/observatory-{{_.obs_id|lower}}-crate/{{_.env_package}}/{{_.obs_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 <> 
     a emobon:Observatory ;
