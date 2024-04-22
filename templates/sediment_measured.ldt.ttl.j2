@@ -10,23 +10,21 @@ Output:
     - observatory-{obs_id}-crate/rdf/sediment/measured/{source_mat_id}.ttl
 -#}
 
-{%- if ctrl.isFirst %}
 {%- include 'includes/prefixes.ttl' %}
-{%- endif %}
 
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}
 @base <{{baseref}}/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {%- for row in sets['schema']%}
-{%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] %}
+{%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA"  %}
 
 <#{{row['LogsheetColumnTitle'].strip()}}>
     a sosa:Observation, schema:Observation ; 
-    {%- if row['Observable_property_url'] %}
+    {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
     sosa:observedProperty <{{ row['Observable_property_url'].strip() | safe }}> ;
     {%- else %}
-    sosa:observedProperty {{ row['LogsheetColumnTitle'].strip() | ttl("xsd:string") | safe }} ;
+    sosa:observedProperty {{ row['LogsheetColumnTitle'].strip() | xsd("string") | safe }} ;
     {%- endif %}
     
     sosa:hasResult [
@@ -35,15 +33,15 @@ Output:
         {%- if _[row['LogsheetColumnTitle']] != "NA" %}
         qudt:numericValue {{ _[row['LogsheetColumnTitle']] | ttl("xsd:float") | safe }} ; {#values are mix of strings and numbers#}
         {%- endif %}
-        {%- if row['Unit_URL'] %}
+        {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
         qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
-        {%- elif row['Unit'] %}
+        {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | ttl('xsd:string') | safe }} ;
-        {%- endif %} 
+        {%- endif %}
     ] ; 
 
-    {%- if row['LogsheetColumnTitle']+'_method' and _[row['LogsheetColumnTitle']+'_method'] %}
-    schema:measurementTechnique {{ _[row['LogsheetColumnTitle']+'_method'] | ttl("xsd:string") | safe }} ; 
+    {%- if row['LogsheetColumnTitle']+'_method' and _[row['LogsheetColumnTitle']+'_method'] and _[row['LogsheetColumnTitle']+'_method'] != "NA" %}
+    schema:measurementTechnique {{ _[row['LogsheetColumnTitle']+'_method'] | xsd("string") | safe }} ; 
     {%- endif %}
 
     {#- link back to sample-replicate uri (see sediment_sampling.ldt.ttl.j2) #}
