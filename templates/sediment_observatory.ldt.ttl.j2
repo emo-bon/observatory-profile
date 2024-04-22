@@ -11,67 +11,94 @@ Input:
 
 <> 
     a emobon:Observatory ;
-    {%- if _.wa_id %} {# water #}
+    {%- if _.wa_id != "NA" %} {# water #}
     emobon:sampleType emobon:Water ;
-    {%- elif _.so_id %} {# sediment #}
+    {%- elif _.so_id != "NA" %} {# sediment #}
     emobon:sampleType emobon:Soil ;
-    {%- elif _.se_id %} {# soil? acronym in csv of third type? ~ sediment ~ hence se_id? #}
+    {%- elif _.se_id != "NA" %} {# soil? acronym in csv of third type? ~ sediment ~ hence se_id? #}
     emobon:sampleType emobon:Hard ;
     {%- endif %}
 
+    {%- if _.obs_id != "NA" %}
     emobon:observatoryId {{ _.obs_id | ttl("xsd:string") | safe }} ; 
+    {%- endif %}
+    {%- if _.wa_id != "NA" or _.so_id != "NA" or _.se_id != "NA" %}
     emobon:observatorySampleId {{ (_.wa_id or _.so_id or _.se_id) | ttl("xsd:string") | safe }} ; {#alert: column name differs between observatory types #} 
+    {%- endif %}
 
     dct:isPartOf [
-        a schema:Project ; 
+        a schema:Project ;
+        {%- if _.project_name != "NA" %}
         schema:name {{_.project_name | ttl("xsd:string") | safe }} ; 
+        {%- endif %}
         schema:description "The EMO BON project"^^xsd:string ; 
+        {%- if _.ENA_accession_number_umbrella != "NA" %}
         emobon:enaProjAccNum {{_.ENA_accession_number_umbrella | ttl("xsd:anyURI") | safe }} ; 
+        {%- endif %}
     ] ; 
+    {%- if _.extra_site_info != "NA" %}
     emobon:siteInfo {{ _.extra_site_info | ttl("xsd:string") | safe }} ; 
-    
+    {%- endif %}
+    {%- if _.env_broad_biome != "NA" %}
     emobon:broadBiome {% for item in _.env_broad_biome.split(';') %} {{item.strip() | ttl("xsd:string") | safe }}{{ ", " if not loop.last else "" }}{%endfor%};
+    {%- endif %}
+    {%- if _.env_local != "NA" %}
     emobon:localBiome {% for item in _.env_local.split(';') %}{{item.strip() | ttl("xsd:string") | safe }}{{ ", " if not loop.last else "" }}{% endfor %};
+    {%- endif %}
 
     {#- marine region info #}
+    {%- if _.loc_broad_ocean != "NA" %}
     emobon:marineRegionName {{_.loc_broad_ocean | ttl("xsd:string") | safe }} ; 
-    {%- if _.loc_broad_ocean_mrgid %}
+    {%- endif %}
+    {%- if _.loc_broad_ocean_mrgid != "NA" %}
     emobon:marineRegion {{_.loc_broad_ocean_mrgid | ttl("xsd:anyURI") | safe }} ; 
     {%- endif %}
+    {%- if _.loc_regional != "NA" %}
     emobon:marineRegionName {{_.loc_regional | ttl("xsd:string") | safe }} ; 
-    {%- if _.loc_regional_mrgid %}
+    {%- endif %}
+    {%- if _.loc_regional_mrgid != "NA" %}
     emobon:marineRegion {{_.loc_regional_mrgid | ttl("xsd:anyURI") | safe }} ; 
     {%- endif %}
+    {%- if _.loc_loc != "NA" %}
     emobon:marineRegionName {{_.loc_loc | ttl("xsd:string") | safe }} ; 
-    {%- if _.loc_loc_mrgid %}
+    {%- endif %}
+    {%- if _.loc_loc_mrgid != "NA" %}
     emobon:marineRegion {{_.loc_loc_mrgid | ttl("xsd:anyURI") | safe }} ; 
     {%- endif %}
 
+    {%- if _.latitude != "NA" and _.longitude != "NA" %}
     emobon:geoLocation [ 
         a sf:Point ; 
         geo:asWKT "<http://www.opengis.net/def/crs/OGC/1.3/CRS84> Point ({{_.latitude}} {{_.longitude}})" ;
-    ]; 
+    ];
+    {%- endif %}
 
     {%- for item in _.organization.split(';') %} {# assumptions: lists of equal length & ';'-separated #}
     schema:contactPoint [ 
         a emobon:Organization ; 
+        {%- if item != "NA" %}
         schema:legalName {{ item.strip() | ttl("xsd:string") | safe }} ; 
+        {%- endif %}
+        {%- if _.organization_edmoid != "NA" %}
         emobon:edmoId {{ _.organization_edmoid.split(';')[loop.index0].strip() | ttl("xsd:anyURI") | safe }} ; 
+        {%- endif %}
         schema:address [
             a schema:PostalAddress ; 
+            {%- if _.organization_country != "NA" %}
             schema:addressCountry {{ _.organization_country | ttl("xsd:string") | safe }} ; 
+            {%- endif %}
             {#- schema:postalCode {{}} ; #} 
             {#- schema:streetAddress {{}} ; #}
         {%- if loop.index0 == 0 and (_.contact_name or _.contact_email or _.contact_orcid) %} {# assumption: contact person always linked to the first institute #}
         schema:member [
             a schema:Person ; 
-            {%- if _.contact_name %}
+            {%- if _.contact_name != "NA" %}
             schema:name {{ _.contact_name | ttl("xsd:string") | safe }} ; 
             {%- endif %}
-            {%- if _.contact_email %}
+            {%- if _.contact_email != "NA" %}
             schema:email {{ _.contact_email | ttl("xsd:string") | safe }} ; 
             {%- endif %}
-            {%- if _.contact_orcid %}
+            {%- if _.contact_orcid and _.contact_orcid != "NA" %}
             schema:identifier {{_.contact_orcid | ttl("xsd:anyURI") | safe }} ;
             {%- endif %}
         ]
@@ -81,11 +108,19 @@ Input:
     {%- endfor %}
     
     {#- emobon ontology extension predicates #}
+    {%- if _.tot_depth_water_col != "NA" %}
     emobon:waterColumnDepth {{_.tot_depth_water_col | ttl("xsd:string") | safe }} ; {#- usefull to also connect to sampling_event/sample #} 
+    {%- endif %}
+    {%- if _.geo_loc_name != "NA" %}
     emobon:originCountry {{_.geo_loc_name | ttl("xsd:string") | safe }} ; {#- usefull to also connect to sampling_event/sample #}          
+    {%- endif %}
+    {%- if _.ENA_accession_number_project != "NA" %}
     emobon:enaStudyAccNum {{_.ENA_accession_number_project | ttl("xsd:anyURI") | safe }} ; 
+    {%- endif %}
+    {%- if _.env_package != "NA" %}
     emobon:hasMixsPackage {{_.env_package | ttl("xsd:string") | safe }} ; {#double check w/ Katrina whether column is correct #}
-    {%- if _.sediment_type %}
+    {%- endif %}
+    {%- if _.sediment_type and _.sediment_type != "NA" %}
     emobon:soilType {{_.sediment_type | ttl("xsd:string") | safe }} ; {#from list: biogenous,cosmogenous,hydrogenous,lithogenous#}
     {%- endif %}
 .
