@@ -19,7 +19,7 @@ sediment_observatory_task:
     input: "logsheets/transformed/sediment_observatory.csv"
     output: "sediment/observatory/{obs_id}"
     template:
-      jinja_root: "templates",
+      jinja_root: "templates"
       file_name: "sediment_observatory.ldt.ttl.j2"
     variables:
       baseref: "http://data.emobon.embrc.eu"
@@ -31,7 +31,7 @@ sediment_sampling_task:
     input: "logsheets/transformed/sediment_sampling.csv"
     output: "sediment/sampling/{sampling_event}"
     template:
-      jinja_root: "templates",
+      jinja_root: "templates"
       file_name: "sediment_sampling.ldt.ttl.j2"
     sets:
       observatory: "logsheets/transformed/sediment_observatory.csv"
