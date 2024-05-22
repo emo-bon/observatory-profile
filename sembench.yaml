@@ -29,7 +29,7 @@ sediment_sampling_task:
   func: pysubyt
   args:
     input: "logsheets/transformed/sediment_sampling.csv"
-    output: "sediment/sampling/{sampling_event}"
+    output: "sediment/sampling/{source_mat_id}"
     template:
       jinja_root: "templates"
       file_name: "sediment_sampling.ldt.ttl.j2"
