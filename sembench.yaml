@@ -70,7 +70,7 @@ water_sampling_task:
   func: pysubyt
   args:
     input: "logsheets/transformed/water_sampling.csv"
-    output: "water/sampling/{sampling_event}"
+    output: "water/sampling/{source_mat_id}"
     template:
       jinja_root: "templates"
       file_name: "water_sampling.ldt.ttl.j2"
