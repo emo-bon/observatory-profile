@@ -64,33 +64,26 @@ Sets:
     seq:associatedBatch </emobon/sequencingActivity/{{obs}}/{{env}}/{{batchNumber}}> ; 
 
     {#prc part#}
-    dct:hasPart [
-        a seq:PCRAmplification , prov:Activity ; 
-        seq:pcrPrimers {{ _.pcr_primers | xsd("string") }} ;
-        seq:prcConditions {{ _.prc_cond | xsd("string") }} ;
-    ] ; 
+    seq:pcrPrimers {{ _.pcr_primers | xsd("string") }} ;
+    seq:prcConditions {{ _.prc_cond | xsd("string") }} ;
 
     {#DNA Analysis part#}
-    dct:hasPart [
-        a seq:DNAAnlysis , prov:Activity ; 
-        
-        seq:dcaConcentration [
-            a sosa:Observation ; 
-            sosa:userProcedure {{ _.dna_conc_method | xsd("string") }} ;
-            sosa:hasResult [
-                a sosa:Result, qudt:QuantityValue ; 
-                qudt:numericValue {{ _.dna_conc | xsd("double") }} ;
-                qudt:unit "nanograms per microliter (ng/µm)"^^xsd:string ;
-            ] ;
-        ] ; 
-        seq:dcaQuantity [
-            a sosa:Observation ;
-            sosa:hasResult [
-                a sosa:Result, qudt:QuantityValue ; 
-                qudt:numericValue {{ _.dna_quant | xsd("double") }} ;
-                qudt:unit "nanograms (ng)"^^xsd:string ;
-            ] ;
-        ] ; 
+    seq:dcaConcentration [
+        a sosa:Observation ; 
+        sosa:userProcedure {{ _.dna_conc_method | xsd("string") }} ;
+        sosa:hasResult [
+            a sosa:Result, qudt:QuantityValue ; 
+            qudt:numericValue {{ _.dna_conc | xsd("double") }} ;
+            qudt:unit "nanograms per microliter (ng/µm)"^^xsd:string ;
+        ] ;
+    ] ; 
+    seq:dcaQuantity [
+        a sosa:Observation ;
+        sosa:hasResult [
+            a sosa:Result, qudt:QuantityValue ; 
+            qudt:numericValue {{ _.dna_quant | xsd("double") }} ;
+            qudt:unit "nanograms (ng)"^^xsd:string ;
+        ] ;
     ] ; 
 .
 
