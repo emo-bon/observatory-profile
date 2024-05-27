@@ -1,22 +1,23 @@
 sediment_measured_task:
   func: pysubyt
   args:
-    template_folder: "templates"
+    template_folder: !resolve "{home}/templates"
     template_name: "sediment_measured.ldt.ttl.j2"
-    source: "logsheets/transformed/sediment_measured.csv"
+    source: !resolve "{input}/logsheets/transformed/sediment_measured.csv"
     extra_sources:
-      observatory: "logsheets/transformed/sediment_observatory.csv"
-      schema: "~sembench_data_cache/logsheet_schema_extended.csv"
+      observatory: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
+      schema: !resolve "{home}/logsheet_schema_extended.csv"
     sink: "sediment/measured/{source_mat_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
+    allow_repeated_sink_paths: true
 
 sediment_observatory_task:
   func: pysubyt
   args:
-    template_folder: "templates"
+    template_folder: !resolve "{home}/templates"
     template_name: "sediment_observatory.ldt.ttl.j2"
-    source: "logsheets/transformed/sediment_observatory.csv"
+    source: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
     sink: "sediment/observatory/{obs_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
@@ -24,24 +25,25 @@ sediment_observatory_task:
 sediment_sampling_task:
   func: pysubyt
   args:
-    template_folder: "templates"
+    template_folder: !resolve "{home}/templates"
     template_name: "sediment_sampling.ldt.ttl.j2"
-    source: "logsheets/transformed/sediment_sampling.csv"
+    source: !resolve "{input}/logsheets/transformed/sediment_sampling.csv"
     extra_sources:
-      observatory: "logsheets/transformed/sediment_observatory.csv"
+      observatory: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
     sink: "sediment/sampling/{source_mat_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
+    allow_repeated_sink_paths: true
 
 water_measured_task:
   func: pysubyt
   args:
-    template_folder: "templates"
+    template_folder: !resolve "{home}/templates"
     template_name: "water_measured.ldt.ttl.j2"
-    source: "logsheets/transformed/water_measured.csv"
+    source: !resolve "{input}/logsheets/transformed/water_measured.csv"
     extra_sources:
-      observatory: "logsheets/transformed/water_observatory.csv"
-      schema: "~sembench_data_cache/logsheet_schema_extended.csv"
+      observatory: !resolve "{input}/logsheets/transformed/water_observatory.csv"
+      schema: !resolve "{home}/logsheet_schema_extended.csv"
     sink: "water/measured/{source_mat_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
@@ -49,9 +51,9 @@ water_measured_task:
 water_observatory_task:
   func: pysubyt
   args:
-    template_folder: "templates"
+    template_folder: !resolve "{home}/templates"
     template_name: "water_observatory.ldt.ttl.j2"
-    source: "logsheets/transformed/water_observatory.csv"
+    source: !resolve "{input}/logsheets/transformed/water_observatory.csv"
     sink: "water/observatory/{obs_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
@@ -59,11 +61,11 @@ water_observatory_task:
 water_sampling_task:
   func: pysubyt
   args:
-    template_folder: "templates"
+    template_folder: !resolve "{home}/templates"
     template_name: "water_sampling.ldt.ttl.j2"
-    source: "logsheets/transformed/water_sampling.csv"
+    source: !resolve "{input}/logsheets/transformed/water_sampling.csv"
     extra_sources:
-      observatory: "logsheets/transformed/water_observatory.csv"
+      observatory: !resolve "{input}/logsheets/transformed/water_observatory.csv"
     sink: "water/sampling/{source_mat_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
