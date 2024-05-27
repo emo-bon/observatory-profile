@@ -45,6 +45,7 @@ Sets:
         rdfs:comment {{ _.samp_mat_process_dev | xsd("string") | safe }} ; 
         {%- endif %}
         ] ;
+    {%- endif %}
     {%- if _.tidal_stage != "NA" %}
     emobon:tidalStage {{_.tidal_stage | xsd("string") | safe }} ;
     {%- endif %}
@@ -236,6 +237,7 @@ Sets:
                             schema:identifier {{_.store_person_orcid | xsd("anyURI") | safe }} ;
                             {%- endif %}
                         ] ;
+                        {%- endif %}
                         {%- if _.samp_store_temp != "NA" %}
                         emobon:storageTemp {{ _.samp_store_temp | xsd("string") | safe }} ; {#mix of string and float|string#}
                         {%- endif %}
