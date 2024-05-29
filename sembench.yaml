@@ -21,6 +21,7 @@ sediment_observatory_task:
     sink: "sediment/observatory/{obs_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
+    allow_repeated_sink_paths: true
 
 sediment_sampling_task:
   func: pysubyt
@@ -47,6 +48,7 @@ water_measured_task:
     sink: "water/measured/{source_mat_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
+    allow_repeated_sink_paths: true
 
 water_observatory_task:
   func: pysubyt
@@ -57,6 +59,7 @@ water_observatory_task:
     sink: "water/observatory/{obs_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
+    allow_repeated_sink_paths: true
 
 water_sampling_task:
   func: pysubyt
@@ -69,3 +72,4 @@ water_sampling_task:
     sink: "water/sampling/{source_mat_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
+    allow_repeated_sink_paths: true
