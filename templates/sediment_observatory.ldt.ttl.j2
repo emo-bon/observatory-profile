@@ -11,11 +11,11 @@ Input:
 
 <> 
     a emobon:Observatory ;
-    {%- if _.wa_id != "NA" %} {# water #}
+    {%- if _.wa_id %} {# water #}
     emobon:sampleType emobon:Water ;
-    {%- elif _.so_id != "NA" %} {# sediment #}
+    {%- elif _.so_id %} {# sediment #}
     emobon:sampleType emobon:Soil ;
-    {%- elif _.se_id != "NA" %} {# soil? acronym in csv of third type? ~ sediment ~ hence se_id? #}
+    {%- elif _.se_id %} {# soil? acronym in csv of third type? ~ sediment ~ hence se_id? #}
     emobon:sampleType emobon:Hard ;
     {%- endif %}
 
