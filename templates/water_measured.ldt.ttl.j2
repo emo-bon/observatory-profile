@@ -22,10 +22,17 @@ Output:
 <#{{row['LogsheetColumnTitle'].strip()}}>
     a sosa:Observation, schema:Observation ; 
     {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
-    sosa:observedProperty <{{ row['Observable_property_url'].strip() | safe }}> ;
+    sosa:observedProperty 
+        sosa:observedProperty [
+        a sosa:ObservableProperty ; 
+        dct:identifier <{{ row['Observable_property_url'].strip() | safe }}> ;
+        rdfs:label {{row['LogsheetColumnTitle'].strip() | xsd("string") | safe }} ; 
+    ] ; 
     {%- else %}
-    sosa:observedProperty {{ row['LogsheetColumnTitle'].strip() | xsd("string") | safe }} ;
-    {%- endif %}
+    sosa:observedProperty [
+        a sosa:ObservableProperty ; 
+        rdfs:label {{ row['LogsheetColumnTitle'].strip() | xsd("string") | safe }} ;
+    ] ;    {%- endif %}
 
     sosa:hasResult [
         a sosa:Result , qudt:QuantityValue ; 
