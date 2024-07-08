@@ -37,7 +37,11 @@ Output:
     sosa:hasResult [
         a sosa:Result , qudt:QuantityValue ; 
         {%- if _[row['LogsheetColumnTitle']] != "NA" %}
+            {%- if _[row['DataTypeOut']] == "xsd:string" %}
         qudt:numericValue {{ _[row['LogsheetColumnTitle']] | ttl("xsd:string") | safe }} ; {#values are mix of strings and numbers#}
+            {%- elif _[row['DataTypeOut']] == "xsd:float" %}
+        qudt:numericValue {{ _[row['LogsheetColumnTitle']] | ttl("xsd:float") | safe }} ;
+            {%- endif %}
         {%- endif %}
         {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
         qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
