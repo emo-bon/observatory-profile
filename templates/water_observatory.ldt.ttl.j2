@@ -15,7 +15,7 @@ Input:
     emobon:sampleType emobon:Water ;
     {%- elif _.so_id %} {# sediment #}
     emobon:sampleType emobon:Soil ;
-    {%- elif _.se_id %} {# soil? acronym in csv of third type? ~ sediment ~ hence se_id? #}
+    {%- elif _.ha_id %} {# hard bottom --> make different template #}
     emobon:sampleType emobon:Hard ;
     {%- endif %}
 
