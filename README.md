@@ -1,10 +1,11 @@
 # observatory profile
+The profiles for the RO-Crates for the various "observatory-xxx" repositories. 
 
 ## jinja templates (for pysembench)
+[templates](https://github.com/emo-bon/observatory-profile/tree/feature/sequenceinfo_extension/templates) The folder containing the templates used to convert the CSV format logsheets into turtle
 
-## quality control configuration (for py-data-rules)
-
-The columns of the EMO BON sampling logsheets are defined in the [logsheet schema](https://github.com/emo-bon/observatory-profile/blob/main/logsheet_schema_extended.csv) parked here.
+## Quality Control configuration (for py-data-rules)
+[logsheet schema](https://github.com/emo-bon/observatory-profile/blob/feature/sequenceinfo_extension/logsheet_schema_extended.csv) describes the schema of the logsheets, i.e. what the columns are, their data types, their semantic links. This is input to the quality control action and the templates.
 
 The metadata included in this spreadsheet are the following:
 * An column that tells us if all the information for the column has been found, or comments to keep an eye on (for internal management use only)
