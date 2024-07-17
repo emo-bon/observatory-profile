@@ -23,3 +23,5 @@ The metadata included in this spreadsheet are the following:
 * An example
 * A yes if we need to define this particular column ourselves, in our own vocab (blank if not)
 * Comments (for internal management use only)
+
+In [workflows](https://github.com/emo-bon/observatory-profile/blob/main/.github/workflows/workflow.yml) are files to control the workflows (actions) that run on observatories. 
