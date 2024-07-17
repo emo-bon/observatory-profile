@@ -4,8 +4,8 @@ The profiles for the RO-Crates for the various "observatory-xxx" repositories.
 ## jinja templates (for pysembench)
 [templates](https://github.com/emo-bon/observatory-profile/tree/feature/sequenceinfo_extension/templates) The folder containing the templates used to convert the CSV format logsheets into turtle
 
-## Quality Control configuration (for py-data-rules)
-[logsheet schema](https://github.com/emo-bon/observatory-profile/blob/feature/sequenceinfo_extension/logsheet_schema_extended.csv) describes the schema of the logsheets, i.e. what the columns are, their data types, their semantic links. This is input to the quality control action and the templates.
+## Logsheet schema
+[logsheet schema](https://github.com/emo-bon/observatory-profile/blob/feature/sequenceinfo_extension/logsheet_schema_extended.csv) describes the schema of the logsheets, i.e. what the columns are, their data types, their semantic links. This is input to the quality control action (for py-data-rules) and the templates
 
 The metadata included in this spreadsheet are the following:
 * An column that tells us if all the information for the column has been found, or comments to keep an eye on (for internal management use only)
@@ -24,4 +24,5 @@ The metadata included in this spreadsheet are the following:
 * A yes if we need to define this particular column ourselves, in our own vocab (blank if not)
 * Comments (for internal management use only)
 
+## Workflow configuration
 In [workflows](https://github.com/emo-bon/observatory-profile/blob/main/.github/workflows/workflow.yml) are files to control the workflows (actions) that run on observatories. 
