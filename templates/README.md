@@ -1,4 +1,4 @@
-# OBSERVATORY-PROFILE Templates
+# observatory-profile templates
 
 This folder contains the water and sediment **templates** which are used in the **semantic uplifting** of the observatory, sampling and measured logsheets of an emo-bon observatory.  
 
