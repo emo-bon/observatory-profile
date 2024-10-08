@@ -1,5 +1,5 @@
 sediment_measured_task:
-  func: pysubyt
+  func: subyt
   args:
     template_folder: !resolve "{home}/templates"
     template_name: "sediment_measured.ldt.ttl.j2"
@@ -13,7 +13,7 @@ sediment_measured_task:
     allow_repeated_sink_paths: true
 
 sediment_observatory_task:
-  func: pysubyt
+  func: subyt
   args:
     template_folder: !resolve "{home}/templates"
     template_name: "sediment_observatory.ldt.ttl.j2"
@@ -24,7 +24,7 @@ sediment_observatory_task:
     allow_repeated_sink_paths: true
 
 sediment_sampling_task:
-  func: pysubyt
+  func: subyt
   args:
     template_folder: !resolve "{home}/templates"
     template_name: "sediment_sampling.ldt.ttl.j2"
@@ -37,7 +37,7 @@ sediment_sampling_task:
     allow_repeated_sink_paths: true
 
 water_measured_task:
-  func: pysubyt
+  func: subyt
   args:
     template_folder: !resolve "{home}/templates"
     template_name: "water_measured.ldt.ttl.j2"
@@ -51,7 +51,7 @@ water_measured_task:
     allow_repeated_sink_paths: true
 
 water_observatory_task:
-  func: pysubyt
+  func: subyt
   args:
     template_folder: !resolve "{home}/templates"
     template_name: "water_observatory.ldt.ttl.j2"
@@ -62,7 +62,7 @@ water_observatory_task:
     allow_repeated_sink_paths: true
 
 water_sampling_task:
-  func: pysubyt
+  func: subyt
   args:
     template_folder: !resolve "{home}/templates"
     template_name: "water_sampling.ldt.ttl.j2"

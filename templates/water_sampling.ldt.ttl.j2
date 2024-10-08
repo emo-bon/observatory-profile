@@ -115,13 +115,13 @@ Sets:
     {%- if _.long_store == "N" %}
     emobon:longStorage 'false'^^xsd:boolean ;
     {%- endif %}
-    {%- if _.failure and_.failure == "T" %} {#double check whether this is used abbrev#}
+    {%- if _.failure and _.failure == "T" %} {#double check whether this is used abbrev#}
     emobon:failure 'true'^^xsd:boolean ;
         {%- if _.failure_comment != "NA" %}
     emobon:failureComment {{ _.failure_comment | xsd("string") | safe }} ;
         {%- endif %}
     {%- endif %}
-    {%- if _.failure == 'F' or _.failure = "NA" or not _.failure %}
+    {%- if _.failure == 'F' or _.failure == "NA" or not _.failure %}
     emobon:failure 'false'^^xsd:boolean ;
     {%- endif %}
     {%- if _.depth != "NA" %}
