@@ -1,18 +1,19 @@
 {#- 
-Template: water_sampling.ldt.ttl.j2 
-Description: Template to generate triples from water_sampling.csv data collected in context of EMOBON.
-Input: observatory-{obs_id}-crate/logsheets-transformed/sediment_sampling.csv
+Template: sediment_sampling.ldt.ttl.j2 
+Description: Template to generate triples from sediment_sampling.csv data collected in context of EMOBON.
+Input: 
+    - observatory-{obs_id}-crate/logsheets-transformed/sediment_sampling.csv
 Sets:   
-    - observatory-{obs_id}-crate/logsheets-transformed/sediment_observatory.csv as observatory 
+    - observatory-{obs_id}-crate/logsheets-transformed/sediment_observatory.csv as observatory
 -#}
-
 {% include 'includes/prefixes.ttl' %}
 
-{%- for observatory in sets['observatory'] %}
+{% for observatory in sets['observatory'] %}
+{#note: row in csv corresponds to sample replicate --> baseurl should also refer to this #}
 @base <{{baseref}}/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sampling/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {#- SAMPLING EVENT -#}
-</observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sampling/{{_.sampling_event.split(' ') |join("_")}}>
+</observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sampling/{{_.sampling_event.split(' ') |join("_")}}> 
     a sosa:Sampling, prov:Activity ;  
     {# provenance part #}
     dct:type "sampling"^^xsd:string ; 
@@ -32,8 +33,8 @@ Sets:
     {%- if _.collection_date != "NA" %}
     sosa:resultTime {{ _.collection_date | xsd("string") | safe }} ; {#xsd:dateTime not supported#}
     {%- endif %}
-    {%- if _.samp_collect_device != "NA" %}    
-    sosa:madeBySampler {{ _.samp_collect_device | xsd("string") | safe }} ;
+    {%- if _.samp_collect_device != "NA" %}
+    sosa:madeBySampler {{ _.samp_collect_device | xsd("string") | safe }} ; 
     {%- endif %}
     {%- if _.samp_mat_process != "NA" or _.samp_mat_process_dev != "NA" %}
     sosa:usedProcedure [
@@ -44,7 +45,7 @@ Sets:
         {%- if _.samp_mat_process_dev != "NA" %}
         rdfs:comment {{ _.samp_mat_process_dev | xsd("string") | safe }} ; 
         {%- endif %}
-        ] ;
+        ] ; 
     {%- endif %}
     {%- if _.tidal_stage != "NA" %}
     emobon:tidalStage {{_.tidal_stage | xsd("string") | safe }} ;
@@ -79,16 +80,16 @@ Sets:
 </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}>
     a sosa:Sample, prov:Entity ;
     {# features of interest #}
-    {%- if _.env_material %}
+    {%- if _.env_material != "NA" %}
     sosa:isSampleOf {% for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{% endfor %};
     {%- endif %}
-    {%- if _.investigation_type %}
+    {%- if _.investigation_type != "NA" %}
     sosa:isSampleOf {{_.investigation_type | xsd("string") | safe }} ;
     {%- endif %}
-    {%- if _.tax_id %}
+    {%- if _.tax_id != "NA" %}
     sosa:isSampleOf {{_.tax_id | xsd("anyURI") | safe }} ; 
     {%- endif %} {# scientific_name is name associated with this #}
-    {%- if _.comm_samp %}
+    {%- if _.comm_samp != "NA" %}
     sosa:isSampleOf {{ _.comm_samp | xsd("string") | safe }} ; 
     {%- endif %}
     {# result sample replicates #}
@@ -113,22 +114,22 @@ Sets:
     emobon:longStorage 'true'^^xsd:boolean ; 
     {%- endif %}
     {%- if _.long_store == "N" %}
-    emobon:longStorage 'false'^^xsd:boolean ;
+    emobon:longStorage 'false'^^xsd:boolean ; 
     {%- endif %}
-    {%- if _.failure and _.failure == "T" %} {#double check whether this is used abbrev#}
+    {%- if _.failure and _.failure == 'T' %}
     emobon:failure 'true'^^xsd:boolean ;
         {%- if _.failure_comment != "NA" %}
     emobon:failureComment {{ _.failure_comment | xsd("string") | safe }} ;
         {%- endif %}
     {%- endif %}
-    {%- if _.failure == 'F' or _.failure == "NA" or not _.failure %}
+    {%- if _.failure == 'F' or _.failure = "NA" or not _.failure %}
     emobon:failure 'false'^^xsd:boolean ;
     {%- endif %}
     {%- if _.depth != "NA" %}
     emobon:sampleDepth {{ _.depth | xsd("string") | safe }} ; 
     {%- endif %}
-    {%- if _.samp_size_vol != "NA" %}
-    emobon:hasSampleSize {{ _.samp_size_vol | xsd("string") | safe }} ; {#mix of string and float|string#}
+    {%- if _.samp_size_mass != "NA" %}
+    emobon:hasSampleSize {{ _.samp_size_mass | xsd("string") | safe }} ; {#mix of string and float|string#}
     {%- endif %}
     {%- if _.size_frac != "NA" %}
     emobon:filterSizeRange {{ _.size_frac | xsd("string") | safe }} ;
@@ -139,18 +140,9 @@ Sets:
     {%- if _.size_frac_low != "NA" %}
     emobon:lowerFilterSize {{ _.size_frac_low | xsd("string") | safe }} ; {#mix of string and float|string#}
     {%- endif %}
-    {%- if _.time_fi != "NA" %}
-    emobon:filtrationTime {{ _.time_fi | xsd("string") | safe }} ;
-    {%- endif %}
-    {%- if _.membr_cut == "Y" %}
-    emobon:membrCut 'true'^^xsd:boolean ; 
-    {%- endif %}
-    {%- if _.membr_cut == "N" %}
-    emobon:membrCut 'false'^^xsd:boolean ; 
-    {%- endif %}
     {# features of interest #}
     {%- if _.env_material != "NA" %}
-    sosa:isSampleOf {% for item in _.env_material.split(';')%}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{% endfor %};
+    sosa:isSampleOf {%- for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{%- endfor %};
     {%- endif %}
     {%- if _.investigation_type != "NA" %}
     sosa:isSampleOf {{_.investigation_type | xsd("string") | safe }} ;
@@ -179,7 +171,7 @@ Sets:
         {%- if _.store_person_orcid and _.store_person_orcid != "NA" %}
         schema:identifier {{_.store_person_orcid | xsd("anyURI") | safe }} ;
         {%- endif %}
-    ] {% if _.other_person %}, [
+    ] {% if _.other_person and _.other_person != "NA" %}, [
         a prov:Person, schema:Person ;
         {%- if _.other_person != "NA" %}
         schema:name {{ _.other_person | xsd("string") | safe }} ;
@@ -190,7 +182,7 @@ Sets:
     ] ; {% else %} ; {% endif %}
 
     {#- provenance trail -- CASE 4: sample collected, stored locally, shipped & stored at HQ, shipped & stored at sequencing centre #}
-    {%- if _.ship_date_seq and _.arr_date_seq %}
+    {%- if _.ship_date_seq != "NA" and _.arr_date_seq != "NA" %}
     prov:wasGeneratedBy [
         {#- storage at sequencing centre prov#}
         a prov:Activity ;
@@ -276,7 +268,9 @@ Sets:
                 a prov:Activity ;
                 dct:type "storage"^^xsd:string ; 
                 dct:description "Local storage of the collected sample"^^xsd:string ; 
+                {%- if _.samp_store_date != "NA" %}
                 prov:startedAtTime {{ _.samp_store_date | xsd("string") | safe }} ;
+                {%- endif %}
                 prov:wasAssociatedWith [
                     a prov:Person, schema:Person ;
                     {%- if _.store_person != "NA" %}
@@ -334,7 +328,7 @@ Sets:
     ] ; 
 
     {#- provenance trail -- CASE 1: sample collected and stored locally #}
-    {%- elif _.samp_store_date %}
+    {%- elif _.samp_store_date != "NA" %}
     prov:wasGeneratedBy [
         {#- local storage sample prov #}
         a prov:Activity ;
