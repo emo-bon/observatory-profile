@@ -10,11 +10,11 @@ Output:
     - observatory-{obs_id}-crate/rdf/sediment/measured/{source_mat_id}.ttl
 -#}
 
-{%- include 'includes/prefixes.ttl' %}
+{%- include './observatory-profile/templates/includes/prefixes.ttl' %}
 
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}
-@base <{{baseref}}/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+@base <http://data.emobon.embrc.eu/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {%- for row in sets['schema']%}
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA"  %}
