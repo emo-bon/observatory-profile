@@ -51,7 +51,18 @@ Sets:
     emobon-sampling:tidalStage {{_.tidal_stage | xsd("string") | safe }} ;
     {%- endif %}
     {%- if _.depth != "NA" %}
-    emobon-sampling:samplingDepth {{ _.depth | xsd("string") | safe }} ; {#mix of string and float|string#}
+        {%- if _.depth.startswith('>')%} {#case 1: > #}
+    emobon-sampling:minSamplingDepth {{ _.depth | xsd("string") | safe }} ; 
+        {%- endif %}
+        {%- if _.depth.startswith('<')%} {#case 2: < #}
+    emobon-sampling:maxSamplingDepth {{ _.depth | xsd("string") | safe }} ;
+        {%- endif %}
+        {%- if '-' in _.depth %} {# case 3: (range/single value) x-y/x-x (assuming smallest always first) #}
+            {% set x,y = _.depth.split('-') %}
+    emobon-sampling:minSamplingDepth {{ x | xsd("string") | safe }} ; 
+    emobon-sampling:maxSamplingDepth {{ y | xsd("string") | safe }} ;
+        {%- endif %}
+    {#emobon-sampling:samplingDepth {{ _.depth | xsd("string") | safe }} ; #}
     {%- endif %}
     {%- if observatory.tot_depth_water_col != "NA" %}
     emobon-sampling:waterColumnDepth {{observatory.tot_depth_water_col | xsd("string") | safe }} ; {#info from observ file - better suited here#}
@@ -126,7 +137,18 @@ Sets:
     emobon-sampling:failure 'false'^^xsd:boolean ;
     {%- endif %}
     {%- if _.depth != "NA" %}
-    emobon-sampling:sampleDepth {{ _.depth | xsd("string") | safe }} ; 
+        {%- if _.depth.startswith('>')%} {#case 1: > #}
+    emobon-sampling:minSampleDepth {{ _.depth | xsd("string") | safe }} ; 
+        {%- endif %}
+        {%- if _.depth.startswith('<')%} {#case 2: < #}
+    emobon-sampling:maxSampleDepth {{ _.depth | xsd("string") | safe }} ;
+        {%- endif %}
+        {%- if '-' in _.depth %} {# case 3: (range/single value) x-y/x-x (assuming smallest always first) #}
+            {% set x,y = _.depth.split('-') %}
+    emobon-sampling:minSampleDepth {{ x | xsd("string") | safe }} ; 
+    emobon-sampling:maxSampleDepth {{ y | xsd("string") | safe }} ;
+        {%- endif %}
+    {#emobon-sampling:sampleDepth {{ _.depth | xsd("string") | safe }} ; #}
     {%- endif %}
     {%- if _.samp_size_mass != "NA" %}
     emobon-sampling:hasSampleSize {{ _.samp_size_mass | xsd("string") | safe }} ; {#mix of string and float|string#}
