@@ -116,8 +116,14 @@ Sets:
     {%- if _.ENA_accession_number_sample != "NA" %}
     emobon-sampling:enaSampleAccNum {{_.ENA_accession_number_sample | xsd("anyURI") | safe }} ;
     {%- endif %}
-    {%- if _.replicate != "NA" %}
+    {%- if _.replicate != "NA" %} {#distinguishing between replicate type (emobon-ontology #7) #}
+        {%- if _.replicate == "blank" %}
+    schema:additionalType "blank sample" ;
     emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") | safe }} ;
+        {%- else %}
+    schema:additionalType "http://vocab.nerc.ac.uk/collection/P01/current/IDTCRE01/"^^anyURI ;
+    emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") | safe }} ;
+        {%- endif %}
     {%- endif %}
     {%- if _.long_store == "Y" %}
     emobon-sampling:longStorage 'true'^^xsd:boolean ; 
