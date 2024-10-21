@@ -57,7 +57,7 @@ Sets:
     emobon-sampling:maxSamplingDepth {{ _.depth | xsd("string") | safe }} ;
         {%- endif %}
         {%- if '-' in _.depth %} {# case 3: (range/single value) x-y/x-x (assuming smallest always first) #}
-            {% set x,y = _.depth.split('-') %}
+            {% set x,y == _.depth.split('-') %}
     emobon-sampling:minSamplingDepth {{ x | xsd("string") | safe }} ; 
     emobon-sampling:maxSamplingDepth {{ y | xsd("string") | safe }} ;
         {%- endif %}
@@ -142,7 +142,7 @@ Sets:
     emobon-sampling:maxSampleDepth {{ _.depth | xsd("string") | safe }} ;
         {%- endif %}
         {%- if '-' in _.depth %} {# case 3: (range/single value) x-y/x-x (assuming smallest always first) #}
-            {% set x,y = _.depth.split('-') %}
+            {% set x,y == _.depth.split('-') %}
     emobon-sampling:minSampleDepth {{ x | xsd("string") | safe }} ; 
     emobon-sampling:maxSampleDepth {{ y | xsd("string") | safe }} ;
         {%- endif %}
