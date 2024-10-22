@@ -3,6 +3,8 @@ Template: water_observatory.ldt.ttl.j2
 Description: Template to generate triples from water_observatory.csv data collected in context of EMOBON. 
 Input: 
     - observatory-{obs_id}-crate/logsheets-transformed/water_observatory.csv
+Sets: 
+    - observatory-profile/logsheet_schema_extended.csv as schema
 -#}
 
 {% include './observatory-profile/templates/includes/prefixes.ttl' %}
@@ -109,7 +111,22 @@ Input:
     
     {#- emobon ontology extension predicates #}
     {%- if _.tot_depth_water_col != "NA" %}
-    emobon-sampling:waterColumnDepth {{_.tot_depth_water_col | xsd("integer") | safe }} ; {#- usefull to also connect to sampling_event/sample #} 
+    emobon-sampling:waterColumnDepth [
+        a sosa:Observation ; 
+        sosa:hasResult [
+            rdf:type qudt:QuantityValue ;
+            qudt:numericValue {{_.tot_depth_water_col | xsd("integer") | safe }} ; {#- usefull to also connect to sampling_event/sample #}
+            {%- for row in sets['schema']%}
+                {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA" %}
+                    {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+            qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                    {%- elif row['Unit'] and row['Unit'] != "NA" %}
+            qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                    {%- endif %} 
+                {%- endif %}
+            {%- endfor %}
+        ] ; 
+    ] ; 
     {%- endif %}
     {%- if _.geo_loc_name != "NA" %}
     emobon-sampling:originCountry {{_.geo_loc_name | xsd("string") | safe }} ; {#- usefull to also connect to sampling_event/sample #}    
