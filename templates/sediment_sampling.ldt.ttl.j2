@@ -111,7 +111,8 @@ Sets:
 <> 
     a sosa:Sample, prov:Entity ;
     {# properties #}
-    rdfs:label {{ _.source_mat_id_orig | xsd("string") | safe }} ; 
+    emobon-sampling:origEmobonId {{ _.source_mat_id_orig | xsd("string") | safe }} ; 
+    {# rdfs:label {{ _.source_mat_id_orig | xsd("string") | safe }} ; #}
     {%- if _.samp_description != "NA" %}
     dct:description {{ _.samp_description | xsd("string") | safe }} ; 
     {%- endif %}
