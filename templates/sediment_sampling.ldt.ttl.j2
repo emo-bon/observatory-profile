@@ -52,15 +52,63 @@ Sets:
     {%- endif %}
     {%- if _.depth != "NA" %}
         {%- if _.depth.startswith('>')%} {#case 1: > #}
-    emobon-sampling:minSamplingDepth {{ _.depth | xsd("string") | safe }} ; 
+    emobon-sampling:minSamplingDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ _.depth | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
         {%- endif %}
         {%- if _.depth.startswith('<')%} {#case 2: < #}
-    emobon-sampling:maxSamplingDepth {{ _.depth | xsd("string") | safe }} ;
+    emobon-sampling:maxSamplingDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ _.depth | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
         {%- endif %}
         {%- if '-' in _.depth %} {# case 3: (range/single value) x-y/x-x (assuming smallest always first) #}
             {% set x,y == _.depth.split('-') %}
-    emobon-sampling:minSamplingDepth {{ x | xsd("string") | safe }} ; 
-    emobon-sampling:maxSamplingDepth {{ y | xsd("string") | safe }} ;
+    emobon-sampling:minSamplingDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ x | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ;  
+    emobon-sampling:maxSamplingDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ y | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
         {%- endif %}
     {#emobon-sampling:samplingDepth {{ _.depth | xsd("string") | safe }} ; #}
     {%- endif %}
@@ -158,16 +206,52 @@ Sets:
     {#emobon-sampling:sampleDepth {{ _.depth | xsd("string") | safe }} ; #}
     {%- endif %}
     {%- if _.samp_size_mass != "NA" %}
-    emobon-sampling:hasSampleSize {{ _.samp_size_mass | xsd("string") | safe }} ; {#mix of string and float|string#}
+    emobon-sampling:hasSampleSize [
+        a qudt:QuantityValue ; 
+        qudt:numericValue {{ _.samp_size_mass | xsd("integer") | safe }} ; {#mix of string and float|string#}
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'samp_size_mass' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %}
+    ] ;
     {%- endif %}
     {%- if _.size_frac != "NA" %}
     emobon-sampling:filterSizeRange {{ _.size_frac | xsd("string") | safe }} ;
     {%- endif %}
     {%- if _.size_frac_up != "NA" %}
-    emobon-sampling:upperFilterSize {{ _.size_frac_up | xsd("string") | safe }} ; {#mix of string and float|string#}
+    emobon-sampling:upperFilterSize [
+        a qudt:QuantityValue ; 
+        qudt:numericValue {{ _.size_frac_up | xsd("integer") | safe }} ; {#mix of string and float|string#}
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'size_frac_up' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %}
+    ] ;
     {%- endif %}
     {%- if _.size_frac_low != "NA" %}
-    emobon-sampling:lowerFilterSize {{ _.size_frac_low | xsd("string") | safe }} ; {#mix of string and float|string#}
+    emobon-sampling:lowerFilterSize [
+        a qudt:QuantityValue ; 
+        qudt:numericValue {{ _.size_frac_low | xsd("integer") | safe }} ; {#mix of string and float|string#}
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'size_frac_low' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %}
+    ] ;
     {%- endif %}
     {# features of interest #}
     {%- if _.env_material != "NA" %}
@@ -233,7 +317,21 @@ Sets:
                 dct:type "storage"^^xsd:string ; 
                 dct:description "Storage of sample at HMBRC HQ"^^xsd:string ; 
                 prov:startedAtTime {{ _.arr_date_hq | xsd("string") | safe }} ;
-                emobon-sampling:storageTemp {{ _.store_temp_hq | xsd("string") | safe }} ; {#mix of string and float|string#}
+                {%- if _.store_temp_hq != "NA" %}
+                emobon-sampling:storageTemp [
+                    a qudt:QuantityValue ; 
+                    qudt:numericValue {{ _.store_temp_hq | xsd("float") | safe }} ; {#mix of string and float|string#}
+                    {%- for row in sets['schema']%}
+                        {%- if row['LogsheetColumnTitle'] == 'store_temp_hq' %}
+                            {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+                    qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                            {%- elif row['Unit'] and row['Unit'] != "NA" %}
+                    qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                            {%- endif %} 
+                        {%- endif %}
+                    {%- endfor %}
+                ] ; 
+                {%- endif %}
 
                 prov:wasInformedBy [
                     {# shipping to HMBRC HQ prov#}
@@ -260,7 +358,19 @@ Sets:
                         ] ;
                         {%- endif %}
                         {%- if _.samp_store_temp != "NA" %}
-                        emobon-sampling:storageTemp {{ _.samp_store_temp | xsd("string") | safe }} ; {#mix of string and float|string#}
+                        emobon-sampling:storageTemp [
+                            a qudt:QuantityValue ; 
+                            qudt:numericValue {{ _.samp_store_temp | xsd("float") | safe }} ; {#mix of string and float|string#}
+                            {%- for row in sets['schema']%}
+                                {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
+                                    {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+                            qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                                    {%- elif row['Unit'] and row['Unit'] != "NA" %}
+                            qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                                    {%- endif %} 
+                                {%- endif %}
+                            {%- endfor %}
+                        ] ; 
                         {%- endif %}
                         {%- if _.samp_store_loc != "NA" %}
                         emobon-sampling:storageLoc {{ _.samp_store_loc | xsd("string") | safe }} ; 
@@ -281,7 +391,19 @@ Sets:
         dct:description "Storage of sample at HMBRC HQ"^^xsd:string ; 
         prov:startedAtTime {{ _.arr_date_hq | xsd("string") | safe }} ;
         {%- if _.store_temp_hq != "NA" %}
-        emobon-sampling:storageTemp {{ _.store_temp_hq | xsd("string") | safe }} ; {#mix of string and float|string#}
+        emobon-sampling:storageTemp [
+            a qudt:QuantityValue ; 
+            qudt:numericValue {{ _.store_temp_hq | xsd("float") | safe }} ; {#mix of string and float|string#}
+            {%- for row in sets['schema']%}
+                {%- if row['LogsheetColumnTitle'] == 'store_temp_hq' %}
+                    {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+            qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                    {%- elif row['Unit'] and row['Unit'] != "NA" %}
+            qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                    {%- endif %} 
+                {%- endif %}
+            {%- endfor %}
+        ] ; 
         {%- endif %}
 
         prov:wasInformedBy [
@@ -310,7 +432,19 @@ Sets:
                     {%- endif %}
                 ] ;
                 {%- if _.samp_store_temp != "NA" %}
-                emobon-sampling:storageTemp {{ _.samp_store_temp | xsd("string") | safe }} ; {#mix of string and float|string#}
+                emobon-sampling:storageTemp [
+                    a qudt:QuantityValue ; 
+                    qudt:numericValue {{ _.samp_store_temp | xsd("float") | safe }} ; {#mix of string and float|string#}
+                    {%- for row in sets['schema']%}
+                        {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
+                            {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+                    qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                            {%- elif row['Unit'] and row['Unit'] != "NA" %}
+                    qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                            {%- endif %} 
+                        {%- endif %}
+                    {%- endfor %}
+                ] ; 
                 {%- endif %}
                 {%- if _.samp_store_loc != "NA" %}
                 emobon-sampling:storageLoc {{ _.samp_store_loc | xsd("string") | safe }} ; 
@@ -347,7 +481,19 @@ Sets:
                 {%- endif %}
             ] ;
             {%- if _.samp_store_temp != "NA" %}
-            emobon-sampling:storageTemp {{ _.samp_store_temp | xsd("string") | safe }} ; {#mix of string and float|string#}
+            emobon-sampling:storageTemp [
+                a qudt:QuantityValue ; 
+                qudt:numericValue {{ _.samp_store_temp | xsd("float") | safe }} ; {#mix of string and float|string#}
+                {%- for row in sets['schema']%}
+                    {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
+                        {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+                qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                        {%- elif row['Unit'] and row['Unit'] != "NA" %}
+                qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                        {%- endif %} 
+                    {%- endif %}
+                {%- endfor %}
+            ] ; 
             {%- endif %}
             {%- if _.samp_store_loc != "NA" %}
             emobon-sampling:storageLoc {{ _.samp_store_loc | xsd("string") | safe }} ; 
@@ -374,7 +520,19 @@ Sets:
             {%- endif %}
         ] ;
         {%- if _.samp_store_temp != "NA" %}
-        emobon-sampling:storageTemp {{ _.samp_store_temp | xsd("string") | safe }} ; {#mix of string and float|string#}
+        emobon-sampling:storageTemp [
+            a qudt:QuantityValue ; 
+            qudt:numericValue {{ _.samp_store_temp | xsd("float") | safe }} ; {#mix of string and float|string#}
+            {%- for row in sets['schema']%}
+                {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
+                    {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+            qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                    {%- elif row['Unit'] and row['Unit'] != "NA" %}
+            qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                    {%- endif %} 
+                {%- endif %}
+            {%- endfor %}
+        ] ; 
         {%- endif %}
         {%- if _.samp_store_loc != "NA" %}
         emobon-sampling:storageLoc {{ _.samp_store_loc | xsd("string") | safe }} ; 
