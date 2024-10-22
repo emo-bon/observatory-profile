@@ -17,7 +17,7 @@ Sets:
     {# provenance part #}
     dct:type "sampling"^^xsd:string ; 
     {%- if _.collection_date != "NA" %}
-    prov:startedAtTime {{_.collection_date | xsd("string") | safe }} ; {#ValueError: ISO string too short with xsd:date#}
+    prov:startedAtTime {{_.collection_date | xsd("date") | safe }} ; {#ValueError: ISO string too short with xsd:date#}
     {%- endif %}
     prov:wasAssociatedWith [
         a prov:Person, schema:Person ;
@@ -30,7 +30,7 @@ Sets:
     ] ;
     {# properties #}
     {%- if _.collection_date != "NA" %}
-    sosa:resultTime {{ _.collection_date | xsd("string") | safe }} ; {#xsd:dateTime not supported#}
+    sosa:resultTime {{ _.collection_date | xsd("date") | safe }} ; {#xsd:dateTime not supported#}
     {%- endif %}
     {%- if _.samp_collect_device != "NA" %}    
     sosa:madeBySampler {{ _.samp_collect_device | xsd("string") | safe }} ;
@@ -368,22 +368,22 @@ Sets:
         a prov:Activity ;
         dct:type "storage"^^xsd:string ; 
         dct:description "Storage of sample at sequencing centre for subsequent DNA sequencing"^^xsd:string ; 
-        prov:startedAtTime {{ _.arr_date_seq | xsd("string") | safe }} ; {#ValueError: ISO string too short with xsd:date#}
+        prov:startedAtTime {{ _.arr_date_seq | xsd("date") | safe }} ; {#ValueError: ISO string too short with xsd:date#}
         
         prov:wasInformedBy [
             {# transport from HMBRC HQ to sequencing centre prov#}
             a prov:Activity ;
             dct:type "transport"^^xsd:string ; 
             dct:description "Shipping of sample from HMBRC HQ to sequencing centre"^^xsd:string ; 
-            prov:startedAtTime {{ _.ship_date_seq | xsd("string") | safe }} ;
-            prov:endedAtTime {{ _.arr_date_seq | xsd("string") | safe }} ;
+            prov:startedAtTime {{ _.ship_date_seq | xsd("date") | safe }} ;
+            prov:endedAtTime {{ _.arr_date_seq | xsd("date") | safe }} ;
             
             prov:wasInformedBy [
                 {# storage at HMBRC HQ prov#}
                 a prov:Activity ;
                 dct:type "storage"^^xsd:string ; 
                 dct:description "Storage of sample at HMBRC HQ"^^xsd:string ; 
-                prov:startedAtTime {{ _.arr_date_hq | xsd("string") | safe }} ;
+                prov:startedAtTime {{ _.arr_date_hq | xsd("date") | safe }} ;
                 {%- if _.store_temp_hq != "NA" %}
                 emobon-sampling:storageTemp [
                     a qudt:QuantityValue ; 
@@ -405,15 +405,15 @@ Sets:
                     a prov:Activity ;
                     dct:type "transport"^^xsd:string ; 
                     dct:description "Shipping of sample to HMBRC HQ"^^xsd:string ; 
-                    prov:startedAtTime {{ _.ship_date | xsd("string") | safe }} ;
-                    prov:endedAtTime {{ _.arr_date_hq | xsd("string") | safe }} ; {#note: column name might still change!#}
+                    prov:startedAtTime {{ _.ship_date | xsd("date") | safe }} ;
+                    prov:endedAtTime {{ _.arr_date_hq | xsd("date") | safe }} ; {#note: column name might still change!#}
                     
                     prov:wasInformedBy [
                         {#- local storage sample prov #}
                         a prov:Activity ;
                         dct:type "storage"^^xsd:string ; 
                         dct:description "Local storage of the collected sample"^^xsd:string ; 
-                        prov:startedAtTime {{ _.samp_store_date | xsd("string") | safe }} ;
+                        prov:startedAtTime {{ _.samp_store_date | xsd("date") | safe }} ;
                         
                         {%- if _.store_person != "NA" %}
                         prov:wasAssociatedWith [
@@ -456,7 +456,7 @@ Sets:
         a prov:Activity ;
         dct:type "storage"^^xsd:string ; 
         dct:description "Storage of sample at HMBRC HQ"^^xsd:string ; 
-        prov:startedAtTime {{ _.arr_date_hq | xsd("string") | safe }} ;
+        prov:startedAtTime {{ _.arr_date_hq | xsd("date") | safe }} ;
         {%- if _.store_temp_hq != "NA" %}
         emobon-sampling:storageTemp [
             a qudt:QuantityValue ; 
@@ -478,15 +478,15 @@ Sets:
             a prov:Activity ;
             dct:type "transport"^^xsd:string ; 
             dct:description "Shipping of sample to HMBRC HQ"^^xsd:string ; 
-            prov:startedAtTime {{ _.ship_date | xsd("string") | safe }} ;
-            prov:endedAtTime {{ _.arr_date_hq | xsd("string") | safe }} ; {#note: column name might still change!#}
+            prov:startedAtTime {{ _.ship_date | xsd("date") | safe }} ;
+            prov:endedAtTime {{ _.arr_date_hq | xsd("date") | safe }} ; {#note: column name might still change!#}
             
             prov:wasInformedBy [
                 {#- local storage sample prov #}
                 a prov:Activity ;
                 dct:type "storage"^^xsd:string ; 
                 dct:description "Local storage of the collected sample"^^xsd:string ; 
-                prov:startedAtTime {{ _.samp_store_date | xsd("string") | safe }} ;
+                prov:startedAtTime {{ _.samp_store_date | xsd("date") | safe }} ;
                 prov:wasAssociatedWith [
                     a prov:Person, schema:Person ;
                     {%- if _.store_person != "NA" %}
@@ -526,7 +526,7 @@ Sets:
         a prov:Activity ;
         dct:type "transport"^^xsd:string ; 
         dct:description "Shipping of sample to HMBRC HQ"^^xsd:string ; 
-        prov:startedAtTime {{ _.ship_date | xsd("string") | safe }} ;
+        prov:startedAtTime {{ _.ship_date | xsd("date") | safe }} ;
 
         prov:wasInformedBy [
             {#- local storage sample prov #}
@@ -534,7 +534,7 @@ Sets:
             dct:type "storage"^^xsd:string ; 
             dct:description "Local storage of the collected sample"^^xsd:string ; 
             {%- if _.samp_store_date != "NA" %}
-            prov:startedAtTime {{ _.samp_store_date | xsd("string") | safe }} ;
+            prov:startedAtTime {{ _.samp_store_date | xsd("date") | safe }} ;
             {%- endif %}
             prov:wasAssociatedWith [
                 a prov:Person, schema:Person ;
@@ -574,7 +574,7 @@ Sets:
         a prov:Activity ;
         dct:type "storage"^^xsd:string ; 
         dct:description "Local storage of the collected sample"^^xsd:string ; 
-        prov:startedAtTime {{ _.samp_store_date | xsd("string") | safe }} ;
+        prov:startedAtTime {{ _.samp_store_date | xsd("date") | safe }} ;
         prov:wasAssociatedWith [
             a prov:Person, schema:Person ;
             {%- if _.store_person != "NA" %}
