@@ -82,7 +82,7 @@ Sets:
         ] ; 
         {%- endif %}
         {%- if '-' in _.depth %} {# case 3: (range/single value) x-y/x-x (assuming smallest always first) #}
-            {% set x,y == _.depth.split('-') %}
+            {% set x,y = _.depth.split('-') %}
     emobon-sampling:minSamplingDepth [
         a qudt:QuantityValue ;
         qudt:numericValue {{ x | xsd("integer") | safe }} ; 
@@ -223,7 +223,7 @@ Sets:
         ] ; 
         {%- endif %}
         {%- if '-' in _.depth %} {# case 3: (range/single value) x-y/x-x (assuming smallest always first) #}
-            {% set x,y == _.depth.split('-') %}
+            {% set x,y = _.depth.split('-') %}
     emobon-sampling:minSampleDepth [
         a qudt:QuantityValue ;
         qudt:numericValue {{ x | xsd("integer") | safe }} ; 
