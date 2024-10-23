@@ -6,7 +6,7 @@ Sets:
     - observatory-{obs_id}-crate/logsheets-transformed/sediment_observatory.csv as observatory 
 -#}
 
-{% include './observatory-profile/templates/includes/prefixes.ttl' %}
+{% include './includes/prefixes.ttl' %}
 
 {%- for observatory in sets['observatory'] %}
 @base <http://data.emobon.embrc.eu/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sampling/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}

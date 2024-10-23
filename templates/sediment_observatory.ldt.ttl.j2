@@ -7,7 +7,7 @@ Sets:
     - observatory-profile/logsheet_schema_extended.csv as schema
 -#}
 
-{% include './observatory-profile/templates/includes/prefixes.ttl' %}
+{% include './includes/prefixes.ttl' %}
 
 @base <http://data.emobon.embrc.eu/observatory-{{_.obs_id|lower}}-crate/{{_.env_package}}/observatory/{{_.obs_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 

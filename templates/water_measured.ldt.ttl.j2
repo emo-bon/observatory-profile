@@ -10,7 +10,7 @@ Output:
     - observatory-{obs_id}-crate/rdf/water/measured/{source_mat_id}.ttl
 -#}
 
-{%- include './observatory-profile/templates/includes/prefixes.ttl' %}
+{%- include './includes/prefixes.ttl' %}
 
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}

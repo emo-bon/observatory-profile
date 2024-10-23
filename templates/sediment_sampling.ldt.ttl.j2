@@ -6,7 +6,7 @@ Input:
 Sets:   
     - observatory-{obs_id}-crate/logsheets-transformed/sediment_observatory.csv as observatory
 -#}
-{% include 'observatory-profile/templates/includes/prefixes.ttl' %}
+{% include './includes/prefixes.ttl' %}
 
 {% for observatory in sets['observatory'] %}
 {#note: row in csv corresponds to sample replicate --> baseurl should also refer to this #}
