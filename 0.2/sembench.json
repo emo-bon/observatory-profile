@@ -1,8 +1,0 @@
-[
-    {
-        "type": "pysubyt",
-        "input": "downloads/gdoc-csv/sediment_measured.csv",
-        "output": "id/material-sample/{source_mat_id}.ttl",
-        "template": {"jinja_root": "templates", "file_name": "sediment_measured.ttl.j2"}
-    }
-]
