@@ -1,7 +1,0 @@
-@prefix rdfs : <http://www.w3.org/2000/01/rdf-schema#> . 
-@prefix dct : <http://purl.org/dc/terms/> .
-@prefix schema : <https://schema.org/> . 
-@prefix sosa: <http://www.w3.org/ns/sosa/> . 
-@prefix ssn: <http://www.w3.org/ns/ssn/> . 
-@prefix qudt: <http://qudt.org/schema/qudt/> . 
-@prefix emobon: <http://www.embrc.eu/emobon/EmoBonOntology#> . 
