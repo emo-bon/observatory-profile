@@ -50,19 +50,19 @@ Sets:
 
     {#- marine region info #}
     {%- if _.loc_broad_ocean != "NA" %}
-    emobon-sampling:marineRegionName {{_.loc_broad_ocean | xsd("string") | safe }} ; 
+    emobon-core:marineRegionName {{_.loc_broad_ocean | xsd("string") | safe }} ; 
     {%- endif %}
     {%- if _.loc_broad_ocean_mrgid != "NA" %}
     emobon-core:marineRegion {{_.loc_broad_ocean_mrgid | xsd("anyURI") | safe }} ; 
     {%- endif %}
     {%- if _.loc_regional != "NA" %}
-    emobon-sampling:marineRegionName {{_.loc_regional | xsd("string") | safe }} ; 
+    emobon-core:marineRegionName {{_.loc_regional | xsd("string") | safe }} ; 
     {%- endif %}
     {%- if _.loc_regional_mrgid != "NA" %}
     emobon-core:marineRegion {{_.loc_regional_mrgid | xsd("anyURI") | safe }} ; 
     {%- endif %}
     {%- if _.loc_loc != "NA" %}
-    emobon-sampling:marineRegionName {{_.loc_loc | xsd("string") | safe }} ; 
+    emobon-core:marineRegionName {{_.loc_loc | xsd("string") | safe }} ; 
     {%- endif %}
     {%- if _.loc_loc_mrgid != "NA" %}
     emobon-core:marineRegion {{_.loc_loc_mrgid | xsd("anyURI") | safe }} ; 
