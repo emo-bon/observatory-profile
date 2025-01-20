@@ -113,26 +113,28 @@ Sets:
     {#emobon-sampling:samplingDepth {{ _.depth | xsd("string") | safe }} ; #}
     {%- endif %}
     {%- if observatory.tot_depth_water_col != "NA" %}
-    emobon-sampling:waterColumnDepth {{observatory.tot_depth_water_col | xsd("string") | safe }} ; {#info from observ file - better suited here#}
+    emobon-core:waterColumnDepth {{observatory.tot_depth_water_col | xsd("string") | safe }} ; {#info from observ file - better suited here#}
     {%- endif %}
     {%- if observatory.geo_loc_name != "NA" %}
-    emobon-sampling:originCountry {{observatory.geo_loc_name | xsd("string") | safe }} ; 
+    emobon-core:originCountry {{observatory.geo_loc_name | xsd("string") | safe }} ; 
     {%- endif %}
     {# features of interest #}
     {%- if _.env_material != "NA" %}
-    sosa:hasFeatureOfInterest {% for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{% endfor %};
+    emobon-sampling:environmentMaterial {% for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{% endfor %};
     {%- endif %}
     {%- if _.investigation_type != "NA" %}
-    sosa:hasFeatureOfInterest {{_.investigation_type | xsd("string") | safe }} ;
+    emobon-sampling:investigationType {{_.investigation_type | xsd("string") | safe }} ;
     {%- endif %}
     {%- if _.tax_id != "NA" %}
-    sosa:hasFeatureOfInterest {{_.tax_id | xsd("anyURI") | safe }} ;
+    emobon-sampling:taxonomicID {{_.tax_id | xsd("anyURI") | safe }} ;
     {%- endif %} {# scientific_name is name associated with this #}
     {%- if _.comm_samp != "NA" %}
-    sosa:hasFeatureOfInterest {{ _.comm_samp | xsd("string") | safe }} ; 
+    emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") | safe }} ; 
     {%- endif %}
     {# result sample ~ sample from which observations are made #}
     sosa:hasResult </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}> ;
+    {#linked to observatory#}
+    emobon-sampling:linkedToObservatory </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/observatory/{{observatory.obs_id}}>  ; 
 .
 
 {#- SAMPLE from which observations are made #}
@@ -140,16 +142,16 @@ Sets:
     a sosa:Sample, prov:Entity ;
     {# features of interest #}
     {%- if _.env_material != "NA" %}
-    sosa:isSampleOf {% for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{% endfor %};
+    emobon-sampling:environmentMaterial {% for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{% endfor %};
     {%- endif %}
     {%- if _.investigation_type != "NA" %}
-    sosa:isSampleOf {{_.investigation_type | xsd("string") | safe }} ;
+    emobon-sampling:investigationType {{_.investigation_type | xsd("string") | safe }} ;
     {%- endif %}
     {%- if _.tax_id != "NA" %}
-    sosa:isSampleOf {{_.tax_id | xsd("anyURI") | safe }} ; 
+    emobon-sampling:taxonomicID {{_.tax_id | xsd("anyURI") | safe }} ; 
     {%- endif %} {# scientific_name is name associated with this #}
     {%- if _.comm_samp != "NA" %}
-    sosa:isSampleOf {{ _.comm_samp | xsd("string") | safe }} ; 
+    emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") | safe }} ; 
     {%- endif %}
     {# result sample replicates #}
     sosa:hasResult <> ;
@@ -176,20 +178,14 @@ Sets:
     emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") | safe }} ;
         {%- endif %}
     {%- endif %}
-    {%- if _.long_store == "Y" %}
-    emobon-sampling:longStorage 'true'^^xsd:boolean ; 
+    {%- if _.long_store  %}
+    emobon-sampling:longStorage {{_.long_store | xsd("boolean")}} ; 
     {%- endif %}
-    {%- if _.long_store == "N" %}
-    emobon-sampling:longStorage 'false'^^xsd:boolean ; 
+    {%- if _.failure %}
+    emobon-sampling:failure {{ _.failure | xsd("boolean")}} ;
     {%- endif %}
-    {%- if _.failure and _.failure == 'T' %}
-    emobon-sampling:failure 'true'^^xsd:boolean ;
-        {%- if _.failure_comment != "NA" %}
+    {%- if _.failure_comment != "NA" %}
     emobon-sampling:failureComment {{ _.failure_comment | xsd("string") | safe }} ;
-        {%- endif %}
-    {%- endif %}
-    {%- if _.failure == 'F' or _.failure == "NA" or not _.failure %}
-    emobon-sampling:failure 'false'^^xsd:boolean ;
     {%- endif %}
     {%- if _.depth != "NA" %}
         {%- if _.depth.startswith('>')%} {#case 1: > #}
@@ -303,16 +299,16 @@ Sets:
     {%- endif %}
     {# features of interest #}
     {%- if _.env_material != "NA" %}
-    sosa:isSampleOf {%- for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{%- endfor %};
+    emobon-sampling:environmentMaterial {%- for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{%- endfor %};
     {%- endif %}
     {%- if _.investigation_type != "NA" %}
-    sosa:isSampleOf {{_.investigation_type | xsd("string") | safe }} ;
+    emobon-sampling:investigationType {{_.investigation_type | xsd("string") | safe }} ;
     {%- endif %}
     {%- if _.tax_id != "NA" %}
-    sosa:isSampleOf {{_.tax_id | xsd("anyURI") | safe }} ;
+    emobon-sampling:taxonomicID {{_.tax_id | xsd("anyURI") | safe }} ;
     {%- endif %} {# scientific_name is name associated with this #}
     {%- if _.comm_samp != "NA" %}
-    sosa:isSampleOf {{ _.comm_samp | xsd("string") | safe }} ; 
+    emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") | safe }} ; 
     {%- endif %}
 
     {# people associated with this replicate sample #}

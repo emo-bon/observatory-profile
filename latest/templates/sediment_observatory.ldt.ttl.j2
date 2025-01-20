@@ -35,11 +35,11 @@ Sets:
         {%- endif %}
         schema:description "The EMO BON project"^^xsd:string ; 
         {%- if _.ENA_accession_number_umbrella != "NA" %}
-        emobon-sampling:enaProjAccNum {{_.ENA_accession_number_umbrella | xsd("anyURI") | safe }} ; 
+        emobon-core:enaProjAccNum {{_.ENA_accession_number_umbrella | xsd("anyURI") | safe }} ; 
         {%- endif %}
     ] ; 
     {%- if _.extra_site_info != "NA" %}
-    emobon-sampling:siteInfo {{ _.extra_site_info | xsd("string") | safe }} ; 
+    emobon-core:siteInfo {{ _.extra_site_info | xsd("string") | safe }} ; 
     {%- endif %}
     {%- if _.env_broad_biome != "NA" %}
     emobon-core:broadBiome {% for item in _.env_broad_biome.split(';') %} {{item.strip() | xsd("string") | safe }}{{ ", " if not loop.last else "" }}{%endfor%};
@@ -50,19 +50,19 @@ Sets:
 
     {#- marine region info #}
     {%- if _.loc_broad_ocean != "NA" %}
-    emobon-sampling:marineRegionName {{_.loc_broad_ocean | xsd("string") | safe }} ; 
+    emobon-core:marineRegionName {{_.loc_broad_ocean | xsd("string") | safe }} ; 
     {%- endif %}
     {%- if _.loc_broad_ocean_mrgid != "NA" %}
     emobon-core:marineRegion {{_.loc_broad_ocean_mrgid | xsd("anyURI") | safe }} ; 
     {%- endif %}
     {%- if _.loc_regional != "NA" %}
-    emobon-sampling:marineRegionName {{_.loc_regional | xsd("string") | safe }} ; 
+    emobon-core:marineRegionName {{_.loc_regional | xsd("string") | safe }} ; 
     {%- endif %}
     {%- if _.loc_regional_mrgid != "NA" %}
     emobon-core:marineRegion {{_.loc_regional_mrgid | xsd("anyURI") | safe }} ; 
     {%- endif %}
     {%- if _.loc_loc != "NA" %}
-    emobon-sampling:marineRegionName {{_.loc_loc | xsd("string") | safe }} ; 
+    emobon-core:marineRegionName {{_.loc_loc | xsd("string") | safe }} ; 
     {%- endif %}
     {%- if _.loc_loc_mrgid != "NA" %}
     emobon-core:marineRegion {{_.loc_loc_mrgid | xsd("anyURI") | safe }} ; 
@@ -111,7 +111,7 @@ Sets:
     
     {#- emobon ontology extension predicates #}
     {%- if _.tot_depth_water_col != "NA" %}
-    emobon-sampling:waterColumnDepth [
+    emobon-core:waterColumnDepth [
         a qudt:QuantityValue ;
             qudt:numericValue {{_.tot_depth_water_col | xsd("double") | safe }} ; {#- usefull to also connect to sampling_event/sample #}
             {%- for row in sets['schema']%}
@@ -126,16 +126,16 @@ Sets:
         ] ; 
     {%- endif %}
     {%- if _.geo_loc_name != "NA" %}
-    emobon-sampling:originCountry {{_.geo_loc_name | xsd("string") | safe }} ; {#- usefull to also connect to sampling_event/sample #}          
+    emobon-core:originCountry {{_.geo_loc_name | xsd("string") | safe }} ; {#- usefull to also connect to sampling_event/sample #}          
     {%- endif %}
     {%- if _.ENA_accession_number_project != "NA" %}
-    emobon-sampling:enaStudyAccNum {{_.ENA_accession_number_project | xsd("anyURI") | safe }} ; 
+    emobon-core:enaStudyAccNum {{_.ENA_accession_number_project | xsd("anyURI") | safe }} ; 
     {%- endif %}
     {%- if _.env_package != "NA" %}
-    emobon-sampling:hasMixsPackage {{_.env_package | xsd("string") | safe }} ; {#double check w/ Katrina whether column is correct #}
+    emobon-core:hasMixsPackage {{_.env_package | xsd("string") | safe }} ; {#double check w/ Katrina whether column is correct #}
     {%- endif %}
     {%- if _.sediment_type and _.sediment_type != "NA" %}
-    emobon-sampling:soilType {{_.sediment_type | xsd("string") | safe }} ; {#from list: biogenous,cosmogenous,hydrogenous,lithogenous#}
+    emobon-core:soilType {{_.sediment_type | xsd("string") | safe }} ; {#from list: biogenous,cosmogenous,hydrogenous,lithogenous#}
     {%- endif %}
 .
 
