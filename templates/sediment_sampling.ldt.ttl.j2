@@ -174,7 +174,7 @@ Sets:
     schema:additionalType "blank sample"^^xsd:string ;
     emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") | safe }} ;
         {%- else %}
-    schema:additionalType "http://vocab.nerc.ac.uk/collection/S29/current/PE001525/"^^anyURI ;
+    schema:additionalType "http://vocab.nerc.ac.uk/collection/S29/current/PE001525/"^^xsd:anyURI ;
     emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") | safe }} ;
         {%- endif %}
     {%- endif %}
