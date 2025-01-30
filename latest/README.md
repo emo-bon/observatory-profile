@@ -1,5 +1,5 @@
 # observatory profile
-The profiles for the RO-Crates for the various "observatory-xxx" repositories. 
+The profiles for the RO-Crates for the various "observatory-{obsid}-crate" repositories. 
 
 ## jinja templates (for pysembench)
 [templates](https://github.com/emo-bon/observatory-profile/tree/feature/sequenceinfo_extension/templates) The folder containing the templates used to convert the CSV format logsheets into turtle
