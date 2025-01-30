@@ -52,6 +52,8 @@ Output:
 
     {%- if row['LogsheetColumnTitle']+'_method' and _[row['LogsheetColumnTitle']+'_method'] and _[row['LogsheetColumnTitle']+'_method'] != "NA" %}
     schema:measurementTechnique {{ _[row['LogsheetColumnTitle']+'_method'] | xsd("string") | safe }} ; 
+    {%- else %}
+    schema:measurementTechnique "http://dx.doi.org/10.25607/OBP-1653"^^xsd:anyURI ;
     {%- endif %}
 
     {#- link back to sample-replicate uri (see sediment_sampling.ldt.ttl.j2) #}
