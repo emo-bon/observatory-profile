@@ -9,7 +9,7 @@ Sets:
 
 {% include './includes/prefixes.ttl' %}
 
-@base <http://data.emobon.embrc.eu/observatory-{{_.obs_id|lower}}-crate/{{_.env_package}}/observatory/{{_.obs_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+@base <http://data.emobon.embrc.eu/observatory/{{_.obs_id}}/{{_.env_package}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 <> 
     a emobon-core:Observatory ;
