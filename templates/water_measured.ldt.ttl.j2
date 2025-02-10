@@ -14,12 +14,12 @@ Output:
 
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}
-@base <http://data.emobon.embrc.eu/sample/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+@base <http://data.emobon.embrc.eu/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {%- for row in sets['schema']%}
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA" %}
 
-</observation/{{_.source_mat_id}}#{{row['LogsheetColumnTitle'].strip()}}>
+<#{{row['LogsheetColumnTitle'].strip()}}>
     a sosa:Observation, schema:Observation ; 
     {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
     sosa:observedProperty [

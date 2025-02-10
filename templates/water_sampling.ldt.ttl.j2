@@ -9,11 +9,10 @@ Sets:
 {% include './includes/prefixes.ttl' %}
 
 {%- for observatory in sets['observatory'] %}
-{#note: row in csv corresponds to SAMPLE REPLICATE --> baseurl should also refer to this #}
-@base <http://data.emobon.embrc.eu/sample/{{_.source_mat_id}}/{{_.replicate}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+@base <http://data.emobon.embrc.eu/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sampling/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {#- SAMPLING EVENT -#}
-</sampling/{{_.sampling_event.split(' ') |join("_")}}>
+</observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sampling/{{_.sampling_event.split(' ') |join("_")}}>
     a sosa:Sampling, prov:Activity ;  
     {# provenance part #}
     dct:type "sampling"^^xsd:string ; 
@@ -131,13 +130,13 @@ Sets:
     emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") | safe }} ; 
     {%- endif %}
     {# result sample ~ sample from which observations are made #}
-    sosa:hasResult </sample/{{_.source_mat_id}}> ;
+    sosa:hasResult </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}> ;
     {#linked to observatory#}
-    emobon-sampling:linkedToObservatory </observatory/{{observatory.obs_id}}/{{observatory.env_package}}>  ; 
+    emobon-sampling:linkedToObservatory </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/observatory/{{observatory.obs_id}}>  ; 
 .
 
 {#- SAMPLE from which observations are made #}
-</sample/{{_.source_mat_id}}>
+</observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}>
     a sosa:Sample, prov:Entity ;
     {# features of interest #}
     {%- if _.env_material %}
