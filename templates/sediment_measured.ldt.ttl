@@ -1,23 +1,23 @@
 {#- 
-Template: water_measured.ldt.ttl.j2 
-Description: Template to generate triples from water_measured.csv data collected in context of EMOBON.
+Template: sediment_measured.ldt.ttl.j2 
+Description: Template to generate triples from sediment_measured.csv data collected in context of EMOBON.
 Input: 
-    - observatory-{obs_id}-crate/logsheets-transformed/water_measured.csv
+    - observatory-{obs_id}-crate/logsheets-transformed/sediment_measured.csv
 Sets:   
-    - observatory-{obs_id}-crate/logsheets-transformed/water_observatory.csv as observatory
-    - observatory-profile/logsheet_schema_extended.csv as schema
-Output:
-    - observatory-{obs_id}-crate/rdf/water/measured/{source_mat_id}.ttl
+    - observatory-{obs_id}-crate/logsheets-transformed/sediment_observatory.csv as observatory
+    - observatory-profile/logsheet_schema_extended.csv as schema 
+Output: 
+    - observatory-{obs_id}-crate/rdf/sediment/measured/{source_mat_id}.ttl
 -#}
 
 {%- include './includes/prefixes.ttl' %}
 
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}
-@base <http://data.emobon.embrc.eu/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+@base <http://data.emobon.embrc.eu/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/observation/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {%- for row in sets['schema']%}
-{%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA" %}
+{%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA"  %}
 
 <#{{row['LogsheetColumnTitle'].strip()}}>
     a sosa:Observation, schema:Observation ; 
@@ -31,9 +31,9 @@ Output:
     sosa:observedProperty [
         a sosa:ObservableProperty ; 
         rdfs:label {{ row['LogsheetColumnTitle'].strip() | xsd("string") | safe }} ;
-    ] ;    
+    ] ;
     {%- endif %}
-
+    
     sosa:hasResult [
         a sosa:Result , qudt:QuantityValue ; 
         {%- if _[row['LogsheetColumnTitle']] != "NA" %}
@@ -47,7 +47,7 @@ Output:
         qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
         {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
-        {%- endif %} 
+        {%- endif %}
     ] ; 
 
     {%- if row['LogsheetColumnTitle']+'_method' and _[row['LogsheetColumnTitle']+'_method'] and _[row['LogsheetColumnTitle']+'_method'] != "NA" %}
@@ -55,9 +55,9 @@ Output:
     {%- else %}
     schema:measurementTechnique "http://dx.doi.org/10.25607/OBP-1653"^^xsd:anyURI ;
     {%- endif %}
-    
-    {#- link back to sample-replicate uri (see sediment_sampling.ldt.ttl.j2) #}
-    sosa:hasFeatureOfInterest <> ; 
+
+    {#- link back to sample uri (see sediment_sample.ldt.ttl) #}
+    sosa:hasFeatureOfInterest </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sample/{{_.source_mat_id}}> ; 
 .
 
 {%- endif %}
