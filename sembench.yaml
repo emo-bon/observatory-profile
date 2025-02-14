@@ -7,7 +7,7 @@ sediment_measured_task:
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
       schema: !resolve "{home}/logsheet_schema_extended.csv"
-    sink: "sediment/measured/{source_mat_id}"
+    sink: "sediment/observation/{source_mat_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
@@ -31,7 +31,21 @@ sediment_sampling_task:
     source: !resolve "{input}/logsheets/transformed/sediment_sampling.csv"
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
-    sink: "sediment/sampling/{source_mat_id}"
+    sink: "sediment/sampling/{sample_event}"
+    variables:
+      baseref: "http://data.emobon.embrc.eu"
+    allow_repeated_sink_paths: true
+    unique_pattern: "sample_event" 
+
+sediment_sample_task:
+  func: subyt
+  args:
+    template_folder: !resolve "{home}/templates"
+    template_name: "sediment_sample.ldt.ttl.j2"
+    source: !resolve "{input}/logsheets/transformed/sediment_sampling.csv"
+    extra_sources:
+      observatory: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
+    sink: "sediment/sample/{source_mat_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
@@ -45,7 +59,7 @@ water_measured_task:
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/water_observatory.csv"
       schema: !resolve "{home}/logsheet_schema_extended.csv"
-    sink: "water/measured/{source_mat_id}"
+    sink: "water/observation/{source_mat_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
@@ -69,7 +83,21 @@ water_sampling_task:
     source: !resolve "{input}/logsheets/transformed/water_sampling.csv"
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/water_observatory.csv"
-    sink: "water/sampling/{source_mat_id}"
+    sink: "water/sampling/{sampling_event}"
+    variables:
+      baseref: "http://data.emobon.embrc.eu"
+    allow_repeated_sink_paths: true
+    unique_pattern: "sample_event" 
+
+water_sample_task:
+  func: subyt
+  args:
+    template_folder: !resolve "{home}/templates"
+    template_name: "water_sample.ldt.ttl.j2"
+    source: !resolve "{input}/logsheets/transformed/water_sampling.csv"
+    extra_sources:
+      observatory: !resolve "{input}/logsheets/transformed/water_observatory.csv"
+    sink: "water/sample/{source_mat_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
