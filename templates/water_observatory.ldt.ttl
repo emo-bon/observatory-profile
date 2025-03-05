@@ -14,11 +14,11 @@ Sets:
 <> 
     a emobon-core:Observatory ;
     {%- if _.wa_id %} {# water #}
-    emobon-core:sampleType <https://data.emobon.embrc.eu/ns/core_vocab#3> ; {#emobon:Water ;#}
+    emobon-core:sampleType <https://data.emobon.embrc.eu/ns/core_vocab#water> ;
     {%- elif _.so_id %} {# sediment #}
-    emobon-core:sampleType <https://data.emobon.embrc.eu/ns/core_vocab#2> ; {#emobon:Soil ;#}
+    emobon-core:sampleType <https://data.emobon.embrc.eu/ns/core_vocab#soil> ;
     {%- elif _.ha_id %} {# hard bottom --> make different template #}
-    emobon-core:sampleType <https://data.emobon.embrc.eu/ns/core_vocab#1> ; {#emobon:Hard ;#}
+    emobon-core:sampleType <https://data.emobon.embrc.eu/ns/core_vocab#hard> ;
     {%- endif %}
 
     {%- if _.obs_id != "NA" %}
