@@ -131,8 +131,6 @@ Sets:
     {%- if _.comm_samp != "NA" %}
     emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") | safe }} ; 
     {%- endif %}
-    {# result sample #}
-    sosa:hasResult </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sample/{{_.source_mat_id}}> ;
     {# linked to observatory #}
     emobon-sampling:linkedToObservatory </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/observatory/{{observatory.obs_id}}>  ; 
 .
