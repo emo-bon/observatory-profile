@@ -2,7 +2,7 @@ sediment_measured_task:
   func: subyt
   args:
     template_folder: !resolve "{home}/templates"
-    template_name: "sediment_measured.ldt.ttl.j2"
+    template_name: "sediment_measured.ldt.ttl"
     source: !resolve "{input}/logsheets/transformed/sediment_measured.csv"
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
@@ -16,7 +16,7 @@ sediment_observatory_task:
   func: subyt
   args:
     template_folder: !resolve "{home}/templates"
-    template_name: "sediment_observatory.ldt.ttl.j2"
+    template_name: "sediment_observatory.ldt.ttl"
     source: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
     sink: "sediment/observatory/{obs_id}"
     variables:
@@ -27,7 +27,7 @@ sediment_sampling_task:
   func: subyt
   args:
     template_folder: !resolve "{home}/templates"
-    template_name: "sediment_sampling.ldt.ttl.j2"
+    template_name: "sediment_sampling.ldt.ttl"
     source: !resolve "{input}/logsheets/transformed/sediment_sampling.csv"
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
@@ -41,7 +41,7 @@ sediment_sample_task:
   func: subyt
   args:
     template_folder: !resolve "{home}/templates"
-    template_name: "sediment_sample.ldt.ttl.j2"
+    template_name: "sediment_sample.ldt.ttl"
     source: !resolve "{input}/logsheets/transformed/sediment_sampling.csv"
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
@@ -54,7 +54,7 @@ water_measured_task:
   func: subyt
   args:
     template_folder: !resolve "{home}/templates"
-    template_name: "water_measured.ldt.ttl.j2"
+    template_name: "water_measured.ldt.ttl"
     source: !resolve "{input}/logsheets/transformed/water_measured.csv"
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/water_observatory.csv"
@@ -68,7 +68,7 @@ water_observatory_task:
   func: subyt
   args:
     template_folder: !resolve "{home}/templates"
-    template_name: "water_observatory.ldt.ttl.j2"
+    template_name: "water_observatory.ldt.ttl"
     source: !resolve "{input}/logsheets/transformed/water_observatory.csv"
     sink: "water/observatory/{obs_id}"
     variables:
@@ -79,7 +79,7 @@ water_sampling_task:
   func: subyt
   args:
     template_folder: !resolve "{home}/templates"
-    template_name: "water_sampling.ldt.ttl.j2"
+    template_name: "water_sampling.ldt.ttl"
     source: !resolve "{input}/logsheets/transformed/water_sampling.csv"
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/water_observatory.csv"
@@ -93,7 +93,7 @@ water_sample_task:
   func: subyt
   args:
     template_folder: !resolve "{home}/templates"
-    template_name: "water_sample.ldt.ttl.j2"
+    template_name: "water_sample.ldt.ttl"
     source: !resolve "{input}/logsheets/transformed/water_sampling.csv"
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/water_observatory.csv"
