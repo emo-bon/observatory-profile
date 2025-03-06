@@ -134,3 +134,4 @@ Sets:
     {# linked to observatory #}
     emobon-sampling:linkedToObservatory </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/observatory/{{observatory.obs_id}}>  ; 
 .
+{%- endfor %}
