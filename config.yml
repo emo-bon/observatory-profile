@@ -5,3 +5,4 @@ RELEASE_versioning: tag #by major tag or by release
 INCLUDE_draft: true #include draft release which is the latest commit on the main branch 
 index_html: true #generate an index.html file for each rocrate
 draft_folder_name: latest #name of the folder for the draft release
+space_to_pages_homepage: https://data.emobon.embrc.eu
