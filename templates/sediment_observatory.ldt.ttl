@@ -140,15 +140,15 @@ Sets:
 .
 
 {# marine regions hierarchy statements #}
-<{{uritexpand("http://marineregions.org/mrgid/{loc_broad_ocean_mrgid}", _)}}>
-    mr:contains <{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _)}}> ;
+<{{uritexpand("http://marineregions.org/mrgid/{loc_broad_ocean_mrgid}", _) | safe }}>
+    mr:contains <{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _) | safe }}> ;
 .
 
-<{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _)}}>
-    mr:contains <{{uritexpand("http://marineregions.org/mrgid/{loc_loc_mrgid}", _)}}> ;
-    mr:isPartOf <{{uritexpand("http://marineregions.org/mrgid/{loc_broad_ocean_mrgid}", _)}}> ; 
+<{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _) | safe }}>
+    mr:contains <{{uritexpand("http://marineregions.org/mrgid/{loc_loc_mrgid}", _) | safe }}> ;
+    mr:isPartOf <{{uritexpand("http://marineregions.org/mrgid/{loc_broad_ocean_mrgid}", _) | safe }}> ; 
 .
 
-<{{uritexpand("http://marineregions.org/mrgid/{loc_loc_mrgid}", _)}}>
-    mr:isPartOf <{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _)}}> ;
+<{{uritexpand("http://marineregions.org/mrgid/{loc_loc_mrgid}", _) | safe }}>
+    mr:isPartOf <{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _) | safe }}> ;
 .
