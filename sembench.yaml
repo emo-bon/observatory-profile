@@ -31,7 +31,7 @@ sediment_sampling_task:
     source: !resolve "{input}/logsheets/transformed/sediment_sampling.csv"
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
-    sink: "sediment/sampling/{sample_event}"
+    sink: "sediment/sampling-event/{sample_event}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
@@ -83,7 +83,7 @@ water_sampling_task:
     source: !resolve "{input}/logsheets/transformed/water_sampling.csv"
     extra_sources:
       observatory: !resolve "{input}/logsheets/transformed/water_observatory.csv"
-    sink: "water/sampling/{sampling_event}"
+    sink: "water/sampling-event/{sample_event}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
