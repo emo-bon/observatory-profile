@@ -1,0 +1,99 @@
+{#- 
+Template: water_observatory.ldt.ttl.j2 
+Input: /observatory-bpns-data/downloads/gdoc-csv/water_observatory.csv
+Description: Template to generate triples from {SampleType}_observatory.csv data collected in context of EMOBON. 
+-#}
+
+{% include 'includes/prefixes.ttl' %}
+
+<{{uritexpand("http://www.embrc.eu/emobon/observatory/{obs_id}/{env_package}", _)}}> {# need to agree on baseuri for this #}
+    a emobon:Observatory ;
+    {%- if _.wa_id %} {# water #}
+    emobon:sampleType emobon:Water ;
+    {%- elif _.so_id %} {# sediment #}
+    emobon:sampleType emobon:Soil ;
+    {%- elif _.se_id %} {# soil? acronym in csv of third type? ~ sediment ~ hence se_id? #}
+    emobon:sampleType emobon:Hard ;
+    {%- endif %}
+
+    emobon:observatoryId {{ _.obs_id | ttl("xsd:string") | safe }} ; 
+    emobon:observatorySampleId {{ (_.wa_id or _.so_id or _.se_id) | ttl("xsd:string") | safe }} ; {#alert: column name differs between observatory types #} 
+
+    dct:isPartOf [
+        a schema:Project ; 
+        schema:name {{_.project_name | ttl("xsd:string") | safe }} ; 
+        schema:description "The EMO BON project"^^xsd:string ; 
+        emobon:enaProjAccNum {{_.ENA_accession_number_umbrella | ttl("xsd:string") | safe }} ; 
+    ] ; 
+    emobon:siteInfo {{ _.extra_site_info | ttl("xsd:string") | safe }} ; 
+    
+    emobon:broadBiome {% for item in _.env_broad_biome.split(';') %} {{item.strip() | ttl("xsd:string") | safe }}{{ ", " if not loop.last else "" }}{%endfor%};
+    emobon:localBiome {% for item in _.env_local.split(';') %}{{item.strip() | ttl("xsd:string") | safe }}{{ ", " if not loop.last else "" }}{% endfor %};
+
+    {#- marine region info #}
+    emobon:marineRegionName {{_.loc_broad_ocean | ttl("xsd:string") | safe }} ; 
+    {%- if _.loc_broad_ocean_mrgid %}
+    emobon:marineRegion <{{uritexpand("http://marineregions.org/mrgid/{loc_broad_ocean_mrgid}", _)}}> ; 
+    {%- endif %}
+    emobon:marineRegionName {{_.loc_regional | ttl("xsd:string") | safe }} ; 
+    {%- if _.loc_regional_mrgid %}
+    emobon:marineRegion <{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _)}}> ;  
+    {%- endif %}
+    emobon:marineRegionName {{_.loc_loc | ttl("xsd:string") | safe }} ; 
+    {%- if _.loc_loc_mrgid %}
+    emobon:marineRegion <{{uritexpand("http://marineregions.org/mrgid/{loc_loc_mrgid}", _)}}> ;
+    {%- endif %}
+
+    emobon:geoLocation [ 
+        a sf:Point ; 
+        geo:asWKT "<http://www.opengis.net/def/crs/OGC/1.3/CRS84> Point ({{_.latitude}} {{_.longitude}})" ;
+    ]; 
+
+    {%- for item in _.organization.split(';') %} {# assumptions: lists of equal length & ';'-separated #}
+    schema:contactPoint [ 
+        a emobon:Organization ; 
+        schema:legalName {{ item.strip() | ttl("xsd:string") | safe }} ; 
+        emobon:edmoId {{ _.organization_edmoid.split(';')[loop.index0].strip() | ttl("xsd:anyURI") | safe }} ; {# xsd:integer ~  pysubyt processing failed due to <int format does not round-trip [  449 <> 449 ]>#}
+        schema:address [
+            a schema:PostalAddress ; 
+            schema:addressCountry {{ _.organization_country | ttl("xsd:string") | safe }} ; 
+            {#- schema:postalCode {{}} ; #} 
+            {#- schema:streetAddress {{}} ; #}
+        {%- if loop.index0 == 0 and (_.contact_name or _.contact_email or _.contact_orcid) %} {# assumption: contact person always linked to the first institute #}
+        schema:member [
+            a schema:Person ; 
+            {%- if _.contact_name %}
+            schema:name {{ _.contact_name | ttl("xsd:string") | safe }} ; 
+            {%- endif %}
+            {%- if _.contact_email %}
+            schema:email {{ _.contact_email | ttl("xsd:string") | safe }} ; 
+            {%- endif %}
+            {%- if _.contact_orcid %}
+            schema:identifier <https://{{_.contact_orcid}}> ; {#otherwise formatting ~ <https://orcid.org%2F0000-0002-8559-3508> #}
+            {%- endif %}
+        ]
+        {%- endif %}
+        ] ; 
+    ] ; 
+    {%- endfor %}
+    
+    {#- emobon ontology extension predicates #}
+    emobon:waterColumnDepth {{_.tot_depth_water_col | ttl("xsd:integer") | safe }} ; {#- usefull to also connect to sampling_event/sample #} 
+    emobon:originCountry {{_.geo_loc_name | ttl("xsd:string") | safe }} ; {#- usefull to also connect to sampling_event/sample #}    
+    emobon:enaStudyAccNum {{_.ENA_accession_number_project | ttl("xsd:string") | safe }} ; 
+    emobon:hasMixsPackage {{_.env_package | ttl("xsd:string") | safe }} ; {#double check w/ Katrina whether column is correct #}
+.
+
+{# marine regions hierarchy statements #}
+<{{uritexpand("http://marineregions.org/mrgid/{loc_broad_ocean_mrgid}", _)}}>
+    mr:contains <{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _)}}> ;
+.
+
+<{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _)}}>
+    mr:contains <{{uritexpand("http://marineregions.org/mrgid/{loc_loc_mrgid}", _)}}> ;
+    mr:isPartOf <{{uritexpand("http://marineregions.org/mrgid/{loc_broad_ocean_mrgid}", _)}}> ; 
+.
+
+<{{uritexpand("http://marineregions.org/mrgid/{loc_loc_mrgid}", _)}}>
+    mr:isPartOf <{{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _)}}> ;
+.
