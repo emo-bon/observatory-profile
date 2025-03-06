@@ -35,7 +35,7 @@ sediment_sampling_task:
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
-    unique_pattern: "sampling_event" 
+    unique_pattern: "{sampling_event}" 
 
 sediment_sample_task:
   func: subyt
@@ -87,7 +87,7 @@ water_sampling_task:
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
-    unique_pattern: "sampling_event" 
+    unique_pattern: "{sampling_event}" 
 
 water_sample_task:
   func: subyt
