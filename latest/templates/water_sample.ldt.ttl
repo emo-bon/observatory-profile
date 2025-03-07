@@ -213,7 +213,7 @@ Sets:
     ] ; {% else %} ; {% endif %}
 
     {#- provenance trail -- CASE 4: sample collected, stored locally, shipped & stored at HQ, shipped & stored at sequencing centre #}
-    {%- if _.ship_date_seq and _.arr_date_seq %}
+    {%- if _.ship_date_seq and _.ship_date_seq != "NA" and _.arr_date_seq and _.arr_date_seq != "NA" %}
     prov:wasGeneratedBy [
         {#- storage at sequencing centre prov#}
         a prov:Activity ;
