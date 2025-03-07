@@ -17,7 +17,7 @@ Sets:
     {# provenance part #}
     dct:type "sampling"^^xsd:string ; 
     {%- if _.collection_date != "NA" %}
-    prov:startedAtTime {{_.collection_date | xsd("date") | safe }} ; {#ValueError: ISO string too short with xsd:date#}
+    prov:startedAtTime {{_.collection_date | xsd("auto-date") | safe }} ; {#ValueError: ISO string too short with xsd:date#}
     {%- endif %}
     prov:wasAssociatedWith [
         a prov:Person, schema:Person ;
@@ -30,7 +30,7 @@ Sets:
     ] ;
     {# properties #}
     {%- if _.collection_date != "NA" %}
-    sosa:resultTime {{ _.collection_date | xsd("date") | safe }} ; {#xsd:dateTime not supported#}
+    sosa:resultTime {{ _.collection_date | xsd("auto-date") | safe }} ; {#xsd:dateTime not supported#}
     {%- endif %}
     {%- if _.samp_collect_device != "NA" %}    
     sosa:madeBySampler {{ _.samp_collect_device | xsd("string") | safe }} ;
