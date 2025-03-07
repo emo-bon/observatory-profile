@@ -128,7 +128,7 @@ Sets:
     {%- if _.geo_loc_name != "NA" %}
     emobon-core:originCountry {{_.geo_loc_name | xsd("string") | safe }} ; {#- usefull to also connect to sampling_event/sample #}          
     {%- endif %}
-    {%- if _.ENA_accession_number_project != "NA" %}
+    {%- if _.ENA_accession_number_project and _.ENA_accession_number_project != "" and _.ENA_accession_number_project != "NA" %}
     emobon-core:enaStudyAccNum {{_.ENA_accession_number_project | xsd("anyURI") | safe }} ; 
     {%- endif %}
     {%- if _.env_package != "NA" %}
