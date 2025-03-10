@@ -26,13 +26,13 @@ Sets:
     {%- if _.ENA_accession_number_sample != "NA" %}
     emobon-sampling:enaSampleAccNum {{_.ENA_accession_number_sample | xsd("anyURI") | safe }} ;
     {%- endif %}
-    {%- if _.replicate != "NA" %} {#distinguishing between replicate type (emobon-ontology #7) #}
-        {%- if _.replicate == "blank" %}
-    schema:additionalType "blank sample"^^xsd:string ;
+    {%- if _.replicate and _.replicate != "NA" %} 
     emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") | safe }} ;
+    schema:additionalType "http://vocab.nerc.ac.uk/collection/S29/current/PE001525/"^^xsd:anyURI ; {# All samples are technical replicates #}
+        {%- if "blank" in _.replicate %}
+    schema:additionalType core_vocab:blankSample ;
         {%- else %}
-    schema:additionalType "http://vocab.nerc.ac.uk/collection/S29/current/PE001525/"^^xsd:anyURI ;
-    emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") | safe }} ;
+    schema:additionalType core_vocab:fieldSample ;
         {%- endif %}
     {%- endif %}
     {%- if _.long_store  %}
