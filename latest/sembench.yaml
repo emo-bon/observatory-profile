@@ -18,6 +18,8 @@ sediment_observatory_task:
     template_folder: !resolve "{home}/templates"
     template_name: "sediment_observatory.ldt.ttl"
     source: !resolve "{input}/logsheets/transformed/sediment_observatory.csv"
+    extra_sources:
+      schema: !resolve "{home}/logsheet_schema_extended.csv"
     sink: "sediment/observatory/{obs_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
@@ -70,6 +72,8 @@ water_observatory_task:
     template_folder: !resolve "{home}/templates"
     template_name: "water_observatory.ldt.ttl"
     source: !resolve "{input}/logsheets/transformed/water_observatory.csv"
+    extra_sources:
+      schema: !resolve "{home}/logsheet_schema_extended.csv"
     sink: "water/observatory/{obs_id}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
