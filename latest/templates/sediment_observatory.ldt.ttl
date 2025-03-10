@@ -115,7 +115,7 @@ Sets:
         a qudt:QuantityValue ;
             qudt:numericValue {{_.tot_depth_water_col | xsd("double") | safe }} ; {#- usefull to also connect to sampling_event/sample #}
             {%- for row in sets['schema']%}
-                {%- if row['LogsheetColumnTitle'] == 'tot_depth_water_col' %}
+                {%- if "depth_water_col" in row['LogsheetColumnTitle'] %}
                     {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
             qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
                     {%- elif row['Unit'] and row['Unit'] != "NA" %}
