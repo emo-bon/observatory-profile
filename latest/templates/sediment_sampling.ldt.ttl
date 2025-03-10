@@ -45,6 +45,7 @@ Sets:
         {%- if _.samp_mat_process_dev != "NA" %}
         rdfs:comment {{ _.samp_mat_process_dev | xsd("string") | safe }} ; 
         {%- endif %}
+        rdfs:seeAlso "http://dx.doi.org/10.25607/OBP-1653"^^xsd:anyURI ;
         ] ; 
     {%- endif %}
     {%- if _.tidal_stage != "NA" %}
