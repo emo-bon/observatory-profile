@@ -19,6 +19,46 @@ Output:
 {%- for row in sets['schema']%}
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA"  %}
 
+{#- here we make the disinction between measurement columns with single value entries and multiple value entries #}
+{%- if "; " in _[row['LogsheetColumnTitle']] %} {# multiple value entries ~ lists of structure 'name: value; name: value; ...'#}
+{#- need to split into array & loop -> each item ~ observation #}
+    {%- set measurements_list = _[row['LogsheetColumnTitle']].split('; ') %}
+    {%- for meas in measurements_list %}
+        {%- set meas_name = meas.split(': ')[0] %}
+        {%- set meas_value = meas.split(': ')[-1] %}
+
+<#{{meas_name.strip()}}>
+    a sosa:Observation, schema:Observation ; 
+    
+    sosa:observedProperty [
+        a sosa:ObservableProperty ; 
+        {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
+        dct:identifier <{{ row['Observable_property_url'].strip() | safe }}> ;
+        {%- endif %}
+        rdfs:label {{ row['LogsheetColumnTitle'] | xsd("string") | safe }} ;
+        dct:type {{meas_name.strip() | xsd("string") | safe }} ;
+    ] ; 
+    
+    sosa:hasResult [
+        a sosa:Result , qudt:QuantityValue ; 
+        qudt:numericValue {{ meas_value | xsd("double") | safe }} ;
+        {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+        {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+        {%- endif %}
+    ] ; 
+
+    {%- if row['LogsheetColumnTitle']+'_method' and _[row['LogsheetColumnTitle']+'_method'] and _[row['LogsheetColumnTitle']+'_method'] != "NA" %}
+    schema:measurementTechnique {{ _[row['LogsheetColumnTitle']+'_method'] | xsd("string") | safe }} ; 
+    {%- endif %}
+
+    {#- link back to sample uri (see sediment_sample.ldt.ttl) #}
+    sosa:hasFeatureOfInterest </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sample/{{_.source_mat_id}}> ; 
+.
+    {%- endfor %}
+
+{% else %} {#- single value entries #}
 <#{{row['LogsheetColumnTitle'].strip()}}>
     a sosa:Observation, schema:Observation ; 
     {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
@@ -58,6 +98,7 @@ Output:
     {#- link back to sample uri (see sediment_sample.ldt.ttl) #}
     sosa:hasFeatureOfInterest </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sample/{{_.source_mat_id}}> ; 
 .
+{%- endif %}
 
 {%- endif %}
 {%- endfor %}
