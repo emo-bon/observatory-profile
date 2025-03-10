@@ -65,8 +65,7 @@ Sets:
             {%- endif %}
         {%- endfor %} 
         ] ; 
-        {%- endif %}
-        {%- if _.depth.startswith('<')%} {#case 2: < #}
+        {%- elif _.depth.startswith('<')%} {#case 2: < #}
     emobon-sampling:maxSamplingDepth [
         a qudt:QuantityValue ;
         qudt:numericValue {{ _.depth | xsd("double") | safe }} ; 
@@ -80,8 +79,7 @@ Sets:
             {%- endif %}
         {%- endfor %} 
         ] ; 
-        {%- endif %}
-        {%- if '-' in _.depth %} {# case 3: (range/single value) x-y/x-x (assuming smallest always first) #}
+        {%- elif '-' in _.depth %} {# case 3: range x-y/x-x (assuming smallest always first) #}
             {% set x,y = _.depth.split('-') %}
     emobon-sampling:minSamplingDepth [
         a qudt:QuantityValue ;
@@ -99,6 +97,33 @@ Sets:
     emobon-sampling:maxSamplingDepth [
         a qudt:QuantityValue ;
         qudt:numericValue {{ y | xsd("double") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
+        {%- else %} {# case 4: single value #}
+    emobon-sampling:minSamplingDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ _.depth | xsd("double") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
+    emobon-sampling:maxSamplingDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ _.depth | xsd("double") | safe }} ; 
         {%- for row in sets['schema']%}
             {%- if row['LogsheetColumnTitle'] == 'depth' %}
                 {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
