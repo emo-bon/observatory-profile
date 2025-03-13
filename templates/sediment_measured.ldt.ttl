@@ -27,7 +27,7 @@ Output:
         {%- set meas_name = meas.split(': ')[0] %}
         {%- set meas_value = meas.split(': ')[-1] %}
 
-<#{{meas_name.strip()}}>
+<#{{meas_name.strip().replace(' ', '_')}}>
     a sosa:Observation, schema:Observation ; 
     
     sosa:observedProperty [
