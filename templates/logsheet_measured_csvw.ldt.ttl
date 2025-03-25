@@ -1,0 +1,35 @@
+{%- include './includes/prefixes.ttl' %}
+@prefix ex: <http://example.org/> .
+@prefix csvw: <http://www.w3.org/ns/csvw#> .
+
+ex:logsheet_metadata 
+    a csvw:Table ;
+    csvw:url <http://example.csv> ; #to be replaced with url of the logsheet_schema_extended.csv file
+    csvw:tableSchema ex:LogsheetSchema ;
+.
+
+# Define the table schema
+ex:LogsheetSchema a csvw:TableSchema ; 
+    csvw:column 
+    {%- for row in sets['schema']%}
+    {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA"  %}
+    <_:{{ row['LogsheetColumnTitle'].strip().replace(' ', '_') }}> {{ "," if not loop.last else "; " }}
+    {%- endif %}
+    {%- endfor %}
+.
+
+
+{%- for row in sets['schema']%}
+{%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA"  %}
+<_:{{ row['LogsheetColumnTitle'].strip().replace(' ', '_') }}>
+    a csvw:Column ;
+    csvw:titles "{{ row['LogsheetColumnTitle'] | xsd("string") }}" ;
+    csvw:name {{ row['LogsheetColumnTitle'] | xsd("string") }} ;
+    
+    dct:description {{ row['LogsheetColumnDefinition'] | xsd("string") }} ;
+
+    csvw:datatype {{ row['DataTypeOut'] | xsd("string")}} ;
+    csvw:propertyUrl {{ row['Observable_property_url'] | xsd("anyURI") }} ;
+
+{%- endif %}
+{%- endfor %}
