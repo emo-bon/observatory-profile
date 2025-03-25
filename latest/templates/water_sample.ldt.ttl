@@ -183,7 +183,7 @@ Sets:
     {%- endif %}
     {%- if _.scientific_name != "NA" %}
     emobon-sampling:taxonomicName {{_.scientific_name | xsd("string") | safe }} ;
-    {%- endif }
+    {%- endif %}
     {%- if _.comm_samp != "NA" %}
     emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") | safe }} ; 
     {%- endif %}
