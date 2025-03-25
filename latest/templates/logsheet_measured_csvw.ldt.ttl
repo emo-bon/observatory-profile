@@ -12,7 +12,7 @@ ex:logsheet_metadata
 ex:LogsheetSchema a csvw:TableSchema ; 
     csvw:column 
     {%- for row in sets['schema']%}
-    {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA"  %}
+    {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') %}
     <_:{{ row['LogsheetColumnTitle'].strip().replace(' ', '_') }}> {{ "," if not loop.last else "; " }}
     {%- endif %}
     {%- endfor %}
@@ -20,7 +20,7 @@ ex:LogsheetSchema a csvw:TableSchema ;
 
 
 {%- for row in sets['schema']%}
-{%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA"  %}
+{%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') %}
 <_:{{ row['LogsheetColumnTitle'].strip().replace(' ', '_') }}>
     a csvw:Column ;
     csvw:titles "{{ row['LogsheetColumnTitle'] | xsd("string") }}" ;
