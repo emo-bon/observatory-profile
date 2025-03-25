@@ -163,7 +163,10 @@ Sets:
     {%- endif %}
     {%- if _.tax_id != "NA" %}
     emobon-sampling:taxonomicID {{_.tax_id | xsd("anyURI") | safe }} ;
-    {%- endif %} {# scientific_name is name associated with this #}
+    {%- endif %} 
+    {%- if _.scientific_name != "NA" %}
+    emobon-sampling:taxonomicName {{_.scientific_name | xsd("string") | safe }} ;
+    {%- endif }
     {%- if _.comm_samp != "NA" %}
     emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") | safe }} ; 
     {%- endif %}
