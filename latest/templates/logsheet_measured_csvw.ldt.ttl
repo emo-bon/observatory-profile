@@ -1,5 +1,4 @@
 {%- include './includes/prefixes.ttl' %}
-@prefix ex: <http://example.org/> .
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
 
 @base <{{baseurl}}> .
@@ -15,7 +14,7 @@
     csvw:column 
     {%- for row in sets['schema']%}
     {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') %}
-    <_:{{ row['LogsheetColumnTitle'].strip().replace(' ', '_') }}> {{ "," if not loop.last else "; " }}
+    </measured_metadata_schema#col_{{ row['LogsheetColumnTitle'].strip().replace(' ', '_') }}> {{ "," if not loop.last else "; " }}
     {%- endif %}
     {%- endfor %}
 .
