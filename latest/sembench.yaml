@@ -5,7 +5,7 @@ measuredlogsheet_describe_task:
     template_name: "logsheet_measured_csvw.ldt.ttl"
     extra_sources:
       schema: !resolve "{home}/logsheet_schema_extended.csv"
-    sink: "sediment/loghseet_measured_csvw.ttl"
+    sink: "loghseet_measured_csvw.ttl"
     variables:
       baseref: "http://data.emobon.embrc.eu"
 
