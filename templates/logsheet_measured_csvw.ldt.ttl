@@ -2,14 +2,16 @@
 @prefix ex: <http://example.org/> .
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
 
-ex:logsheet_metadata 
+@base <{{baseurl}}> .
+
+</measured_metadata> 
     a csvw:Table ;
-    csvw:url <http://example.csv> ; #to be replaced with url of the logsheet_schema_extended.csv file
-    csvw:tableSchema ex:LogsheetSchema ;
+    csvw:url </logsheet_schema_extended.csv> ; #to be replaced with url of the logsheet_schema_extended.csv file
+    csvw:tableSchema </measured_metadata_schema> ;
 .
 
 # Define the table schema
-ex:LogsheetSchema a csvw:TableSchema ; 
+</measured_metadata_schema> a csvw:TableSchema ; 
     csvw:column 
     {%- for row in sets['schema']%}
     {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') %}
@@ -21,7 +23,7 @@ ex:LogsheetSchema a csvw:TableSchema ;
 
 {%- for row in sets['schema']%}
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') %}
-<_:{{ row['LogsheetColumnTitle'].strip().replace(' ', '_') }}>
+</measured_metadata_schema#col_{{ row['LogsheetColumnTitle'].strip().replace(' ', '_') }}>
     a csvw:Column ;
     csvw:titles "{{ row['LogsheetColumnTitle'] | xsd("string") }}" ;
     csvw:name {{ row['LogsheetColumnTitle'] | xsd("string") }} ;
