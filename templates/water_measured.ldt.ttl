@@ -66,10 +66,7 @@ Output:
 {% else %} {#- single value entries #}
 <#{{row['LogsheetColumnTitle'].strip()}}>
     a sosa:Observation, schema:Observation , csvw:Cell ; 
-    {#-include provenance info#}
-    csvw:column <{{baseref}}/measured_metadata_schema#col_{{row['LogsheetColumnTitle'].strip().replace(' ', '_')}}> ;
-    csvw:row <{{_.source_mat_id}}> ;
-    
+
     {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
     sosa:observedProperty [
         a sosa:ObservableProperty ; 

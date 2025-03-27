@@ -1,14 +1,3 @@
-measuredlogsheet_describe_task:
-  func: subyt
-  args:
-    template_folder: !resolve "{home}/templates"
-    template_name: "logsheet_measured_csvw.ldt.ttl"
-    extra_sources:
-      schema: !resolve "{home}/logsheet_schema_extended.csv"
-    sink: "loghseet_measured_csvw.ttl"
-    variables:
-      baseref: "http://data.emobon.embrc.eu"
-
 sediment_measured_task:
   func: subyt
   args:
