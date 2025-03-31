@@ -144,7 +144,7 @@ Sets:
     {%- endif %}
     {# features of interest #}
     {%- if _.env_material != "NA" %}
-    emobon-sampling:environmentMaterial {% for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{% endfor %};
+    emobon-sampling:environmentMaterial {% for item in _.env_material.split(';') %}{{item.strip() | xsd("anyURI") | safe }}{% if not loop.last %}, {%endif%}{% endfor %};
     {%- endif %}
     {%- if _.investigation_type != "NA" %}
     emobon-sampling:investigationType {{_.investigation_type | xsd("string") | safe }} ;
