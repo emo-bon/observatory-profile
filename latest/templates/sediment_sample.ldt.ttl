@@ -323,7 +323,7 @@ Sets:
                 a prov:Activity ;
                 dct:type "storage"^^xsd:string ; 
                 dct:description "Local storage of the collected sample"^^xsd:string ; 
-                {%- if _.samp_store_date != "NA" %}
+                {%- if _.samp_store_date and _.samp_store_date != "NA" %}
                 prov:startedAtTime {{ _.samp_store_date | xsd("auto-date") | safe }} ;
                 {%- endif %}
                 prov:wasAssociatedWith [
@@ -372,7 +372,7 @@ Sets:
             a prov:Activity ;
             dct:type "storage"^^xsd:string ; 
             dct:description "Local storage of the collected sample"^^xsd:string ; 
-            {%- if _.samp_store_date != "NA" %}
+            {%- if _.samp_store_date and _.samp_store_date != "NA" %}
             prov:startedAtTime {{ _.samp_store_date | xsd("auto-date") | safe }} ;
             {%- endif %}
             prov:wasAssociatedWith [
@@ -407,7 +407,7 @@ Sets:
     ] ; 
 
     {#- provenance trail -- CASE 1: sample collected and stored locally #}
-    {%- elif _.samp_store_date != "NA" %}
+    {%- elif _.samp_store_date and _.samp_store_date != "NA" %}
     prov:wasGeneratedBy [
         {#- local storage sample prov #}
         a prov:Activity ;
