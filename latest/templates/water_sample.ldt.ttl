@@ -278,7 +278,7 @@ Sets:
                             {%- endif %}
                         ] ;
                         {%- endif %}
-                        {%- if _.samp_store_temp != "NA" %}
+                        {%- if _.samp_store_temp and _.samp_store_temp != "NA" %}
                         emobon-sampling:storageTemp [
                             a qudt:QuantityValue ; 
                             qudt:numericValue {{ _.samp_store_temp | xsd("double") | safe }} ; {#mix of string and float|string#}
@@ -350,7 +350,7 @@ Sets:
                     schema:identifier {{_.store_person_orcid | xsd("anyURI") | safe }} ;
                     {%- endif %}
                 ] ;
-                {%- if _.samp_store_temp != "NA" %}
+                {%- if _.samp_store_temp and _.samp_store_temp != "NA" %}
                 emobon-sampling:storageTemp [
                     a qudt:QuantityValue ; 
                     qudt:numericValue {{ _.samp_store_temp | xsd("double") | safe }} ; {#mix of string and float|string#}
@@ -399,7 +399,7 @@ Sets:
                 schema:identifier {{_.store_person_orcid | xsd("anyURI") | safe }} ;
                 {%- endif %}
             ] ;
-            {%- if _.samp_store_temp != "NA" %}
+            {%- if _.samp_store_temp and _.samp_store_temp != "NA" %}
             emobon-sampling:storageTemp [
                 a qudt:QuantityValue ; 
                 qudt:numericValue {{ _.samp_store_temp | xsd("double") | safe }} ; {#mix of string and float|string#}
@@ -438,7 +438,7 @@ Sets:
             schema:identifier {{_.store_person_orcid | xsd("anyURI") | safe }} ;
             {%- endif %}
         ] ;
-        {%- if _.samp_store_temp != "NA" %}
+        {%- if _.samp_store_temp and _.samp_store_temp != "NA" %}
         emobon-sampling:storageTemp [
             a qudt:QuantityValue ; 
             qudt:numericValue {{ _.samp_store_temp | xsd("double") | safe }} ; {#mix of string and float|string#}
