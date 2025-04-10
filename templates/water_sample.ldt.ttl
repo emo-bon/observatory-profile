@@ -105,7 +105,7 @@ Sets:
         {%- endif %}
     {#emobon-sampling:sampleDepth {{ _.depth | xsd("string") | safe }} ; #}
     {%- endif %}
-    {%- if _.samp_size_vol != "NA" %}
+    {%- if _.samp_size_vol and _.samp_size_vol != "NA" %}
     emobon-sampling:hasSampleSize [
         a qudt:QuantityValue ; 
         qudt:numericValue {{ _.samp_size_vol | xsd("double") | safe }} ; {#mix of string and float|string#}
