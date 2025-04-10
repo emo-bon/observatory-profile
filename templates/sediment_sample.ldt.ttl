@@ -106,7 +106,7 @@ Sets:
         {%- endif %}
     {#emobon-sampling:sampleDepth {{ _.depth | xsd("string") | safe }} ; #}
     {%- endif %}
-    {%- if _.samp_size_mass != "NA" %}
+    {%- if _.samp_size_mass and _.samp_size_mass != "NA" %}
     emobon-sampling:hasSampleSize [
         a qudt:QuantityValue ; 
         qudt:numericValue {{ _.samp_size_mass | xsd("double") | safe }} ; {#mix of string and float|string#}
@@ -215,6 +215,7 @@ Sets:
             prov:startedAtTime {{ _.ship_date_seq | xsd("auto-date") | safe }} ;
             prov:endedAtTime {{ _.arr_date_seq | xsd("auto-date") | safe }} ;
             
+            {%- if _.arr_date_hq and _.arr_date_hq != "NA" %}
             prov:wasInformedBy [
                 {# storage at HMBRC HQ prov#}
                 a prov:Activity ;
@@ -237,6 +238,7 @@ Sets:
                 ] ; 
                 {%- endif %}
 
+                {%- if _.ship_date and _.ship_date != "NA" and _.arr_date_hq and _.arr_date_hq != "NA" %}
                 prov:wasInformedBy [
                     {# shipping to HMBRC HQ prov#}
                     a prov:Activity ;
@@ -245,6 +247,7 @@ Sets:
                     prov:startedAtTime {{ _.ship_date | xsd("auto-date") | safe }} ;
                     prov:endedAtTime {{ _.arr_date_hq | xsd("auto-date") | safe }} ; {#note: column name might still change!#}
                     
+                    {%- if _.samp_store_date and _.samp_store_date != "NA" %}
                     prov:wasInformedBy [
                         {#- local storage sample prov #}
                         a prov:Activity ;
@@ -281,8 +284,11 @@ Sets:
                         {%- endif %}
                         prov:wasInformedBy <> ; 
                     ] ; 
+                    {%- endif %}
                 ] ; 
+                {%- endif %}
             ] ; 
+            {%- endif %}
         ] ; 
     ] ; 
 
