@@ -50,7 +50,7 @@ Sets:
     {%- if _.tidal_stage != "NA" %}
     emobon-sampling:tidalStage {{_.tidal_stage | xsd("string") | safe }} ;
     {%- endif %}
-    {%- if _.depth != "NA" %}
+    {%- if _.depth and _.depth != "NA" %}
         {%- if _.depth.startswith('>')%} {#case 1: > #}
     emobon-sampling:minSamplingDepth [
         a qudt:QuantityValue ;

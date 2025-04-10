@@ -287,7 +287,7 @@ Sets:
     ] ; 
 
     {#- provenance trail -- CASE 3: sample collected, stored locally, shipped & stored at HQ #}
-    {%- elif _.ship_date != "NA" and _.arr_date_hq != "NA" %}
+    {%- elif _.ship_date and _.ship_date != "NA" and _.arr_date_hq and _.arr_date_hq != "NA" %}
     prov:wasGeneratedBy [
         {# storage at HMBRC HQ prov#}
         a prov:Activity ;
@@ -359,7 +359,7 @@ Sets:
     ] ;
 
     {#- provenance trail -- CASE 2: sample collected and shipped #}
-    {%- elif _.ship_date != "NA" %}
+    {%- elif _.ship_date and _.ship_date != "NA" %}
     prov:wasGeneratedBy [
         {# shipping to HMBRC HQ prov#}
         a prov:Activity ;
