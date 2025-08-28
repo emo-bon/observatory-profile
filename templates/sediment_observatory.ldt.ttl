@@ -91,6 +91,7 @@ Sets:
             {%- endif %}
             {#- schema:postalCode {{}} ; #} 
             {#- schema:streetAddress {{}} ; #}
+        ] ; 
         {%- if loop.index0 == 0 and (_.contact_name or _.contact_email or _.contact_orcid) %} {# assumption: contact person always linked to the first institute #}
         schema:member [
             a schema:Person ; 
@@ -103,9 +104,28 @@ Sets:
             {%- if _.contact_orcid and _.contact_orcid != "NA" %}
             schema:identifier {{_.contact_orcid | xsd("anyURI") | safe }} ;
             {%- endif %}
-        ]
-        {%- endif %}
+            {#org:hasMembership [
+                a org:Membership ; 
+                org:member {{person id}} ; 
+                org:organization {{institute id}} ; 
+                {%- if 'contact_valid_from' or 'contact_valid_until' %}
+                org:memberDuring [
+                    a time:Interval;
+                    {%- if  'contact_valid_from' %}  
+                    time:hasBeginning [ 
+                        time:inXSDDate "{{contact_valid_from}}"^^xsd:date ; 
+                    ] ;
+                    {%- endif %}
+                    {%- if  'contact_valid_until' %}
+                    time:hasEnd [ 
+                        time:inXSDDate "{{contact_valid_until}}"^^xsd:date ; 
+                    ] ; 
+                ] ;
+                {%- endif %}
+            ] ; #} 
         ] ; 
+        {%- endif %}
+        
     ] ; 
     {%- endfor %}
     
