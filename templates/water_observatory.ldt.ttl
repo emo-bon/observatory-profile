@@ -112,12 +112,12 @@ Sets:
                     a time:Interval;
                     {%- if  'contact_valid_from' %}  
                     time:hasBeginning [ 
-                        time:inXSDDate "{{contact_valid_from}}"^^xsd:date ; 
+                        time:inXSDDate {{contact_valid_from | xsd("date")}} ; 
                     ] ;
                     {%- endif %}
                     {%- if  'contact_valid_until' %}
                     time:hasEnd [ 
-                        time:inXSDDate "{{contact_valid_until}}"^^xsd:date ; 
+                        time:inXSDDate {{contact_valid_until | xsd("date")}} ; 
                     ] ; 
                 ] ;
                 {%- endif %}
