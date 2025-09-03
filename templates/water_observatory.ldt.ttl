@@ -156,15 +156,15 @@ Sets:
 .
 
 {# marine regions hierarchy statements #}
-<http://marineregions.org/mrgid/{{_.loc_broad_ocean_mrgid}}>
-    mr:contains <http://marineregions.org/mrgid/{{loc_regional_mrgid}}> ;
+{{ uriexpand("http://marineregions.org/mrgid/{#loc_broad_ocean_mrgid}", _ ) | uri }}
+    mr:contains {{ uriexpand("http://marineregions.org/mrgid/{#loc_regional_mrgid}", _ ) | uri }} ;
 .
 
-<http://marineregions.org/mrgid/{{_.loc_regional_mrgid}}>
-    mr:contains <http://marineregions.org/mrgid/{{_.loc_loc_mrgid}}> ;
-    mr:isPartOf <http://marineregions.org/mrgid/{{_.loc_broad_ocean_mrgid}}> ; 
+{{ uriexpand("http://marineregions.org/mrgid/{#loc_regional_mrgid}", _) | uri }}
+    mr:contains {{ uriexpand("http://marineregions.org/mrgid/{#loc_loc_mrgid}", _) | uri }} ;
+    mr:isPartOf {{ uriexpand("http://marineregions.org/mrgid/{#loc_broad_ocean_mrgid}", _) | uri }} ; 
 .
 
-<http://marineregions.org/mrgid/{{_.loc_loc_mrgid}}>
-    mr:isPartOf <http://marineregions.org/mrgid/{{_.loc_regional_mrgid}}> ;
+{{ uriexpand("http://marineregions.org/mrgid/{#loc_loc_mrgid}", _ ) | uri }}
+    mr:isPartOf {{ uriexpand("http://marineregions.org/mrgid/{#loc_regional_mrgid}", _ ) | uri }} ;
 .
