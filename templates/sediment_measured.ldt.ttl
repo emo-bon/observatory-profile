@@ -31,12 +31,12 @@ Output:
     a sosa:Observation, schema:Observation , csvw:Cell ; 
     {#-include provenance info#}
     csvw:column <{{baseref}}/measured_metadata_schema#col_{{row['LogsheetColumnTitle'].strip().replace(' ', '_')}}> ;
-    csvw:row <{{_.source_mat_id}}> ;
+    csvw:row {{_.source_mat_id | uri }} ;
     
     sosa:observedProperty [
         a sosa:ObservableProperty ; 
         {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
-        dct:identifier <{{ row['Observable_property_url'].strip() }}> ;
+        dct:identifier {{ row['Observable_property_url'].strip() | uri }} ;
         {%- endif %}
         rdfs:label {{ row['LogsheetColumnTitle'] | xsd("string") }} ;
         dct:type {{meas_name.strip() | xsd("string") }} ;
@@ -48,7 +48,7 @@ Output:
         qudt:numericValue {{ meas_value | xsd("double") }} ;
         {%- endif %}
         {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit <{{row['Unit_URL'].strip() }}> ;
+        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
         {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
         {%- endif %}
@@ -70,7 +70,7 @@ Output:
     {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
     sosa:observedProperty [
         a sosa:ObservableProperty ; 
-        dct:identifier <{{ row['Observable_property_url'].strip() }}> ;
+        dct:identifier {{ row['Observable_property_url'].strip() | uri }} ;
         rdfs:label {{row['LogsheetColumnTitle'].strip() | xsd("string") }} ; 
     ] ; 
     {%- else %}
@@ -91,7 +91,7 @@ Output:
             {%- endif %}
         {%- endif %}
         {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit <{{row['Unit_URL'].strip() }}> ;
+        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
         {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
         {%- endif %}

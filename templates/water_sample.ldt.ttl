@@ -51,7 +51,7 @@ Sets:
         {%- for row in sets['schema']%}
             {%- if row['LogsheetColumnTitle'] == 'depth' %}
                 {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit <{{row['Unit_URL'].strip() }}> ;
+        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                 {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                 {%- endif %} 
@@ -66,7 +66,7 @@ Sets:
         {%- for row in sets['schema']%}
             {%- if row['LogsheetColumnTitle'] == 'depth' %}
                 {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit <{{row['Unit_URL'].strip() }}> ;
+        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                 {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                 {%- endif %} 
@@ -82,7 +82,7 @@ Sets:
         {%- for row in sets['schema']%}
             {%- if row['LogsheetColumnTitle'] == 'depth' %}
                 {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit <{{row['Unit_URL'].strip() }}> ;
+        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                 {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                 {%- endif %} 
@@ -95,7 +95,7 @@ Sets:
         {%- for row in sets['schema']%}
             {%- if row['LogsheetColumnTitle'] == 'depth' %}
                 {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit <{{row['Unit_URL'].strip() }}> ;
+        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                 {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                 {%- endif %} 
@@ -112,7 +112,7 @@ Sets:
         {%- for row in sets['schema']%}
             {%- if row['LogsheetColumnTitle'] == 'samp_size_vol' %}
                 {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit <{{row['Unit_URL'].strip() }}> ;
+        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                 {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                 {%- endif %} 
@@ -130,7 +130,7 @@ Sets:
         {%- for row in sets['schema']%}
             {%- if row['LogsheetColumnTitle'] == 'size_frac_up' %}
                 {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit <{{row['Unit_URL'].strip() }}> ;
+        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                 {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                 {%- endif %} 
@@ -145,7 +145,7 @@ Sets:
         {%- for row in sets['schema']%}
             {%- if row['LogsheetColumnTitle'] == 'size_frac_low' %}
                 {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit <{{row['Unit_URL'].strip() }}> ;
+        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                 {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                 {%- endif %} 
@@ -160,7 +160,7 @@ Sets:
         {%- for row in sets['schema']%}
             {%- if row['LogsheetColumnTitle'] == 'time_fi' %}
                 {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit <{{row['Unit_URL'].strip() }}> ;
+        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                 {%- elif row['Unit'] and row['Unit'] != "NA" %}
         qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                 {%- endif %} 
@@ -245,7 +245,7 @@ Sets:
                     {%- for row in sets['schema']%}
                         {%- if row['LogsheetColumnTitle'] == 'store_temp_hq' %}
                             {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-                    qudt:unit <{{row['Unit_URL'].strip() }}> ;
+                    qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                             {%- elif row['Unit'] and row['Unit'] != "NA" %}
                     qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                             {%- endif %} 
@@ -285,7 +285,7 @@ Sets:
                             {%- for row in sets['schema']%}
                                 {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
                                     {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-                            qudt:unit <{{row['Unit_URL'].strip() }}> ;
+                            qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                                     {%- elif row['Unit'] and row['Unit'] != "NA" %}
                             qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                                     {%- endif %} 
@@ -318,7 +318,7 @@ Sets:
             {%- for row in sets['schema']%}
                 {%- if row['LogsheetColumnTitle'] == 'store_temp_hq' %}
                     {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-            qudt:unit <{{row['Unit_URL'].strip() }}> ;
+            qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                     {%- elif row['Unit'] and row['Unit'] != "NA" %}
             qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                     {%- endif %} 
@@ -357,7 +357,7 @@ Sets:
                     {%- for row in sets['schema']%}
                         {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
                             {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-                    qudt:unit <{{row['Unit_URL'].strip() }}> ;
+                    qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                             {%- elif row['Unit'] and row['Unit'] != "NA" %}
                     qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                             {%- endif %} 
@@ -406,7 +406,7 @@ Sets:
                 {%- for row in sets['schema']%}
                     {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
                         {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-                qudt:unit <{{row['Unit_URL'].strip() }}> ;
+                qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                         {%- elif row['Unit'] and row['Unit'] != "NA" %}
                 qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                         {%- endif %} 
@@ -445,7 +445,7 @@ Sets:
             {%- for row in sets['schema']%}
                 {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
                     {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-            qudt:unit <{{row['Unit_URL'].strip() }}> ;
+            qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                     {%- elif row['Unit'] and row['Unit'] != "NA" %}
             qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                     {%- endif %} 

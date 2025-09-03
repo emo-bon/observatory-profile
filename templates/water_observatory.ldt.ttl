@@ -136,7 +136,7 @@ Sets:
             {%- for row in sets['schema']%}
                 {%- if row['LogsheetColumnTitle'] == 'tot_depth_water_col' %}
                     {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-            qudt:unit <{{row['Unit_URL'].strip() }}> ;
+            qudt:unit {{row['Unit_URL'].strip() | uri }} ;
                     {%- elif row['Unit'] and row['Unit'] != "NA" %}
             qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
                     {%- endif %} 
