@@ -14,7 +14,13 @@ Output:
 
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}
-@base <http://data.emobon.embrc.eu/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/observation/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+
+{% set obsID_low = _.obs_id|lower %}
+{% set obsID = _.obs_id %}
+{% set sourceMatID = _.source_mat_id %}
+{% set env = _.env_package %}
+
+@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observation/" ~ sourceMatID | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {%- for row in sets['schema']%}
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA"  %}
@@ -27,10 +33,11 @@ Output:
         {%- set meas_name = meas.split(': ')[0] %}
         {%- set meas_value = meas.split(': ')[-1] %}
 
-<#{{meas_name.strip().replace(' ', '_')}}>
+{{"#" ~ meas_name.strip().replace(' ', '_') | uri }}
     a sosa:Observation, schema:Observation , csvw:Cell ; 
     {#-include provenance info#}
-    csvw:column <{{baseref}}/measured_metadata_schema#col_{{row['LogsheetColumnTitle'].strip().replace(' ', '_')}}> ;
+    {%- set colTitle = row['LogsheetColumnTitle'].strip().replace(' ', '_') %}
+    csvw:column {{baseref ~ "/measured_metadata_schema#col_" ~ colTitle | uri }} ;
     csvw:row {{_.source_mat_id | uri }} ;
     
     sosa:observedProperty [
@@ -59,12 +66,12 @@ Output:
     {%- endif %}
 
     {#- link back to sample uri (see sediment_sample.ldt.ttl) #}
-    sosa:hasFeatureOfInterest </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sample/{{_.source_mat_id}}> ; 
+    sosa:hasFeatureOfInterest {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env "/sample/" ~ sourceMatID | uri }} ; 
 .
     {%- endfor %}
 
 {% else %} {#- single value entries #}
-<#{{row['LogsheetColumnTitle'].strip()}}>
+{{ "#" ~ row['LogsheetColumnTitle'].strip() | uri }}
     a sosa:Observation, schema:Observation , csvw:Cell ; 
 
     {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
@@ -102,7 +109,7 @@ Output:
     {%- endif %}
 
     {#- link back to sample uri (see sediment_sample.ldt.ttl) #}
-    sosa:hasFeatureOfInterest </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sample/{{_.source_mat_id}}> ; 
+    sosa:hasFeatureOfInterest {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sample/" ~ sourceMatID | uri }} ; 
 .
 {%- endif %}
 

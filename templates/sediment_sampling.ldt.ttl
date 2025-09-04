@@ -9,8 +9,13 @@ Sets:
 {% include './includes/prefixes.ttl' %}
 
 {% for observatory in sets['observatory'] %}
-{#note: row in csv corresponds to sample replicate --> baseurl should also refer to this #}
-@base <http://data.emobon.embrc.eu/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sampling-event/{{_.sampling_event.split(' ') |join("_")}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+
+{% set obsID_low = observatory.obs_id|lower %}
+{% set obsID = observatory.obs_id %}
+{% set env =  observatory.env_package  %}
+{% set samplingEvent =  _.sampling_event.split(' ') |join("_") %}
+
+@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sampling-event/" ~ samplingEvent | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {#- SAMPLING EVENT #}
 <> 
@@ -161,6 +166,6 @@ Sets:
     emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") }} ; 
     {%- endif %}
     {# linked to observatory #}
-    emobon-sampling:linkedToObservatory </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/observatory/{{observatory.obs_id}}>  ; 
+    emobon-sampling:linkedToObservatory {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID | uri }} ; 
 .
 {%- endfor %}
