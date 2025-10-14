@@ -14,6 +14,7 @@ jobs:
         uses: vliz-be-opsci/rocrate-to-pages@latest
         with:
           config: config.yml
+          space_to_pages_homepage: https://data.emobon.embrc.eu
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
