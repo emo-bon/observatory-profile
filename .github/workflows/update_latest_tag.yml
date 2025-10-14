@@ -1,28 +1,125 @@
-name: Update_latest_tag
+name: Update Tags Based on Commit
+
 on:
   push:
     branches:
       - main
+
 jobs:
-    update_latest_tag:
-        runs-on: ubuntu-latest
-    
-        steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-    
-        - name: change latest tag
-          uses: EndBug/latest-tag@latest
-          env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-             token: ${{ secrets.GITHUB_TOKEN }}
-          with:
-              # You can change the name of the tag or branch with this input.
-              # Default: 'latest'
-              ref: 'latest'
-              # If a description is provided, the action will use it to create an annotated tag. If none is given, the action will create a lightweight tag.
-              # Default: ''
-              description: 'latest version of the observatory-profile.' 
-              # Force-update a branch instead of using a tag.
-              # Default: false
-              force-branch: false
+  update-tag:
+    runs-on: ubuntu-latest
+    outputs:
+      new_tag: ${{ steps.bump.outputs.new_tag }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Needed for full git history/tags
+
+      - name: Setup Git for pushing tags
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
+      - name: Perform pre-check
+        id: precheck
+        run: |
+          # Mock check: Always true for now (replace with real logic, e.g., file exists, API call, etc.)
+          echo "Running mock pre-check..."
+          if true; then
+            echo "check_passed=true" >> $GITHUB_OUTPUT
+            echo "Pre-check passed (mock)."
+          else
+            echo "Pre-check failed."
+            exit 1  # Fail the step to skip tagging
+          fi
+
+      - name: Fetch latest SemVer tag and bump based on commit message
+        if: steps.precheck.outputs.check_passed == 'true'  # Only run if pre-check passes
+        id: bump
+        env:
+          GH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          # Fetch all tags
+          git fetch --tags
+
+          # Get list of all tags
+          TAGS=$(git tag -l)
+
+          # SemVer regex (from your snippet)
+          regex="^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-((0|[1-9][0-9]*|[0-9]*[a-zA-Z-][0-9a-zA-Z-]*)(\\.(0|[1-9][0-9]*|[0-9]*[0-9a-zA-Z-]*))*))?(\\+([0-9a-zA-Z-]+(\\.[0-9a-zA-Z-]+)*))?$"
+
+          # Filter valid SemVer tags
+          VALID_TAGS=""
+          for tag in $TAGS; do
+            if [[ $tag =~ $regex ]]; then
+              VALID_TAGS="$VALID_TAGS $tag"
+            fi
+          done
+
+          # Get commit message and trim whitespace
+          COMMIT_MSG=$(echo "$COMMIT_MESSAGE" | xargs)
+          echo "Commit message: '$COMMIT_MSG'"
+
+          # Determine bump type
+          if [[ $COMMIT_MSG == major* ]]; then
+            BUMP_TYPE="major"
+          elif [[ $COMMIT_MSG == minor* ]]; then
+            BUMP_TYPE="minor"
+          else
+            BUMP_TYPE="patch"
+          fi
+          echo "Bump type: $BUMP_TYPE"
+
+          # Find the latest valid SemVer tag and bump accordingly
+          if [ -z "$VALID_TAGS" ]; then
+            if [ "$BUMP_TYPE" = "major" ]; then
+              NEW_TAG="1.0.0"
+            elif [ "$BUMP_TYPE" = "minor" ]; then
+              NEW_TAG="0.1.0"
+            else
+              NEW_TAG="0.0.1"
+            fi
+          else
+            LATEST_TAG=$(echo "$VALID_TAGS" | tr ' ' '\n' | sort -V | tail -n1)
+            # Extract core versions (ignore pre-release/build)
+            CORE_TAG=$(echo $LATEST_TAG | cut -d- -f1 | cut -d+ -f1)
+            MAJOR=$(echo $CORE_TAG | cut -d. -f1)
+            MINOR=$(echo $CORE_TAG | cut -d. -f2)
+            PATCH=$(echo $CORE_TAG | cut -d. -f3)
+
+            if [ "$BUMP_TYPE" = "major" ]; then
+              NEW_MAJOR=$((MAJOR + 1))
+              NEW_TAG="$NEW_MAJOR.0.0"
+            elif [ "$BUMP_TYPE" = "minor" ]; then
+              NEW_MINOR=$((MINOR + 1))
+              NEW_TAG="$MAJOR.$NEW_MINOR.0"
+            else
+              NEW_PATCH=$((PATCH + 1))
+              NEW_TAG="$MAJOR.$MINOR.$NEW_PATCH"
+            fi
+          fi
+
+          echo "Bumping to new tag: $NEW_TAG"
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+
+          # Create and push the new tag using PAT for auth
+          git tag $NEW_TAG
+          git push https://x-access-token:${{ secrets.DISPATCH_TOKEN }}@github.com/${{ github.repository }}.git $NEW_TAG
+
+      - name: Update latest tag
+        if: steps.precheck.outputs.check_passed == 'true' && steps.bump.outcome == 'success'  # Only if previous steps succeed
+        env:
+          GH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+          NEW_TAG: ${{ steps.bump.outputs.new_tag }}
+        run: |
+          # Delete existing latest tag locally and remotely (if exists)
+          git tag -d latest || true
+          git push https://x-access-token:${{ secrets.DISPATCH_TOKEN }}@github.com/${{ github.repository }}.git :refs/tags/latest || true
+
+          # Create new latest tag on the current commit (same as NEW_TAG)
+          git tag latest
+          git push https://x-access-token:${{ secrets.DISPATCH_TOKEN }}@github.com/${{ github.repository }}.git latest
+
+          echo "Updated 'latest' tag to point to $NEW_TAG"
