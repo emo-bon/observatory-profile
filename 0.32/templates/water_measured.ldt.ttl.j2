@@ -1,0 +1,64 @@
+{#- 
+Template: water_measured.ldt.ttl.j2 
+Description: Template to generate triples from water_measured.csv data collected in context of EMOBON.
+Input: 
+    - observatory-{obs_id}-crate/logsheets-transformed/water_measured.csv
+Sets:   
+    - observatory-{obs_id}-crate/logsheets-transformed/water_observatory.csv as observatory
+    - observatory-profile/logsheet_schema_extended.csv as schema
+Output:
+    - observatory-{obs_id}-crate/rdf/water/measured/{source_mat_id}.ttl
+-#}
+
+{%- include './includes/prefixes.ttl' %}
+
+{#Observations made from the Sample#}
+{%- for observatory in sets['observatory'] %}
+@base <http://data.emobon.embrc.eu/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+
+{%- for row in sets['schema']%}
+{%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA" %}
+
+<#{{row['LogsheetColumnTitle'].strip()}}>
+    a sosa:Observation, schema:Observation ; 
+    {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
+    sosa:observedProperty [
+        a sosa:ObservableProperty ; 
+        dct:identifier <{{ row['Observable_property_url'].strip() | safe }}> ;
+        rdfs:label {{row['LogsheetColumnTitle'].strip() | xsd("string") | safe }} ; 
+    ] ; 
+    {%- else %}
+    sosa:observedProperty [
+        a sosa:ObservableProperty ; 
+        rdfs:label {{ row['LogsheetColumnTitle'].strip() | xsd("string") | safe }} ;
+    ] ;    
+    {%- endif %}
+
+    sosa:hasResult [
+        a sosa:Result , qudt:QuantityValue ; 
+        {%- if _[row['LogsheetColumnTitle']] != "NA" %}
+            {%- if _[row['DataTypeOut']] == "xsd:string" %}
+        qudt:numericValue {{ _[row['LogsheetColumnTitle']] | xsd("string") | safe }} ; {#values are mix of strings and numbers#}
+            {%- elif _[row['DataTypeOut']] == "xsd:float" %}
+        qudt:numericValue {{ _[row['LogsheetColumnTitle']] | xsd("double") | safe }} ;
+            {%- endif %}
+        {%- endif %}
+        {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+        {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+        {%- endif %} 
+    ] ; 
+
+    {%- if row['LogsheetColumnTitle']+'_method' and _[row['LogsheetColumnTitle']+'_method'] and _[row['LogsheetColumnTitle']+'_method'] != "NA" %}
+    schema:measurementTechnique {{ _[row['LogsheetColumnTitle']+'_method'] | xsd("string") | safe }} ; 
+    {%- endif %}
+    
+    {#- link back to sample-replicate uri (see sediment_sampling.ldt.ttl.j2) #}
+    sosa:hasFeatureOfInterest <> ; 
+.
+
+{%- endif %}
+{%- endfor %}
+
+{%- endfor %}
