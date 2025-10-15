@@ -40,6 +40,15 @@ Sets:
         emobon-core:enaProjAccNum {{_.ENA_accession_number_umbrella | xsd("anyURI") }} ; 
         {%- endif %}
     ] ; 
+    {%- if _.data_owner and _.data_owner_edmoid and _.data_contact_email %}
+    dct:rightsHolder [
+        a schema:Organization  ;
+        schema:name {{_.data_owner | xsd("string") }} ; 
+        schema:identifier {{_.data_owner_edmoid | uri }} ; 
+        schema:email {{_.data_owner_edmoid | xsd("anyURI") }} ; 
+    ] ; 
+    {%- endif %}
+
     {%- if _.extra_site_info != "NA" %}
     emobon-core:siteInfo {{ _.extra_site_info | xsd("string") }} ; 
     {%- endif %}
@@ -159,6 +168,8 @@ Sets:
     {%- if _.sediment_type and _.sediment_type != "NA" %}
     emobon-core:soilType {{_.sediment_type | xsd("string") }} ; {#from list: biogenous,cosmogenous,hydrogenous,lithogenous#}
     {%- endif %}
+
+
 .
 
 {# marine regions hierarchy statements #}
