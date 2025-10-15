@@ -10,9 +10,8 @@ Sets:
 {% include './includes/prefixes.ttl' %}
 
 {% set obsID_low = _.obs_id|lower %}
-{% set obsID =  _.obs_id  %}
 {% set env =  _.env_package  %}
-@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
+@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
 <> 
     a emobon-core:Observatory ;
