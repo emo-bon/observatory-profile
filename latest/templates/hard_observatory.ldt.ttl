@@ -3,22 +3,26 @@
 Template: arms_observatory.ldt.ttl 
 Description: Template to generate triples from arms observatory data collected in context of ARMS EMO-BON. 
 Input: 
-    - ...
+    - - observatory-{obs_id}-crate/logsheets-transformed/hard_observatory.csv (name of csv file to be determined)
 Sets: 
     - ...
 -#}
 
 {% include './includes/prefixes.ttl' %}
 
-@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID ~ "/" ~ ARMS_unit_id | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
+{% set obsID_low = _.obs_id|lower %}
+{% set ARMS_unit_id_low = _.ARMS_unit_id|lower %}
+{% set env =  _.env_package  %}
+@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low ~ "-" ~ ARMS_unit_id_low | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
 
 {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID ~ "#arms_units_collection" | uri }}
     a schema:Organization ;
 
-    schema:member  {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID ~ "/" ~ ARMS_unit_id | uri }} ;
-    {%- for replicate in field_replicated_units %}
-    schema:member  {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID ~ "/" ~ replicate | uri }} ;
+    schema:member  {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low ~ "/" ~ ARMS_unit_id_low | uri }} ;
+    {%- for replicate in field_replicated_units.split("; ") %}
+    {%set replicate_low = replicate| lower %}
+    schema:member  {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low ~ "/" ~ replicate_low | uri }} ;
     {%- endfor%}
 .
 
