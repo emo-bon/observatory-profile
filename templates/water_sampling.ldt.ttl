@@ -11,7 +11,6 @@ Sets:
 {%- for observatory in sets['observatory'] %}
 
 {% set obsID_low = observatory.obs_id|lower %}
-{% set obsID = observatory.obs_id %}
 {% set env =  observatory.env_package  %}
 {% set samplingEvent =  _.sampling_event.split(' ') |join("_") %}
 
@@ -165,6 +164,6 @@ Sets:
     emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") }} ; 
     {%- endif %}
     {# linked to observatory #}
-    emobon-sampling:linkedToObservatory {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID | uri }} ; 
+    emobon-sampling:linkedToObservatory {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low | uri }} ; 
 .
 {%- endfor %}
