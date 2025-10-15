@@ -1,0 +1,10 @@
+{#- 
+Template: arms_sampling.ldt.ttl 
+Description: Template to generate triples from arms sampling data collected in context of ARMS EMO-BON. 
+Input: 
+    - observatory-{obs_id}-crate/logsheets-transformed/hard_sampling.csv (name of csv file to be determined)
+Sets: 
+    - observatory-{obs_id}-crate/logsheets-transformed/sediment_observatory.csv as observatory
+-#}
+
+{% include './includes/prefixes.ttl' %}
