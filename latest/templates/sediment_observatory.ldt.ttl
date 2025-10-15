@@ -40,13 +40,8 @@ Sets:
         emobon-core:enaProjAccNum {{_.ENA_accession_number_umbrella | xsd("anyURI") }} ; 
         {%- endif %}
     ] ; 
-    {%- if _.data_owner and _.data_owner_edmoid and _.data_contact_email %}
-    dct:rightsHolder [
-        a schema:Organization  ;
-        schema:name {{_.data_owner | xsd("string") }} ; 
-        schema:identifier {{_.data_owner_edmoid | uri }} ; 
-        schema:email {{_.data_owner_edmoid | xsd("anyURI") }} ; 
-    ] ; 
+    {%- if _.data_owner_edmoid %}
+    dct:rightsHolder {{_.data_owner_edmoid | uri }} ; 
     {%- endif %}
 
     {%- if _.extra_site_info != "NA" %}
@@ -184,4 +179,10 @@ Sets:
 
 {{ uriexpand("http://marineregions.org/mrgid/{#loc_loc_mrgid}", _ ) | uri }}
     mr:isPartOf {{ uriexpand("http://marineregions.org/mrgid/{#loc_regional_mrgid}", _ ) | uri }} ;
+.
+
+{{_.data_owner_edmoid | uri }} 
+    a schema:Organization  ;
+    schema:name {{_.data_owner | xsd("string") }} ; 
+    schema:email {{_.data_owner_edmoid | xsd("anyURI") }} ; 
 .
