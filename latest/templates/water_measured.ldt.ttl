@@ -89,8 +89,8 @@ Output:
     sosa:hasResult [
         a sosa:Result , qudt:QuantityValue ; 
         {%- if _[row['LogsheetColumnTitle']] != "NA" %}
-            {%- if row['DataTypeOut'] == "xsd:double" and "expected" not in _[row['LogsheetColumnTitle']] | lower %}
-        qudt:numericValue {{ _[row['LogsheetColumnTitle']] | xsd("double") }} ;
+            {%- if row['DataTypeOut'] == "xsd:double" and "expected" not in _[row['LogsheetColumnTitle']] and "-" not in _[row['LogsheetColumnTitle']] | lower %}
+        qudt:numericValue {{ _[row['LogsheetColumnTitle']] | replace('<', '') | replace('>', '') | xsd("double") }} ;
             {%- elif row['DataTypeOut'] == "xsd:string" %}
         qudt:numericValue {{ _[row['LogsheetColumnTitle']] | xsd("string") }} ; {#values are mix of strings and numbers#}
             {#- to do include xsd:list -#}

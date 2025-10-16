@@ -61,7 +61,7 @@ Sets:
     emobon-sampling:preservative {{ _.preservative | xsd('string')}} ; 
     {%- endif %}
     {%- if _.samp_fraction %}
-    emobon-sampling:fractionCollected {{ _.samp_fraction | replace({"SF": "sessile fraction", "MF": "motile fraction", "blank":"control/blank" }) | xsd('string')}} ; 
+    emobon-sampling:fractionCollected {{ _.samp_fraction | replace("SF", "sessile fraction") | replace("MF", "motile fraction") | replace("blank", "control/blank")| xsd('string')}} ; 
     {%- endif %}
     {%- if _.crate_cover %}
     emobon-sampling:armsCrateCoverUsed {{ _.crate_cover | xsd("boolean")}} ; 
