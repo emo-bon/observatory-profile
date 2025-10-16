@@ -26,7 +26,7 @@ Sets:
     {%- endif %}
     prov:wasAssociatedWith [
         a prov:Person, schema:Person ;
-        {%- if _.sampl_person != "NA" %}
+        {%- if _.sampl_person != "NA" and _.sampl_person != "" %}
         schema:name {{ _.sampl_person | xsd("string") }} ;
         {%- endif %}
         {%- if _.sampl_person_orcid and _.sampl_person_orcid != "NA" %}
@@ -35,24 +35,24 @@ Sets:
     ] ;
     {# properties #}
     {%- if _.collection_date and _.collection_date != "NA" %}
-    sosa:resultTime {{ _.collection_date | xsd("auto-date") }} ; {#xsd:dateTime not supported#}
+    sosa:resultTime {{ _.collection_date | xsd("auto-date") }} ;
     {%- endif %}
-    {%- if _.samp_collect_device != "NA" %}
+    {%- if _.samp_collect_device != "NA" and _.samp_collect_device != "" %}
     sosa:madeBySampler {{ _.samp_collect_device | xsd("string") }} ; 
     {%- endif %}
     {%- if _.samp_mat_process != "NA" or _.samp_mat_process_dev != "NA" %}
     sosa:usedProcedure [
         a sosa:Procedure ; 
-        {%- if _.samp_mat_process != "NA" %}
+        {%- if _.samp_mat_process != "NA" and _.samp_mat_process != "" %}
         rdfs:label {{ _.samp_mat_process | xsd("string") }} ;
         {%- endif %}
-        {%- if _.samp_mat_process_dev != "NA" %}
+        {%- if _.samp_mat_process_dev != "NA" and _.samp_mat_process_dev != "" %}
         rdfs:comment {{ _.samp_mat_process_dev | xsd("string") }} ; 
         {%- endif %}
         rdfs:seeAlso "http://dx.doi.org/10.25607/OBP-1653"^^xsd:anyURI ;
         ] ; 
     {%- endif %}
-    {%- if _.tidal_stage != "NA" %}
+    {%- if _.tidal_stage != "NA" and _.tidal_stage != "" %}
     emobon-sampling:tidalStage {{_.tidal_stage | xsd("string") }} ;
     {%- endif %}
     {%- if _.depth and _.depth != "NA" %}
@@ -142,26 +142,26 @@ Sets:
         {%- endif %}
     {#emobon-sampling:samplingDepth {{ _.depth | xsd("string") }} ; #}
     {%- endif %}
-    {%- if observatory.tot_depth_water_col != "NA" %}
+    {%- if observatory.tot_depth_water_col != "NA" and observatory.tot_depth_water_col != "" %}
     emobon-core:waterColumnDepth {{observatory.tot_depth_water_col | xsd("string") }} ; {#info from observ file - better suited here#}
     {%- endif %}
-    {%- if observatory.geo_loc_name != "NA" %}
+    {%- if observatory.geo_loc_name != "NA" and observatory.geo_loc_name != "" %}
     emobon-core:originCountry {{observatory.geo_loc_name | xsd("string") }} ; 
     {%- endif %}
     {# features of interest #}
-    {%- if _.env_material != "NA" %}
+    {%- if _.env_material != "NA" and _.env_material != "" %}
     emobon-sampling:environmentMaterial {% for item in _.env_material.split(';') %}{{item.strip() | xsd("anyURI") }}{% if not loop.last %}, {%endif%}{% endfor %};
     {%- endif %}
-    {%- if _.investigation_type != "NA" %}
+    {%- if _.investigation_type != "NA" and _.investigation_type != "" %}
     emobon-sampling:investigationType {{_.investigation_type | xsd("string") }} ;
     {%- endif %}
-    {%- if _.tax_id != "NA" %}
+    {%- if _.tax_id != "NA" and _.tax_id != "" %}
     emobon-sampling:taxonomicID {{_.tax_id | xsd("anyURI") }} ;
     {%- endif %} 
-    {%- if _.scientific_name != "NA" %}
+    {%- if _.scientific_name != "NA" and _.scientific_name != "" %}
     emobon-sampling:taxonomicName {{_.scientific_name | xsd("string") }} ;
     {%- endif %}
-    {%- if _.comm_samp != "NA" %}
+    {%- if _.comm_samp != "NA" and _.comm_samp != "" %}
     emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") }} ; 
     {%- endif %}
     {# linked to observatory #}
