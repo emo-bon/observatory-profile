@@ -25,10 +25,10 @@ Sets:
     {# properties #}
     emobon-sampling:origEmobonId {{ _.source_mat_id_orig | xsd("string") }} ; 
     {# rdfs:label {{ _.source_mat_id_orig | xsd("string") }} ; #}
-    {%- if _.samp_description != "NA" %}
+    {%- if _.samp_description != "NA" and _.samp_description != "" %}
     dct:description {{ _.samp_description | xsd("string") }} ; 
     {%- endif %}
-    {%- if _.ENA_accession_number_sample != "NA" %}
+    {%- if _.ENA_accession_number_sample != "NA" and _.ENA_accession_number_sample != "" %}
     emobon-sampling:enaSampleAccNum {{_.ENA_accession_number_sample | xsd("anyURI") }} ;
     {%- endif %}
     {%- if _.replicate and _.replicate != "NA" %} 
@@ -46,7 +46,7 @@ Sets:
     {%- if _.failure %}
     emobon-sampling:failure {{ _.failure | xsd("boolean")}} ;
     {%- endif %}
-    {%- if _.failure_comment != "NA" %}
+    {%- if _.failure_comment != "NA" and _.failure_comment != "" %}
     emobon-sampling:failureComment {{ _.failure_comment | xsd("string") }} ;
     {%- endif %}
     {%- if _.depth != "NA" %}
@@ -160,26 +160,26 @@ Sets:
     ] ;
     {%- endif %}
     {# features of interest #}
-    {%- if _.env_material != "NA" %}
+    {%- if _.env_material != "NA" and _.env_material != "" %}
     emobon-sampling:environmentMaterial {%- for item in _.env_material.split(';') %}{{item.strip() | xsd("anyURI") }}{% if not loop.last %}, {%endif%}{%- endfor %};
     {%- endif %}
-    {%- if _.investigation_type != "NA" %}
+    {%- if _.investigation_type != "NA" and _.investigation_type != "" %}
     emobon-sampling:investigationType {{_.investigation_type | xsd("string") }} ;
     {%- endif %}
-    {%- if _.tax_id != "NA" %}
+    {%- if _.tax_id != "NA" and _.tax_id != "" %}
     emobon-sampling:taxonomicID {{_.tax_id | xsd("anyURI") }} ;
     {%- endif %} 
-    {%- if _.scientific_name != "NA" %}
+    {%- if _.scientific_name != "NA" and _.scientific_name != "" %}
     emobon-sampling:taxonomicName {{_.scientific_name | xsd("string") }} ;
     {%- endif %}
-    {%- if _.comm_samp != "NA" %}
+    {%- if _.comm_samp != "NA" and _.comm_samp != "" %}
     emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") }} ; 
     {%- endif %}
 
     {# people associated with this replicate sample #}
     prov:wasAssociatedWith [
         a prov:Person, schema:Person ;
-        {%- if _.sampl_person != "NA" %}
+        {%- if _.sampl_person != "NA" and _.sampl_person != "" %}
         schema:name {{ _.sampl_person | xsd("string") }} ;
         {%- endif %}
         {%- if _.sampl_person_orcid and _.sampl_person_orcid != "NA" %}
@@ -187,7 +187,7 @@ Sets:
         {%- endif %}
     ] , [
         a prov:Person, schema:Person ;
-        {%- if _.store_person != "NA" %}
+        {%- if _.store_person != "NA" and _.store_person != "" %}
         schema:name {{ _.store_person | xsd("string") }} ;
         {%- endif %}
         {%- if _.store_person_orcid and _.store_person_orcid != "NA" %}
@@ -195,7 +195,7 @@ Sets:
         {%- endif %}
     ] {% if _.other_person and _.other_person != "NA" %}, [
         a prov:Person, schema:Person ;
-        {%- if _.other_person != "NA" %}
+        {%- if _.other_person != "NA" and _.other_person != "" %}
         schema:name {{ _.other_person | xsd("string") }} ;
         {%- endif %}
         {%- if _.other_person_orcid and _.other_person_orcid != "NA" %}
