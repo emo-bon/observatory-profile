@@ -29,9 +29,6 @@ Sets:
     {%- if _.samp_description != "NA" %}
     dct:description {{ _.samp_description | xsd("string") }} ; 
     {%- endif %}
-#    {%- if _.ENA_accession_number_sample != "NA" %}
-#    emobon-sampling:enaSampleAccNum {{_.ENA_accession_number_sample | xsd("anyURI") }} ;
-#    {%- endif %}
     {%- if _.replicate and _.replicate != "NA" %} 
     emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") }} ;
     schema:additionalType "http://vocab.nerc.ac.uk/collection/S29/current/PE001525/"^^xsd:anyURI ; {# All samples are technical replicates #}
@@ -80,22 +77,9 @@ Sets:
     {%- endif %}
    
     {%- if _.size_filter and _.size_filter != "NA" %}
-    emobon-sampling:upperFilterSize [
+    emobon-sampling:filterSize [
         a qudt:QuantityValue ; 
         qudt:numericValue {{ _.size_filter | xsd("double") }} ; 
-        {%- for row in sets['schema']%}
-            {%- if row['LogsheetColumnTitle'] == 'size_filter' %}
-                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
-                {%- elif row['Unit'] and row['Unit'] != "NA" %}
-        qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
-                {%- endif %} 
-            {%- endif %}
-        {%- endfor %}
-    ] ;
-    emobon-sampling:lowerFilterSize [
-        a qudt:QuantityValue ; 
-        qudt:numericValue {{ _.size_filter | xsd("double") }} ;
         {%- for row in sets['schema']%}
             {%- if row['LogsheetColumnTitle'] == 'size_filter' %}
                 {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
