@@ -15,13 +15,13 @@ Sets:
 {% set sourceMatID =  _.source_mat_id %}
 {% set samplingEvent =  _.sampling_event.split(' ') |join("_") %}
 
-@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sample/" ~ sourceMatID | uri }} .
+@base {{ ("http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sample/" ~ sourceMatID) | uri }} .
 
 {#- SAMPLE #}
 <> 
     a sosa:Sample, prov:Entity ;
     {# sampling-event #}
-    sosa:isResultOf {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sampling-event/" ~ samplingEvent | uri }} ;
+    sosa:isResultOf {{ ("/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sampling-event/" ~ samplingEvent) | uri }} ;
     {# properties #}
     emobon-sampling:origEmobonId {{ _.source_mat_id_orig | xsd("string") }} ; 
     {#rdfs:label {{ _.source_mat_id_orig | xsd("string") }} ; #}
