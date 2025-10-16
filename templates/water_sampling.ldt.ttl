@@ -6,13 +6,13 @@ Sets:
     - observatory-{obs_id}-crate/logsheets-transformed/sediment_observatory.csv as observatory 
 -#}
 
-{% include './includes/prefixes.ttl' %}
+{%- include './includes/prefixes.ttl' %}
 
 {%- for observatory in sets['observatory'] %}
 
-{% set obsID_low = observatory.obs_id|lower %}
-{% set env =  observatory.env_package  %}
-{% set samplingEvent =  _.sampling_event.split(' ') |join("_") %}
+{%- set obsID_low = observatory.obs_id|lower %}
+{%- set env =  observatory.env_package  %}
+{%- set samplingEvent =  _.sampling_event.split(' ') |join("_") %}
 
 @base {{ ("http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~"-crate/" ~ env ~ "/sampling-event/" ~ samplingEvent) | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 

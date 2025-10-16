@@ -15,9 +15,9 @@ Output:
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}
 
-{% set obsID_low = observatory.obs_id|lower %}
-{% set sourceMatID = _.source_mat_id %}
-{% set env = observatory.env_package %}
+{%- set obsID_low = observatory.obs_id|lower %}
+{%- set sourceMatID = _.source_mat_id %}
+{%- set env = observatory.env_package %}
 
 @base {{ ("http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observation/" ~ sourceMatID) | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
