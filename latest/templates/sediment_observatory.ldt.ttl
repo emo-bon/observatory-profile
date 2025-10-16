@@ -168,7 +168,7 @@ Sets:
 .
 
 {# marine regions hierarchy statements #}
-{{ _loc_broad_ocean_mrgid | uri }}
+{{ _.loc_broad_ocean_mrgid | uri }}
     mr:contains {{ _.loc_regional_mrgid | uri }} ;
 .
 
