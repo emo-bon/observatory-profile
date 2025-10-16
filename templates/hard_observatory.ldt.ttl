@@ -175,17 +175,17 @@ Sets:
 .
 
 {# marine regions hierarchy statements #}
-{{ "http://marineregions.org/mrgid/" ~ _loc_broad_ocean_mrgid | uri }}
-    mr:contains {{ "http://marineregions.org/mrgid/" ~ _.loc_regional_mrgid | uri }} ;
+{{ _loc_broad_ocean_mrgid | uri }}
+    mr:contains {{ _.loc_regional_mrgid | uri }} ;
 .
 
-{{ "http://marineregions.org/mrgid/" ~ _.loc_regional_mrgid| uri }}
-    mr:contains {{ "http://marineregions.org/mrgid/" ~ _.loc_loc_mrgid | uri }} ;
-    mr:isPartOf {{ "http://marineregions.org/mrgid/" ~ _.loc_broad_ocean_mrgid | uri }} ; 
+{{ _.loc_regional_mrgid| uri }}
+    mr:contains {{ _.loc_loc_mrgid | uri }} ;
+    mr:isPartOf {{ _.loc_broad_ocean_mrgid | uri }} ; 
 .
 
-{{ "http://marineregions.org/mrgid/" ~ _.loc_loc_mrgid | uri }}
-    mr:isPartOf {{ "http://marineregions.org/mrgid/" ~ _.loc_regional_mrgid | uri }} ;
+{{ _.loc_loc_mrgid | uri }}
+    mr:isPartOf {{ _.loc_regional_mrgid | uri }} ;
 .
 
 {{_.data_owner_edmoid | uri }} 
