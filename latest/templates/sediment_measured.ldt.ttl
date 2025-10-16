@@ -15,11 +15,11 @@ Output:
 {#Observations made from the Sample#}
 {%- for observatory in sets['observatory'] %}
 
-{% set obsID_low = _.obs_id|lower %}
+{% set obsID_low = observatory.obs_id|lower %}
 {% set sourceMatID = _.source_mat_id %}
-{% set env = _.env_package %}
+{% set env = observatory.env_package %}
 
-@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observation/" ~ sourceMatID | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
+@base {{ ("http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observation/" ~ sourceMatID) | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {%- for row in sets['schema']%}
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA"  %}
