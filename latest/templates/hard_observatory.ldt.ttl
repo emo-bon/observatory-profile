@@ -175,17 +175,17 @@ Sets:
 .
 
 {# marine regions hierarchy statements #}
-{{ uriexpand("http://marineregions.org/mrgid/{#loc_broad_ocean_mrgid}", _ ) | uri }}
-    mr:contains {{ uriexpand("http://marineregions.org/mrgid/{#loc_regional_mrgid}", _ ) | uri }} ;
+{{ "http://marineregions.org/mrgid/" ~ _loc_broad_ocean_mrgid | uri }}
+    mr:contains {{ "http://marineregions.org/mrgid/" ~ _.loc_regional_mrgid | uri }} ;
 .
 
-{{ uriexpand("http://marineregions.org/mrgid/{#loc_regional_mrgid}", _) | uri }}
-    mr:contains {{ uriexpand("http://marineregions.org/mrgid/{#loc_loc_mrgid}", _) | uri }} ;
-    mr:isPartOf {{ uriexpand("http://marineregions.org/mrgid/{#loc_broad_ocean_mrgid}", _) | uri }} ; 
+{{ "http://marineregions.org/mrgid/" ~ _.loc_regional_mrgid| uri }}
+    mr:contains {{ "http://marineregions.org/mrgid/" ~ _.loc_loc_mrgid | uri }} ;
+    mr:isPartOf {{ "http://marineregions.org/mrgid/" ~ _.loc_broad_ocean_mrgid | uri }} ; 
 .
 
-{{ uriexpand("http://marineregions.org/mrgid/{#loc_loc_mrgid}", _ ) | uri }}
-    mr:isPartOf {{ uriexpand("http://marineregions.org/mrgid/{#loc_regional_mrgid}", _ ) | uri }} ;
+{{ "http://marineregions.org/mrgid/" ~ _.loc_loc_mrgid | uri }}
+    mr:isPartOf {{ "http://marineregions.org/mrgid/" ~ _.loc_regional_mrgid | uri }} ;
 .
 
 {{_.data_owner_edmoid | uri }} 
