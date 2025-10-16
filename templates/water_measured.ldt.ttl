@@ -108,7 +108,7 @@ Output:
     {%- endif %}
     
     {#- link back to sample uri (see sediment_sample.ldt.ttl) #}
-    sosa:hasFeatureOfInterest {{ "/observatory-" obsID_low ~ "-crate/" ~ env ~ "/sample/" ~ sourceMatID | uri }} ; 
+    sosa:hasFeatureOfInterest {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sample/" ~ sourceMatID | uri }} ; 
 .
 {%- endif %}
 
