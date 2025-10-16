@@ -32,12 +32,12 @@ Output:
         {%- set meas_name = meas.split(': ')[0] %}
         {%- set meas_value = meas.split(': ')[-1] %}
 
-{{ "#" ~ meas_name.strip().replace(' ', '_') | uri }}
+{{ ("#" ~ meas_name.strip().replace(' ', '_')) | uri }}
     a sosa:Observation, schema:Observation , csvw:Cell ; 
     {#-include provenance info#}
     {%- set colTitle = row['LogsheetColumnTitle'].strip().replace(' ', '_') %}
-    csvw:column {{ baseref ~ "/measured_metadata_schema#col_" ~ colTitle | uri }} ;
-    csvw:row {{_.source_mat_id | uri }} ;
+    csvw:column {{ (baseref ~ "/measured_metadata_schema#col_" ~ colTitle) | uri }} ;
+    csvw:row {{ _.source_mat_id | uri }} ;
     
     sosa:observedProperty [
         a sosa:ObservableProperty ; 
@@ -65,12 +65,12 @@ Output:
     {%- endif %}
 
     {#- link back to sample uri (see sediment_sample.ldt.ttl) #}
-    sosa:hasFeatureOfInterest {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sample/" ~ sourceMatID | uri }} ; 
+    sosa:hasFeatureOfInterest {{ ("/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sample/" ~ sourceMatID) | uri }} ; 
 .
     {%- endfor %}
 
 {% else %} {#- single value entries #}
-{{ "#" ~ row['LogsheetColumnTitle'].strip() | uri }}
+{{ ("#" ~ row['LogsheetColumnTitle'].strip()) | uri }}
     a sosa:Observation, schema:Observation , csvw:Cell ; 
 
     {%- if row['Observable_property_url'] and row['Observable_property_url'] != "NA" %}
@@ -108,7 +108,7 @@ Output:
     {%- endif %}
     
     {#- link back to sample uri (see sediment_sample.ldt.ttl) #}
-    sosa:hasFeatureOfInterest {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sample/" ~ sourceMatID | uri }} ; 
+    sosa:hasFeatureOfInterest {{ ("/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sample/" ~ sourceMatID) | uri }} ; 
 .
 {%- endif %}
 

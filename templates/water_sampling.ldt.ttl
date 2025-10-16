@@ -14,7 +14,7 @@ Sets:
 {% set env =  observatory.env_package  %}
 {% set samplingEvent =  _.sampling_event.split(' ') |join("_") %}
 
-@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~"-crate/" ~ env ~ "/sampling-event/" ~ samplingEvent | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
+@base {{ ("http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~"-crate/" ~ env ~ "/sampling-event/" ~ samplingEvent) | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
 {#- SAMPLING EVENT -#}
 <>
@@ -164,6 +164,6 @@ Sets:
     emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") }} ; 
     {%- endif %}
     {# linked to observatory #}
-    emobon-sampling:linkedToObservatory {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low | uri }} ; 
+    emobon-sampling:linkedToObservatory {{ ("/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ observatory.obs_id) | uri }} ; 
 .
 {%- endfor %}
