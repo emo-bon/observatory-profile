@@ -31,7 +31,7 @@ Sets:
     {%- endif %}
     prov:wasAssociatedWith [
         a prov:Person, schema:Person ;
-        {%- if _.sampl_person != "NA" %}
+        {%- if _.sampl_person and _.sampl_person != "NA" %}
         schema:name {{ _.sampl_person | xsd("string") }} ;
         {%- endif %}
         {%- if _.sampl_person_orcid and _.sampl_person_orcid != "NA" %}
@@ -57,10 +57,10 @@ Sets:
         rdfs:seeAlso "http://dx.doi.org/10.25607/OBP-1653"^^xsd:anyURI ;
         ] ; 
     {%- endif %}
-    {%- if _.preservative %}
+    {%- if _.preservative and _.preservative != "NA" %}
     emobon-sampling:preservative {{ _.preservative | xsd('string')}} ; 
     {%- endif %}
-    {%- if _.samp_fraction %}
+    {%- if _.samp_fraction and _.samp_fraction != "NA" %}
     emobon-sampling:fractionCollected {{ _.samp_fraction | replace("SF", "sessile fraction") | replace("MF", "motile fraction") | replace("blank", "control/blank")| xsd('string')}} ; 
     {%- endif %}
     {%- if _.crate_cover %}
@@ -98,23 +98,23 @@ Sets:
         ] ; 
     {%- endif %}
     {%- endif %}
-    {%- if observatory.tot_depth_water_col != "NA" %}
+    {%- if observatory.tot_depth_water_col and observatory.tot_depth_water_col != "NA" %}
     emobon-core:waterColumnDepth {{observatory.tot_depth_water_col | xsd("string") }} ; {#info from observ file - better suited here#}
     {%- endif %}
-    {%- if observatory.geo_loc_name != "NA" %}
+    {%- if observatory.geo_loc_name and observatory.geo_loc_name != "NA" %}
     emobon-core:originCountry {{observatory.geo_loc_name | xsd("string") }} ; 
     {%- endif %}
     {# features of interest #}
-    {%- if _.env_material != "NA" %}
-    emobon-sampling:environmentMaterial {% for item in _.env_material.split(';') %}{{item.strip() | xsd("anyURI") }}{% if not loop.last %}, {%endif%}{% endfor %};
+    {%- if _.env_material and _.env_material != "NA" %}
+    emobon-sampling:environmentMaterial {% for envo_url in _.env_material.split(';') %}{{ envo_url | uri }}{% if not loop.last %}, {%endif%}{% endfor %};
     {%- endif %}
-    {%- if _.investigation_type != "NA" %}
+    {%- if _.investigation_type and _.investigation_type != "NA" %}
     emobon-sampling:investigationType {{_.investigation_type | xsd("string") }} ;
     {%- endif %}
-    {%- if _.tax_id != "NA" %}
+    {%- if _.tax_id and _.tax_id != "NA" %}
     emobon-sampling:taxonomicID {{_.tax_id | xsd("anyURI") }} ;
     {%- endif %} 
-    {%- if _.scientific_name != "NA" %}
+    {%- if _.scientific_name and _.scientific_name != "NA" %}
     emobon-sampling:taxonomicName {{_.scientific_name | xsd("string") }} ;
     {%- endif %}
     {# linked to observatory #}
