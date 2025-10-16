@@ -7,10 +7,10 @@ Sets:
     - observatory-profile/logsheet_schema_extended.csv as schema
 -#}
 
-{% include './includes/prefixes.ttl' %}
+{%- include './includes/prefixes.ttl' %}
 
-{% set obsID_low = _.obs_id|lower %}
-{% set env =  _.env_package  %}
+{%- set obsID_low = _.obs_id|lower %}
+{%- set env =  _.env_package  %}
 @base {{ ("http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ _.obs_id)  | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
 <> 
