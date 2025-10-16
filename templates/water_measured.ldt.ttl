@@ -36,7 +36,7 @@ Output:
     a sosa:Observation, schema:Observation , csvw:Cell ; 
     {#-include provenance info#}
     {%- set colTitle = row['LogsheetColumnTitle'].strip().replace(' ', '_') %}
-    csvw:column {{ baseref ~ "/measured_metadata_schema#col_" colTitle | uri }} ;
+    csvw:column {{ baseref ~ "/measured_metadata_schema#col_" ~ colTitle | uri }} ;
     csvw:row {{_.source_mat_id | uri }} ;
     
     sosa:observedProperty [
