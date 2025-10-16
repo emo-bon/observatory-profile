@@ -150,7 +150,7 @@ Sets:
     {%- endif %}
     {# features of interest #}
     {%- if _.env_material and _.env_material != "NA" %}
-    emobon-sampling:environmentMaterial {% for item in _.env_material.split(';') %}{{item.strip() | xsd("anyURI") }}{% if not loop.last %}, {%endif%}{% endfor %};
+    emobon-sampling:environmentMaterial {% for envo_url in _.env_material.split(';') %}{{envo_url | uri }}{% if not loop.last %}, {%endif%}{% endfor %};
     {%- endif %}
     {%- if _.investigation_type and _.investigation_type != "NA" %}
     emobon-sampling:investigationType {{_.investigation_type | xsd("string") }} ;
