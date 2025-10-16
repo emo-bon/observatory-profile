@@ -25,10 +25,9 @@ Output:
 {%- if row['LogsheetTab'] == 'Measured' and not row['LogsheetColumnTitle'].endswith('_method') and _[row['LogsheetColumnTitle']] and _[row['LogsheetColumnTitle']] != "NA" %}
 
 {#- here we make the disinction between measurement columns with single value entries and multiple value entries #}
-{%- if "; " in _[row['LogsheetColumnTitle']] %} {# multiple value entries ~ lists of structure 'name: value; name: value; ...'#}
+{%- if ": " in _[row['LogsheetColumnTitle']] %} {# multiple value entries ~ lists of structure 'name: value; name: value; ...'#}
 {#- need to split into array & loop -> each item ~ observation #}
     {%- set measurements_list = _[row['LogsheetColumnTitle']].split('; ') %}
-    {{measurements_list}}
     {%- for meas in measurements_list %}
         {%- set meas_name = meas.split(': ')[0] %}
         {%- set meas_value = meas.split(': ')[-1] %}
@@ -50,8 +49,6 @@ Output:
     ] ; 
     
     sosa:hasResult [
-        {{meas_name}}
-        {{meas_value}}
         a sosa:Result , qudt:QuantityValue ; 
         {% if "expected" not in meas_value | lower %}
         qudt:numericValue {{ meas_value | xsd("double") }} ;
