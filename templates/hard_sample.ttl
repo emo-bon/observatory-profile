@@ -26,7 +26,7 @@ Sets:
     {# properties #}
     emobon-sampling:origEmobonId {{ _.source_mat_id_orig | xsd("string") }} ; 
     {# rdfs:label {{ _.source_mat_id_orig | xsd("string") }} ; #}
-    {%- if _.samp_description != "NA" %}
+    {%- if _.samp_description and _.samp_description != "NA" %}
     dct:description {{ _.samp_description | xsd("string") }} ; 
     {%- endif %}
     {%- if _.replicate and _.replicate != "NA" %} 
@@ -44,7 +44,7 @@ Sets:
     {%- if _.failure %}
     emobon-sampling:failure {{ _.failure | xsd("boolean")}} ;
     {%- endif %}
-    {%- if _.failure_comment != "NA" %}
+    {%- if _.failure_comment and _.failure_comment != "NA" %}
     emobon-sampling:failureComment {{ _.failure_comment | xsd("string") }} ;
     {%- endif %}
     {%- if _.depth and _.depth != "NA" %}
@@ -92,23 +92,23 @@ Sets:
     ] ;
     {%- endif %}
     {# features of interest #}
-    {%- if _.env_material != "NA" %}
-    emobon-sampling:environmentMaterial {%- for item in _.env_material.split(';') %}{{item.strip() | xsd("anyURI") }}{% if not loop.last %}, {%endif%}{%- endfor %};
+    {%- if _.env_material and _.env_material != "NA" %}
+    emobon-sampling:environmentMaterial {%- for envo_url in _.env_material.split(';') %}{{ envo_url | uri }}{% if not loop.last %}, {%endif%}{%- endfor %};
     {%- endif %}
-    {%- if _.investigation_type != "NA" %}
+    {%- if _.investigation_type and _.investigation_type != "NA" %}
     emobon-sampling:investigationType {{_.investigation_type | xsd("string") }} ;
     {%- endif %}
-    {%- if _.tax_id != "NA" %}
+    {%- if _.tax_id and _.tax_id != "NA" %}
     emobon-sampling:taxonomicID {{_.tax_id | xsd("anyURI") }} ;
     {%- endif %} 
-    {%- if _.scientific_name != "NA" %}
+    {%- if _.scientific_name and _.scientific_name != "NA" %}
     emobon-sampling:taxonomicName {{_.scientific_name | xsd("string") }} ;
     {%- endif %}
 
     {# people associated with this replicate sample #}
     prov:wasAssociatedWith [
         a prov:Person, schema:Person ;
-        {%- if _.sampl_person != "NA" %}
+        {%- if _.sampl_person and _.sampl_person != "NA" %}
         schema:name {{ _.sampl_person | xsd("string") }} ;
         {%- endif %}
         {%- if _.sampl_person_orcid and _.sampl_person_orcid != "NA" %}
@@ -116,7 +116,7 @@ Sets:
         {%- endif %}
     ] , [
         a prov:Person, schema:Person ;
-        {%- if _.store_person != "NA" %}
+        {%- if _.store_person and _.store_person != "NA" %}
         schema:name {{ _.store_person | xsd("string") }} ;
         {%- endif %}
         {%- if _.store_person_orcid and _.store_person_orcid != "NA" %}

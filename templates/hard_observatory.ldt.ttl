@@ -61,10 +61,10 @@ Sets:
     emobon-core:siteInfo {{ _.extra_site_info | xsd("string") }} ; 
     {%- endif %}
     {%- if _.env_broad_biome != "NA" %}
-    emobon-core:broadBiome {% for item in _.env_broad_biome.split(';') %} {{item.strip() | xsd("anyURI") }}{{ ", " if not loop.last else "" }}{%endfor%};
+    emobon-core:broadBiome {% for envo_url in _.env_broad_biome.split(';') %} {{ envo_url | uri }}{{ ", " if not loop.last else "" }}{%endfor%};
     {%- endif %}
     {%- if _.env_local != "NA" %}
-    emobon-core:localBiome {% for item in _.env_local.split(';') %}{{item.strip() | xsd("anyURI") }}{{ ", " if not loop.last else "" }}{% endfor %};
+    emobon-core:localBiome {% for envo_url in _.env_local.split(';') %}{{ envo_url | uri }}{{ ", " if not loop.last else "" }}{% endfor %};
     {%- endif %}
 
     {#- marine region info #}
