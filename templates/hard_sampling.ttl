@@ -13,7 +13,7 @@ Sets:
 {% set namesarr = _.source_mat_id.split('_') %}
 {% set obsID_low = namesarr[1] | lower %}
 {% set ARMS_unit_id_low = namesarr[2] | lower %}
-{% set env =  namesarr[3] %}
+{% set env =  observatory.env_package.split(' ') |join("_") %}
 {% set samplingEvent =  _.sampling_event.split(' ') |join("_") %} {# looking at logsheets, likely not needed but consistent with other observatory templates #}
 
 @base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sampling-event/" ~ samplingEvent | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
@@ -23,8 +23,11 @@ Sets:
     a sosa:Sampling, prov:Activity ;  
     {# provenance part #}
     dct:type "sampling"^^xsd:string ; 
+    {%- if _.deployment_date and _.deployment_date != "NA" %}
+    prov:startedAtTime {{_.deployment_date | xsd("auto-date") }} ;
+    {%- endif %}
     {%- if _.collection_date and _.collection_date != "NA" %}
-    prov:startedAtTime {{_.collection_date | xsd("auto-date") }} ; {#ValueError: ISO string too short with xsd:date#}
+    prov:endedAtTime {{_.collection_date | xsd("auto-date") }} ; 
     {%- endif %}
     prov:wasAssociatedWith [
         a prov:Person, schema:Person ;
@@ -39,8 +42,8 @@ Sets:
     {%- if _.collection_date and _.collection_date != "NA" %}
     sosa:resultTime {{ _.collection_date | xsd("auto-date") }} ; {#xsd:dateTime not supported#}
     {%- endif %}
-    {%- if _.samp_collect_device != "NA" %}
-    sosa:madeBySampler {{ _.samp_collect_device | xsd("string") }} ; 
+    {%- if observatory.env_package and observatory.env_package != "NA" %}
+    sosa:madeBySampler {{ observatory.env_package | xsd("string") }} ; 
     {%- endif %}
     {%- if _.samp_mat_process != "NA" or _.samp_mat_process_dev != "NA" %}
     sosa:usedProcedure [
@@ -54,67 +57,19 @@ Sets:
         rdfs:seeAlso "http://dx.doi.org/10.25607/OBP-1653"^^xsd:anyURI ;
         ] ; 
     {%- endif %}
-    {%- if _.tidal_stage != "NA" %}
-    emobon-sampling:tidalStage {{_.tidal_stage | xsd("string") }} ;
+    {%- if _.preservative %}
+    emobon-sampling:preservative {{ _.preservative | xsd('string')}} ; 
+    {%- endif %}
+    {%- if _.samp_fraction %}
+    emobon-sampling:fractionCollected {{ _.samp_fraction | replace({"SF": "sessile fraction", "MF": "motile fraction", "blank":"control/blank" }) | xsd('string')}} ; 
+    {%- endif %}
+    {%- if _.crate_cover %}
+    emobon-sampling:armsCrateCoverUsed {{ _.crate_cover | xsd("boolean")}} ; 
+    {%- endif %}
+    {%- if _.images_in_PlutoF %}
+    emobon-sampling:imagesInPlutoF {{ _.images_in_PlutoF | xsd("boolean")}} ; 
     {%- endif %}
     {%- if _.depth and _.depth != "NA" %}
-        {%- if _.depth.startswith('>')%} {#case 1: > #}
-    emobon-sampling:minSamplingDepth [
-        a qudt:QuantityValue ;
-        qudt:numericValue {{ _.depth | xsd("double") }} ; 
-        {%- for row in sets['schema']%}
-            {%- if row['LogsheetColumnTitle'] == 'depth' %}
-                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
-                {%- elif row['Unit'] and row['Unit'] != "NA" %}
-        qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
-                {%- endif %} 
-            {%- endif %}
-        {%- endfor %} 
-        ] ; 
-        {%- elif _.depth.startswith('<')%} {#case 2: < #}
-    emobon-sampling:maxSamplingDepth [
-        a qudt:QuantityValue ;
-        qudt:numericValue {{ _.depth | xsd("double") }} ; 
-        {%- for row in sets['schema']%}
-            {%- if row['LogsheetColumnTitle'] == 'depth' %}
-                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
-                {%- elif row['Unit'] and row['Unit'] != "NA" %}
-        qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
-                {%- endif %} 
-            {%- endif %}
-        {%- endfor %} 
-        ] ; 
-        {%- elif '-' in _.depth %} {# case 3: range x-y/x-x (assuming smallest always first) #}
-            {% set x,y = _.depth.split('-') %}
-    emobon-sampling:minSamplingDepth [
-        a qudt:QuantityValue ;
-        qudt:numericValue {{ x | xsd("double") }} ; 
-        {%- for row in sets['schema']%}
-            {%- if row['LogsheetColumnTitle'] == 'depth' %}
-                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
-                {%- elif row['Unit'] and row['Unit'] != "NA" %}
-        qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
-                {%- endif %} 
-            {%- endif %}
-        {%- endfor %} 
-        ] ;  
-    emobon-sampling:maxSamplingDepth [
-        a qudt:QuantityValue ;
-        qudt:numericValue {{ y | xsd("double") }} ; 
-        {%- for row in sets['schema']%}
-            {%- if row['LogsheetColumnTitle'] == 'depth' %}
-                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
-        qudt:unit {{row['Unit_URL'].strip() | uri }} ;
-                {%- elif row['Unit'] and row['Unit'] != "NA" %}
-        qudt:unit {{row['Unit'].strip() | xsd('string') }} ;
-                {%- endif %} 
-            {%- endif %}
-        {%- endfor %} 
-        ] ; 
-        {%- else %} {# case 4: single value #}
     emobon-sampling:minSamplingDepth [
         a qudt:QuantityValue ;
         qudt:numericValue {{ _.depth | xsd("double") }} ; 
@@ -141,8 +96,7 @@ Sets:
             {%- endif %}
         {%- endfor %} 
         ] ; 
-        {%- endif %}
-    {#emobon-sampling:samplingDepth {{ _.depth | xsd("string") }} ; #}
+    {%- endif %}
     {%- endif %}
     {%- if observatory.tot_depth_water_col != "NA" %}
     emobon-core:waterColumnDepth {{observatory.tot_depth_water_col | xsd("string") }} ; {#info from observ file - better suited here#}
@@ -162,9 +116,6 @@ Sets:
     {%- endif %} 
     {%- if _.scientific_name != "NA" %}
     emobon-sampling:taxonomicName {{_.scientific_name | xsd("string") }} ;
-    {%- endif %}
-    {%- if _.comm_samp != "NA" %}
-    emobon-sampling:bioCommunity {{ _.comm_samp | xsd("string") }} ; 
     {%- endif %}
     {# linked to observatory #}
     emobon-sampling:linkedToObservatory {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low ~ "-" ~ ARMS_unit_id_low| uri }} ; 
