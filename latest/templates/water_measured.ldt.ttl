@@ -50,7 +50,7 @@ Output:
     
     sosa:hasResult [
         a sosa:Result , qudt:QuantityValue ; 
-        {% if "expected" not in meas_value | lower %}
+        {%- if "expected" not in meas_value | lower %}
         qudt:numericValue {{ meas_value | xsd("double") }} ;
         {%- endif %}
         {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
