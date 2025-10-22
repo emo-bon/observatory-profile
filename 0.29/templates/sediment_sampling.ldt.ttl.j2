@@ -1,0 +1,596 @@
+{#- 
+Template: sediment_sampling.ldt.ttl.j2 
+Description: Template to generate triples from sediment_sampling.csv data collected in context of EMOBON.
+Input: 
+    - observatory-{obs_id}-crate/logsheets-transformed/sediment_sampling.csv
+Sets:   
+    - observatory-{obs_id}-crate/logsheets-transformed/sediment_observatory.csv as observatory
+-#}
+{% include './includes/prefixes.ttl' %}
+
+{% for observatory in sets['observatory'] %}
+{#note: row in csv corresponds to sample replicate --> baseurl should also refer to this #}
+@base <http://data.emobon.embrc.eu/observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sampling/{{_.source_mat_id}}> . {# baseref ~ http://data.emobon.embrc.eu #}
+
+{#- SAMPLING EVENT #}
+</observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/sampling/{{_.sampling_event.split(' ') |join("_")}}> 
+    a sosa:Sampling, prov:Activity ;  
+    {# provenance part #}
+    dct:type "sampling"^^xsd:string ; 
+    {%- if _.collection_date != "NA" %}
+    prov:startedAtTime {{_.collection_date | xsd("date") | safe }} ; {#ValueError: ISO string too short with xsd:date#}
+    {%- endif %}
+    prov:wasAssociatedWith [
+        a prov:Person, schema:Person ;
+        {%- if _.sampl_person != "NA" %}
+        schema:name {{ _.sampl_person | xsd("string") | safe }} ;
+        {%- endif %}
+        {%- if _.sampl_person_orcid and _.sampl_person_orcid != "NA" %}
+        schema:identifier {{_.sampl_person_orcid | xsd("anyURI") | safe }} ;
+        {%- endif %}
+    ] ;
+    {# properties #}
+    {%- if _.collection_date != "NA" %}
+    sosa:resultTime {{ _.collection_date | xsd("date") | safe }} ; {#xsd:dateTime not supported#}
+    {%- endif %}
+    {%- if _.samp_collect_device != "NA" %}
+    sosa:madeBySampler {{ _.samp_collect_device | xsd("string") | safe }} ; 
+    {%- endif %}
+    {%- if _.samp_mat_process != "NA" or _.samp_mat_process_dev != "NA" %}
+    sosa:usedProcedure [
+        a sosa:Procedure ; 
+        {%- if _.samp_mat_process != "NA" %}
+        rdfs:label {{ _.samp_mat_process | xsd("string") | safe }} ;
+        {%- endif %}
+        {%- if _.samp_mat_process_dev != "NA" %}
+        rdfs:comment {{ _.samp_mat_process_dev | xsd("string") | safe }} ; 
+        {%- endif %}
+        ] ; 
+    {%- endif %}
+    {%- if _.tidal_stage != "NA" %}
+    emobon-sampling:tidalStage {{_.tidal_stage | xsd("string") | safe }} ;
+    {%- endif %}
+    {%- if _.depth != "NA" %}
+        {%- if _.depth.startswith('>')%} {#case 1: > #}
+    emobon-sampling:minSamplingDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ _.depth | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
+        {%- endif %}
+        {%- if _.depth.startswith('<')%} {#case 2: < #}
+    emobon-sampling:maxSamplingDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ _.depth | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
+        {%- endif %}
+        {%- if '-' in _.depth %} {# case 3: (range/single value) x-y/x-x (assuming smallest always first) #}
+            {% set x,y == _.depth.split('-') %}
+    emobon-sampling:minSamplingDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ x | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ;  
+    emobon-sampling:maxSamplingDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ y | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
+        {%- endif %}
+    {#emobon-sampling:samplingDepth {{ _.depth | xsd("string") | safe }} ; #}
+    {%- endif %}
+    {%- if observatory.tot_depth_water_col != "NA" %}
+    emobon-sampling:waterColumnDepth {{observatory.tot_depth_water_col | xsd("string") | safe }} ; {#info from observ file - better suited here#}
+    {%- endif %}
+    {%- if observatory.geo_loc_name != "NA" %}
+    emobon-sampling:originCountry {{observatory.geo_loc_name | xsd("string") | safe }} ; 
+    {%- endif %}
+    {# features of interest #}
+    {%- if _.env_material != "NA" %}
+    sosa:hasFeatureOfInterest {% for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{% endfor %};
+    {%- endif %}
+    {%- if _.investigation_type != "NA" %}
+    sosa:hasFeatureOfInterest {{_.investigation_type | xsd("string") | safe }} ;
+    {%- endif %}
+    {%- if _.tax_id != "NA" %}
+    sosa:hasFeatureOfInterest {{_.tax_id | xsd("anyURI") | safe }} ;
+    {%- endif %} {# scientific_name is name associated with this #}
+    {%- if _.comm_samp != "NA" %}
+    sosa:hasFeatureOfInterest {{ _.comm_samp | xsd("string") | safe }} ; 
+    {%- endif %}
+    {# result sample ~ sample from which observations are made #}
+    sosa:hasResult </observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}> ;
+.
+
+{#- SAMPLE from which observations are made #}
+</observatory-{{observatory.obs_id|lower}}-crate/{{observatory.env_package}}/measured/{{_.source_mat_id}}>
+    a sosa:Sample, prov:Entity ;
+    {# features of interest #}
+    {%- if _.env_material != "NA" %}
+    sosa:isSampleOf {% for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{% endfor %};
+    {%- endif %}
+    {%- if _.investigation_type != "NA" %}
+    sosa:isSampleOf {{_.investigation_type | xsd("string") | safe }} ;
+    {%- endif %}
+    {%- if _.tax_id != "NA" %}
+    sosa:isSampleOf {{_.tax_id | xsd("anyURI") | safe }} ; 
+    {%- endif %} {# scientific_name is name associated with this #}
+    {%- if _.comm_samp != "NA" %}
+    sosa:isSampleOf {{ _.comm_samp | xsd("string") | safe }} ; 
+    {%- endif %}
+    {# result sample replicates #}
+    sosa:hasResult <> ;
+.
+
+{#- SAMPLE replicate #}
+<> 
+    a sosa:Sample, prov:Entity ;
+    {# properties #}
+    emobon-sampling:origEmobonId {{ _.source_mat_id_orig | xsd("string") | safe }} ; 
+    {# rdfs:label {{ _.source_mat_id_orig | xsd("string") | safe }} ; #}
+    {%- if _.samp_description != "NA" %}
+    dct:description {{ _.samp_description | xsd("string") | safe }} ; 
+    {%- endif %}
+    {%- if _.ENA_accession_number_sample != "NA" %}
+    emobon-sampling:enaSampleAccNum {{_.ENA_accession_number_sample | xsd("anyURI") | safe }} ;
+    {%- endif %}
+    {%- if _.replicate != "NA" %} {#distinguishing between replicate type (emobon-ontology #7) #}
+        {%- if _.replicate == "blank" %}
+    schema:additionalType "blank sample"^^xsd:string ;
+    emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") | safe }} ;
+        {%- else %}
+    schema:additionalType "http://vocab.nerc.ac.uk/collection/P01/current/IDTCRE01/"^^anyURI ;
+    emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") | safe }} ;
+        {%- endif %}
+    {%- endif %}
+    {%- if _.long_store == "Y" %}
+    emobon-sampling:longStorage 'true'^^xsd:boolean ; 
+    {%- endif %}
+    {%- if _.long_store == "N" %}
+    emobon-sampling:longStorage 'false'^^xsd:boolean ; 
+    {%- endif %}
+    {%- if _.failure and _.failure == 'T' %}
+    emobon-sampling:failure 'true'^^xsd:boolean ;
+        {%- if _.failure_comment != "NA" %}
+    emobon-sampling:failureComment {{ _.failure_comment | xsd("string") | safe }} ;
+        {%- endif %}
+    {%- endif %}
+    {%- if _.failure == 'F' or _.failure == "NA" or not _.failure %}
+    emobon-sampling:failure 'false'^^xsd:boolean ;
+    {%- endif %}
+    {%- if _.depth != "NA" %}
+        {%- if _.depth.startswith('>')%} {#case 1: > #}
+    emobon-sampling:minSampleDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ _.depth | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ;  
+        {%- endif %}
+        {%- if _.depth.startswith('<')%} {#case 2: < #}
+    emobon-sampling:maxSampleDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ _.depth | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
+        {%- endif %}
+        {%- if '-' in _.depth %} {# case 3: (range/single value) x-y/x-x (assuming smallest always first) #}
+            {% set x,y == _.depth.split('-') %}
+    emobon-sampling:minSampleDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ x | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
+    emobon-sampling:maxSampleDepth [
+        a qudt:QuantityValue ;
+        qudt:numericValue {{ y | xsd("integer") | safe }} ; 
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'depth' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %} 
+        ] ; 
+        {%- endif %}
+    {#emobon-sampling:sampleDepth {{ _.depth | xsd("string") | safe }} ; #}
+    {%- endif %}
+    {%- if _.samp_size_mass != "NA" %}
+    emobon-sampling:hasSampleSize [
+        a qudt:QuantityValue ; 
+        qudt:numericValue {{ _.samp_size_mass | xsd("integer") | safe }} ; {#mix of string and float|string#}
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'samp_size_mass' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %}
+    ] ;
+    {%- endif %}
+    {%- if _.size_frac != "NA" %}
+    emobon-sampling:filterSizeRange {{ _.size_frac | xsd("string") | safe }} ;
+    {%- endif %}
+    {%- if _.size_frac_up != "NA" %}
+    emobon-sampling:upperFilterSize [
+        a qudt:QuantityValue ; 
+        qudt:numericValue {{ _.size_frac_up | xsd("integer") | safe }} ; {#mix of string and float|string#}
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'size_frac_up' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %}
+    ] ;
+    {%- endif %}
+    {%- if _.size_frac_low != "NA" %}
+    emobon-sampling:lowerFilterSize [
+        a qudt:QuantityValue ; 
+        qudt:numericValue {{ _.size_frac_low | xsd("integer") | safe }} ; {#mix of string and float|string#}
+        {%- for row in sets['schema']%}
+            {%- if row['LogsheetColumnTitle'] == 'size_frac_low' %}
+                {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+        qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                {%- elif row['Unit'] and row['Unit'] != "NA" %}
+        qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                {%- endif %} 
+            {%- endif %}
+        {%- endfor %}
+    ] ;
+    {%- endif %}
+    {# features of interest #}
+    {%- if _.env_material != "NA" %}
+    sosa:isSampleOf {%- for item in _.env_material.split(';') %}{{item.strip() | xsd("string") | safe }}{% if not loop.last %}, {%endif%}{%- endfor %};
+    {%- endif %}
+    {%- if _.investigation_type != "NA" %}
+    sosa:isSampleOf {{_.investigation_type | xsd("string") | safe }} ;
+    {%- endif %}
+    {%- if _.tax_id != "NA" %}
+    sosa:isSampleOf {{_.tax_id | xsd("anyURI") | safe }} ;
+    {%- endif %} {# scientific_name is name associated with this #}
+    {%- if _.comm_samp != "NA" %}
+    sosa:isSampleOf {{ _.comm_samp | xsd("string") | safe }} ; 
+    {%- endif %}
+
+    {# people associated with this replicate sample #}
+    prov:wasAssociatedWith [
+        a prov:Person, schema:Person ;
+        {%- if _.sampl_person != "NA" %}
+        schema:name {{ _.sampl_person | xsd("string") | safe }} ;
+        {%- endif %}
+        {%- if _.sampl_person_orcid and _.sampl_person_orcid != "NA" %}
+        schema:identifier {{_.sampl_person_orcid | xsd("anyURI") | safe }} ;
+        {%- endif %}
+    ] , [
+        a prov:Person, schema:Person ;
+        {%- if _.store_person != "NA" %}
+        schema:name {{ _.store_person | xsd("string") | safe }} ;
+        {%- endif %}
+        {%- if _.store_person_orcid and _.store_person_orcid != "NA" %}
+        schema:identifier {{_.store_person_orcid | xsd("anyURI") | safe }} ;
+        {%- endif %}
+    ] {% if _.other_person and _.other_person != "NA" %}, [
+        a prov:Person, schema:Person ;
+        {%- if _.other_person != "NA" %}
+        schema:name {{ _.other_person | xsd("string") | safe }} ;
+        {%- endif %}
+        {%- if _.other_person_orcid and _.other_person_orcid != "NA" %}
+        schema:identifier {{_.other_person_orcid | xsd("anyURI") | safe }} ;
+        {%- endif %}
+    ] ; {% else %} ; {% endif %}
+
+    {#- provenance trail -- CASE 4: sample collected, stored locally, shipped & stored at HQ, shipped & stored at sequencing centre #}
+    {%- if _.ship_date_seq != "NA" and _.arr_date_seq != "NA" %}
+    prov:wasGeneratedBy [
+        {#- storage at sequencing centre prov#}
+        a prov:Activity ;
+        dct:type "storage"^^xsd:string ; 
+        dct:description "Storage of sample at sequencing centre for subsequent DNA sequencing"^^xsd:string ; 
+        prov:startedAtTime {{ _.arr_date_seq | xsd("date") | safe }} ; {#ValueError: ISO string too short with xsd:date#}
+        
+        prov:wasInformedBy [
+            {# transport from HMBRC HQ to sequencing centre prov#}
+            a prov:Activity ;
+            dct:type "transport"^^xsd:string ; 
+            dct:description "Shipping of sample from HMBRC HQ to sequencing centre"^^xsd:string ; 
+            prov:startedAtTime {{ _.ship_date_seq | xsd("date") | safe }} ;
+            prov:endedAtTime {{ _.arr_date_seq | xsd("date") | safe }} ;
+            
+            prov:wasInformedBy [
+                {# storage at HMBRC HQ prov#}
+                a prov:Activity ;
+                dct:type "storage"^^xsd:string ; 
+                dct:description "Storage of sample at HMBRC HQ"^^xsd:string ; 
+                prov:startedAtTime {{ _.arr_date_hq | xsd("date") | safe }} ;
+                {%- if _.store_temp_hq != "NA" %}
+                emobon-sampling:storageTemp [
+                    a qudt:QuantityValue ; 
+                    qudt:numericValue {{ _.store_temp_hq | xsd("float") | safe }} ; {#mix of string and float|string#}
+                    {%- for row in sets['schema']%}
+                        {%- if row['LogsheetColumnTitle'] == 'store_temp_hq' %}
+                            {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+                    qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                            {%- elif row['Unit'] and row['Unit'] != "NA" %}
+                    qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                            {%- endif %} 
+                        {%- endif %}
+                    {%- endfor %}
+                ] ; 
+                {%- endif %}
+
+                prov:wasInformedBy [
+                    {# shipping to HMBRC HQ prov#}
+                    a prov:Activity ;
+                    dct:type "transport"^^xsd:string ; 
+                    dct:description "Shipping of sample to HMBRC HQ"^^xsd:string ; 
+                    prov:startedAtTime {{ _.ship_date | xsd("date") | safe }} ;
+                    prov:endedAtTime {{ _.arr_date_hq | xsd("date") | safe }} ; {#note: column name might still change!#}
+                    
+                    prov:wasInformedBy [
+                        {#- local storage sample prov #}
+                        a prov:Activity ;
+                        dct:type "storage"^^xsd:string ; 
+                        dct:description "Local storage of the collected sample"^^xsd:string ; 
+                        prov:startedAtTime {{ _.samp_store_date | xsd("date") | safe }} ;
+                        
+                        {%- if _.store_person != "NA" %}
+                        prov:wasAssociatedWith [
+                            a prov:Person, schema:Person ;
+                            schema:name {{ _.store_person | xsd("string") | safe }} ;
+                            {%- if _.store_person_orcid and _.store_person_orcid != "NA" %}
+                            schema:identifier {{_.store_person_orcid | xsd("anyURI") | safe }} ;
+                            {%- endif %}
+                        ] ;
+                        {%- endif %}
+                        {%- if _.samp_store_temp != "NA" %}
+                        emobon-sampling:storageTemp [
+                            a qudt:QuantityValue ; 
+                            qudt:numericValue {{ _.samp_store_temp | xsd("float") | safe }} ; {#mix of string and float|string#}
+                            {%- for row in sets['schema']%}
+                                {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
+                                    {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+                            qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                                    {%- elif row['Unit'] and row['Unit'] != "NA" %}
+                            qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                                    {%- endif %} 
+                                {%- endif %}
+                            {%- endfor %}
+                        ] ; 
+                        {%- endif %}
+                        {%- if _.samp_store_loc != "NA" %}
+                        emobon-sampling:storageLoc {{ _.samp_store_loc | xsd("string") | safe }} ; 
+                        {%- endif %}
+                        prov:wasInformedBy <> ; 
+                    ] ; 
+                ] ; 
+            ] ; 
+        ] ; 
+    ] ; 
+
+    {#- provenance trail -- CASE 3: sample collected, stored locally, shipped & stored at HQ #}
+    {%- elif _.ship_date != "NA" and _.arr_date_hq != "NA" %}
+    prov:wasGeneratedBy [
+        {# storage at HMBRC HQ prov#}
+        a prov:Activity ;
+        dct:type "storage"^^xsd:string ; 
+        dct:description "Storage of sample at HMBRC HQ"^^xsd:string ; 
+        prov:startedAtTime {{ _.arr_date_hq | xsd("date") | safe }} ;
+        {%- if _.store_temp_hq != "NA" %}
+        emobon-sampling:storageTemp [
+            a qudt:QuantityValue ; 
+            qudt:numericValue {{ _.store_temp_hq | xsd("float") | safe }} ; {#mix of string and float|string#}
+            {%- for row in sets['schema']%}
+                {%- if row['LogsheetColumnTitle'] == 'store_temp_hq' %}
+                    {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+            qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                    {%- elif row['Unit'] and row['Unit'] != "NA" %}
+            qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                    {%- endif %} 
+                {%- endif %}
+            {%- endfor %}
+        ] ; 
+        {%- endif %}
+
+        prov:wasInformedBy [
+            {# shipping to HMBRC HQ prov#}
+            a prov:Activity ;
+            dct:type "transport"^^xsd:string ; 
+            dct:description "Shipping of sample to HMBRC HQ"^^xsd:string ; 
+            prov:startedAtTime {{ _.ship_date | xsd("date") | safe }} ;
+            prov:endedAtTime {{ _.arr_date_hq | xsd("date") | safe }} ; {#note: column name might still change!#}
+            
+            prov:wasInformedBy [
+                {#- local storage sample prov #}
+                a prov:Activity ;
+                dct:type "storage"^^xsd:string ; 
+                dct:description "Local storage of the collected sample"^^xsd:string ; 
+                {%- if _.samp_store_date != "NA" %}
+                prov:startedAtTime {{ _.samp_store_date | xsd("date") | safe }} ;
+                {%- endif %}
+                prov:wasAssociatedWith [
+                    a prov:Person, schema:Person ;
+                    {%- if _.store_person != "NA" %}
+                    schema:name {{ _.store_person | xsd("string") | safe }} ;
+                    {%- endif %}
+                    {%- if _.store_person_orcid and _.store_person_orcid != "NA" %}
+                    schema:identifier {{_.store_person_orcid | xsd("anyURI") | safe }} ;
+                    {%- endif %}
+                ] ;
+                {%- if _.samp_store_temp != "NA" %}
+                emobon-sampling:storageTemp [
+                    a qudt:QuantityValue ; 
+                    qudt:numericValue {{ _.samp_store_temp | xsd("float") | safe }} ; {#mix of string and float|string#}
+                    {%- for row in sets['schema']%}
+                        {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
+                            {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+                    qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                            {%- elif row['Unit'] and row['Unit'] != "NA" %}
+                    qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                            {%- endif %} 
+                        {%- endif %}
+                    {%- endfor %}
+                ] ; 
+                {%- endif %}
+                {%- if _.samp_store_loc != "NA" %}
+                emobon-sampling:storageLoc {{ _.samp_store_loc | xsd("string") | safe }} ; 
+                {%- endif %}
+                prov:wasInformedBy <> ; 
+            ] ; 
+        ] ; 
+    ] ;
+
+    {#- provenance trail -- CASE 2: sample collected and shipped #}
+    {%- elif _.ship_date != "NA" %}
+    prov:wasGeneratedBy [
+        {# shipping to HMBRC HQ prov#}
+        a prov:Activity ;
+        dct:type "transport"^^xsd:string ; 
+        dct:description "Shipping of sample to HMBRC HQ"^^xsd:string ; 
+        prov:startedAtTime {{ _.ship_date | xsd("date") | safe }} ;
+
+        prov:wasInformedBy [
+            {#- local storage sample prov #}
+            a prov:Activity ;
+            dct:type "storage"^^xsd:string ; 
+            dct:description "Local storage of the collected sample"^^xsd:string ; 
+            {%- if _.samp_store_date != "NA" %}
+            prov:startedAtTime {{ _.samp_store_date | xsd("date") | safe }} ;
+            {%- endif %}
+            prov:wasAssociatedWith [
+                a prov:Person, schema:Person ;
+                {%- if _.store_person != "NA" %}
+                schema:name {{ _.store_person | xsd("string") | safe }} ;
+                {%- endif %}
+                {%- if _.store_person_orcid and _.store_person_orcid != "NA" %}
+                schema:identifier {{_.store_person_orcid | xsd("anyURI") | safe }} ;
+                {%- endif %}
+            ] ;
+            {%- if _.samp_store_temp != "NA" %}
+            emobon-sampling:storageTemp [
+                a qudt:QuantityValue ; 
+                qudt:numericValue {{ _.samp_store_temp | xsd("float") | safe }} ; {#mix of string and float|string#}
+                {%- for row in sets['schema']%}
+                    {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
+                        {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+                qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                        {%- elif row['Unit'] and row['Unit'] != "NA" %}
+                qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                        {%- endif %} 
+                    {%- endif %}
+                {%- endfor %}
+            ] ; 
+            {%- endif %}
+            {%- if _.samp_store_loc != "NA" %}
+            emobon-sampling:storageLoc {{ _.samp_store_loc | xsd("string") | safe }} ; 
+            {%- endif %}
+            prov:wasInformedBy <> ; 
+        ] ; 
+    ] ; 
+
+    {#- provenance trail -- CASE 1: sample collected and stored locally #}
+    {%- elif _.samp_store_date != "NA" %}
+    prov:wasGeneratedBy [
+        {#- local storage sample prov #}
+        a prov:Activity ;
+        dct:type "storage"^^xsd:string ; 
+        dct:description "Local storage of the collected sample"^^xsd:string ; 
+        prov:startedAtTime {{ _.samp_store_date | xsd("date") | safe }} ;
+        prov:wasAssociatedWith [
+            a prov:Person, schema:Person ;
+            {%- if _.store_person != "NA" %}
+            schema:name {{ _.store_person | xsd("string") | safe }} ;
+            {%- endif %}
+            {%- if _.store_person_orcid and _.store_person_orcid != "NA" %}
+            schema:identifier {{_.store_person_orcid | xsd("anyURI") | safe }} ;
+            {%- endif %}
+        ] ;
+        {%- if _.samp_store_temp != "NA" %}
+        emobon-sampling:storageTemp [
+            a qudt:QuantityValue ; 
+            qudt:numericValue {{ _.samp_store_temp | xsd("float") | safe }} ; {#mix of string and float|string#}
+            {%- for row in sets['schema']%}
+                {%- if row['LogsheetColumnTitle'] == 'samp_store_temp' %}
+                    {%- if row['Unit_URL'] and row['Unit_URL'] != "NA" %}
+            qudt:unit <{{row['Unit_URL'].strip() | safe }}> ;
+                    {%- elif row['Unit'] and row['Unit'] != "NA" %}
+            qudt:unit {{row['Unit'].strip() | xsd('string') | safe }} ;
+                    {%- endif %} 
+                {%- endif %}
+            {%- endfor %}
+        ] ; 
+        {%- endif %}
+        {%- if _.samp_store_loc != "NA" %}
+        emobon-sampling:storageLoc {{ _.samp_store_loc | xsd("string") | safe }} ; 
+        {%- endif %}
+        prov:wasInformedBy <> ;
+    ] ; 
+    {%- else %}
+    {#- provenance trail -- CASE 0: sample collected #}
+    prov:wasGeneratedBy <> ;
+    {%- endif %}
+.
+
+{% endfor %}
