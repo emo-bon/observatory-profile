@@ -11,12 +11,12 @@ Sets:
 
 {%- set obsID_low = _.obs_id|lower %}
 {%- set env =  _.env_package  %}
-@base {{ ("http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low) | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
+@base {{ ("http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ _.obs_id) | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
-{{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low ~ "#observatory_collection" | uri }}
+{{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ _.obs_id ~ "#observatory_collection" | uri }}
     a schema:Organization ;
 
-    schema:member  {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low | uri }} ;
+    schema:member  {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ _.obs_id | uri }} ;
 .
 
 <> 

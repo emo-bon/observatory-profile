@@ -11,6 +11,7 @@ Sets:
 
 {# Need to retrieve obsID_low, env and ARMS_unit_id from source_mat_id ...  This assumes consistent structure of source_mat_id #}
 {% set namesarr = _.source_mat_id.split('_') %}
+{% set obsID = namesarr[1] %}
 {% set obsID_low = namesarr[1] | lower %}
 {% set ARMS_unit_id_low = namesarr[2] | lower %}
 {% set env =  observatory.env_package.split(' ') |join("_") %}
@@ -118,5 +119,5 @@ Sets:
     emobon-sampling:taxonomicName {{_.scientific_name | xsd("string") }} ;
     {%- endif %}
     {# linked to observatory #}
-    emobon-sampling:linkedToObservatory {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low ~ "-" ~ ARMS_unit_id_low| uri }} ; 
+    emobon-sampling:linkedToObservatory {{ "/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID ~ "-" ~ ARMS_unit_id_low| uri }} ; 
 .
