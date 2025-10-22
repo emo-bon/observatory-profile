@@ -7,11 +7,11 @@ Sets:
     - observatory-profile/logsheet_schema_extended.csv as schema
 -#}
 
-{%- include './includes/prefixes.ttl' %}
+{% include './includes/prefixes.ttl' %}
 
-{%- set obsID_low = _.obs_id|lower %}
-{%- set env =  _.env_package  %}
-@base {{ ("http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ _.obs_id) | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
+{% set obsID_low = _.obs_id|lower %}
+{% set env =  _.env_package  %}
+@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
 <> 
     a emobon-core:Observatory ;
@@ -40,8 +40,13 @@ Sets:
         emobon-core:enaProjAccNum {{_.ENA_accession_number_umbrella | xsd("anyURI") }} ; 
         {%- endif %}
     ] ; 
-    {%- if _.data_owner_edmoid %}
-    dct:rightsHolder {{_.data_owner_edmoid | uri }} ; 
+    {%- if _.data_owner and _.data_owner_edmoid and _.data_contact_email %}
+    dct:rightsHolder [
+        a schema:Organization  ;
+        schema:name {{_.data_owner | xsd("string") }} ; 
+        schema:identifier {{_.data_owner_edmoid | uri }} ; 
+        schema:email {{_.data_owner_edmoid | xsd("anyURI") }} ; 
+    ] ; 
     {%- endif %}
 
     {%- if _.extra_site_info != "NA" %}
@@ -162,21 +167,15 @@ Sets:
 .
 
 {# marine regions hierarchy statements #}
-{{ _.loc_broad_ocean_mrgid | uri }}
-    mr:contains {{ _.loc_regional_mrgid | uri }} ;
+{{ uriexpand("http://marineregions.org/mrgid/{#loc_broad_ocean_mrgid}", _ ) | uri }}
+    mr:contains {{ uriexpand("http://marineregions.org/mrgid/{#loc_regional_mrgid}", _ ) | uri }} ;
 .
 
-{{ _.loc_regional_mrgid| uri }}
-    mr:contains {{ _.loc_loc_mrgid | uri }} ;
-    mr:isPartOf {{ _.loc_broad_ocean_mrgid | uri }} ; 
+{{ uriexpand("http://marineregions.org/mrgid/{#loc_regional_mrgid}", _) | uri }}
+    mr:contains {{ uriexpand("http://marineregions.org/mrgid/{#loc_loc_mrgid}", _) | uri }} ;
+    mr:isPartOf {{ uriexpand("http://marineregions.org/mrgid/{#loc_broad_ocean_mrgid}", _) | uri }} ; 
 .
 
-{{ _.loc_loc_mrgid | uri }}
-    mr:isPartOf {{ _.loc_regional_mrgid | uri }} ;
-.
-
-{{_.data_owner_edmoid | uri }} 
-    a schema:Organization  ;
-    schema:name {{_.data_owner | xsd("string") }} ; 
-    schema:email {{_.data_owner_edmoid | xsd("anyURI") }} ; 
+{{ uriexpand("http://marineregions.org/mrgid/{#loc_loc_mrgid}", _ ) | uri }}
+    mr:isPartOf {{ uriexpand("http://marineregions.org/mrgid/{#loc_regional_mrgid}", _ ) | uri }} ;
 .

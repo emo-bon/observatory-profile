@@ -1,4 +1,4 @@
-name: publish-gh-pages
+name: RO-Crate to Pages
 on:
   workflow_dispatch:
   push:
@@ -8,30 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v3
-      - name: point latest tag to latest commit
-        uses: EndBug/latest-tag@latest
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            token: ${{ secrets.GITHUB_TOKEN }}
-        with:
-            # You can change the name of the tag or branch with this input.
-            # Default: 'latest'
-            ref: 'latest'
-            # If a description is provided, the action will use it to create an annotated tag. If none is given, the action will create a lightweight tag.
-            # Default: ''
-            description: 'latest version of the observatory-profile.' 
-            # Force-update a branch instead of using a tag.
-            # Default: false
-            force-branch: false
       - name: RO-Crate to Pages
         uses: vliz-be-opsci/rocrate-to-pages@latest
         with:
           multiple_rocrates: false
           RELEASE_management: true
           RELEASE_versioning: tag #by major tag or by release
-          INCLUDE_draft: false #include draft release which is the latest commit on the main branch 
+          INCLUDE_draft: true #include draft release which is the latest commit on the main branch 
           dataset_catalogue: false
           index_html: true #generate an index.html file for each rocrate
           draft_folder_name: latest #name of the folder for the draft release
