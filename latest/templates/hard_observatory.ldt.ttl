@@ -13,16 +13,16 @@ Sets:
 {% set obsID_low = _.obs_id|lower %}
 {% set ARMS_unit_id_low = _.ARMS_unit_id|lower %}
 {% set env =  _.env_package  %}
-@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low ~ "-" ~ ARMS_unit_id_low | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
+@base {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ _.obs_id ~ "-" ~ ARMS_unit_id_low | uri }} . {# baseref ~ http://data.emobon.embrc.eu #}
 
 
-{{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low ~ "#observatory_collection" | uri }}
+{{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ _.obs_id ~ "#observatory_collection" | uri }}
     a schema:Organization ;
 
-    schema:member  {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low ~ "/" ~ ARMS_unit_id_low | uri }} ;
+    schema:member  {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ _.obs_id ~ "-" ~ ARMS_unit_id_low | uri }} ;
     {%- for replicate in field_replicated_units.split("; ") %}
     {%set replicate_low = replicate| lower %}
-    schema:member  {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ obsID_low ~ "/" ~ replicate_low | uri }} ;
+    schema:member  {{ "http://data.emobon.embrc.eu/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/observatory/" ~ _.obs_id ~ "-" ~ replicate_low | uri }} ;
     {%- endfor%}
 .
 
