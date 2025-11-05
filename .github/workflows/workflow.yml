@@ -1,4 +1,4 @@
-name: publish-gh-pages
+name: observatory-profile-workflow
 on:
   workflow_dispatch:
   push:
