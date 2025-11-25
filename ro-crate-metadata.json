@@ -5,7 +5,7 @@
             "@id": "./",
             "@type": ["Dataset", "Profile"],
             "datePublished": "2023-05-10T11:38:29+00:00",
-            "downloadUrl": "<downloadUrl is provided by a GitHub Action>"
+            "downloadUrl": "https://github.com/emo-bon/observatory-profile/archive/refs/tags/latest.zip"
         },
         {
             "@id": "ro-crate-metadata.json",
