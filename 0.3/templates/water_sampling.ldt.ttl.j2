@@ -1,0 +1,83 @@
+{#- 
+Template name: water_sampling.ldt.ttl.j2 
+Description: 'Template to generate triples from {SampleType}_sampling.csv data collected in context of EMOBON.' 
+Input-file: /observatory-bpns-data/downloads/gdoc-csv/water_sampling.csv
+-#}
+
+{% include 'includes/prefixes.ttl' %}
+
+{#Sampling event#}
+<{{uritexpand("http://www.embrc.eu/emobon/id/{obs_id}/{env_package}/{sampling_event}", _)}}> 
+    {# need to agree on baseuri for this + obs_id & env_package come from different input | key-value pair #}
+    a sosa:Sampling, prov:Activity ;
+    
+    dct:description {{ _.samp_description | ttl("xsd:string") | safe }} ; 
+    sosa:resultTime {{ _.samp_store_date | ttl("xsd:string") | safe }} ; {#xsd:dateTime not supported#}
+    sosa:madeBySampler {{ _.samp_collect_device | ttl("xsd:string") | safe }} ; 
+
+    {%- for item in _.env_material.split(';') %}
+    sosa:hasFeatureOfInterest {{item.strip() | ttl("xsd:string") | safe }} ;
+    {%- endfor %}
+
+    sosa:hasResult <{{uritexpand("http://www.embrc.eu/emobon/id/{obs_id}/{env_package}/{sampling_event}/{source_material_id}", _)}}> ; 
+
+
+    {#-procedures#}
+    sosa:usedProcedure [
+        a sosa:Procedure, prov:Entity ; 
+        dct:description {{ _.samp_mat_process | ttl("xsd:string") | safe }} ; 
+        rdfs:comment {{ _.samp_mat_process_dev | ttl("xsd:string") | safe }} ; 
+        
+        prov:wasAttributedTo [
+            a prov:Person, schema:Person ;
+            schema:name {{ _.sampl_person | ttl("xsd:string") | safe }} ;
+            schema:identifier <{{uritexpand("https://orcid.org/{sampl_person_orcid}", _) }}> ;
+        ] ;
+
+        {#- unassigned columns: sample_size, depth, size_frac, size_frac_up, size_frac_low, time_fj #}
+    ] ; 
+
+    sosa:usedProcedure [
+        a sosa:Procedure, prov:Entity ; 
+
+        prov:generatedAtTime {{ _.samp_store_date | ttl("xsd:string") | safe }} ; {#xsd:dateTime not supported#}
+        prov:atLocation {{ _.samp_store_loc | ttl("xsd:string") | safe }} ; 
+
+        prov:wasAttributedTo [
+            a prov:Person, schema:Person ;
+            schema:name {{ _.store_person | ttl("xsd:string") | safe }} ;
+            schema:identifier <{{uritexpand("https://orcid.org/{store_person_orcid}", _) }}> ;   
+        ] ;
+
+        {#- unassigned columns: samp_store_temp, long_store, ship_date,store_temp_hq,ship_date_seq,arr_date_seq, arr_hq_date#}
+    ] ;
+
+    {#-people involved#}
+    prov:wasAssociatedWith [
+        a prov:Person, schema:Person ;
+        schema:name {{ _.sampl_person | ttl("xsd:string") | safe }} ;
+        schema:identifier <{{uritexpand("https://orcid.org/{sampl_person_orcid}", _) }}> ; 
+    ] , [
+        a prov:Person, schema:Person ;
+        schema:name {{ _.store_person | ttl("xsd:string") }} ;
+        schema:identifier <{{uritexpand("https://orcid.org/{store_person_orcid}", _) }}> ;
+    ] , [
+        a prov:Person, schema:Person ;
+        schema:name {{ _.other_person | ttl("xsd:string") }} ;
+        schema:identifier <{{uritexpand("https://orcid.org/{other_person_orcid}", _) }}> ;
+    ] ; 
+
+    {#- unassigned columns: tax_id,tidal_stage,investigation_type,membr_cut,(collection_date)#}
+.
+
+{#Sample#}
+<{{uritexpand("http://www.embrc.eu/emobon/id/{obs_id}/{env_package}/{sampling_event}/{source_material_id}", _)}}> 
+    {# need to agree on baseuri for this + obs_id & env_package come from different input | key-value pair #}
+    a sosa:Sample ;
+    
+    rdfs:label {{ _.source_mat_id_orig | ttl("xsd:string") | safe }} ; 
+
+    {%- for item in _.env_material.split(';') %}
+    sosa:isSampleOf {{item.strip() | ttl("xsd:string") | safe }} ;
+    {%- endfor %}
+.
