@@ -36,6 +36,8 @@ Sets:
     emobon-core:sampleType <https://data.emobon.embrc.eu/ns/core_vocab#hard> ;
     {%- endif %}
 
+    schema:additionalType "https://vocab.nerc.ac.uk/collection/P01/current/IDSPRE01/"^^xsd:anyURI ; {# adding type for ARMS unit itself; unit itself is an spatial replicate #}
+
     {%- if _.obs_id != "NA" %}
     emobon-core:observatoryId {{ _.obs_id | xsd("string") }} ; 
     {%- endif %}

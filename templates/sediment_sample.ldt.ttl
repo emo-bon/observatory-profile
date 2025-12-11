@@ -33,7 +33,7 @@ Sets:
     {%- endif %}
     {%- if _.replicate and _.replicate != "NA" %} 
     emobon-sampling:sampleReplicate {{ _.replicate | xsd("string") }} ;
-    schema:additionalType "http://vocab.nerc.ac.uk/collection/S29/current/PE001525/"^^xsd:anyURI ; {# All samples are technical replicates #}
+    schema:additionalType "http://vocab.nerc.ac.uk/collection/S29/current/PE001526/"^^xsd:anyURI ; {# All samples are biological replicates #}
         {%- if "blank" in _.replicate %}
     schema:additionalType core_vocab:blankSample ;
         {%- else %}
