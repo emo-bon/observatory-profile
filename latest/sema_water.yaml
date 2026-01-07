@@ -7,7 +7,7 @@ water_measured_task:
     extra_sources:
       observatory: !resolve "{observatory-crate}/logsheets/transformed/water_observatory.csv"
       schema: !resolve "{observatory-profile}/logsheet_schema_extended.csv"
-    sink: !resolve "{observatory-crate}/water/observation/[source_mat_id]"
+    sink: !resolve "{observatory-crate}/water/observation/{{source_mat_id}}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
@@ -20,7 +20,7 @@ water_observatory_task:
     source: !resolve "{observatory-crate}/logsheets/transformed/water_observatory.csv"
     extra_sources:
       schema: !resolve "{observatory-profile}/logsheet_schema_extended.csv"
-    sink: !resolve "{observatory-crate}/water/observatory/[obs_id]"
+    sink: !resolve "{observatory-crate}/water/observatory/{{obs_id}}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
@@ -34,7 +34,7 @@ water_sampling_task:
     extra_sources:
       observatory: !resolve "{observatory-crate}/logsheets/transformed/water_observatory.csv"
       schema: !resolve "{observatory-profile}/logsheet_schema_extended.csv"
-    sink: !resolve "{observatory-crate}/water/sampling-event/[sampling_event]"
+    sink: !resolve "{observatory-crate}/water/sampling-event/{{sampling_event}}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
@@ -49,7 +49,7 @@ water_sample_task:
     extra_sources:
       observatory: !resolve "{observatory-crate}/logsheets/transformed/water_observatory.csv"
       schema: !resolve "{observatory-profile}/logsheet_schema_extended.csv"
-    sink: !resolve "{observatory-crate}/water/sample/[source_mat_id]"
+    sink: !resolve "{observatory-crate}/water/sample/{{source_mat_id}}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true

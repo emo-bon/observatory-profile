@@ -7,7 +7,7 @@ sediment_measured_task:
     extra_sources:
       observatory: !resolve "{observatory-crate}/logsheets/transformed/sediment_observatory.csv"
       schema: !resolve "{observatory-profile}/logsheet_schema_extended.csv"
-    sink: !resolve "{observatory-crate}/sediment/observation/[source_mat_id]"
+    sink: !resolve "{observatory-crate}/sediment/observation/{{source_mat_id}}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
@@ -20,7 +20,7 @@ sediment_observatory_task:
     source: !resolve "{observatory-crate}/logsheets/transformed/sediment_observatory.csv"
     extra_sources:
       schema: !resolve "{observatory-profile}/logsheet_schema_extended.csv"
-    sink: !resolve "{observatory-crate}/sediment/observatory/[obs_id]"
+    sink: !resolve "{observatory-crate}/sediment/observatory/{{obs_id}}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
@@ -34,7 +34,7 @@ sediment_sampling_task:
     extra_sources:
       observatory: !resolve "{observatory-crate}/logsheets/transformed/sediment_observatory.csv"
       schema: !resolve "{observatory-profile}/logsheet_schema_extended.csv"
-    sink: !resolve "{observatory-crate}/sediment/sampling-event/[sampling_event]"
+    sink: !resolve "{observatory-crate}/sediment/sampling-event/{{sampling_event}}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
@@ -49,7 +49,7 @@ sediment_sample_task:
     extra_sources:
       observatory: !resolve "{observatory-crate}/logsheets/transformed/sediment_observatory.csv"
       schema: !resolve "{observatory-profile}/logsheet_schema_extended.csv"
-    sink: !resolve "{observatory-crate}/sediment/sample/[source_mat_id]"
+    sink: !resolve "{observatory-crate}/sediment/sample/{{source_mat_id}}"
     variables:
       baseref: "http://data.emobon.embrc.eu"
     allow_repeated_sink_paths: true
