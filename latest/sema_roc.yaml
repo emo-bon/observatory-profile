@@ -1,6 +1,8 @@
-# this file serves as input for the ROCreator, to add additional metadata to the RO-Crate
-# note that the content is only for illustrative purposes
+# minimal example derived from https://github.com/emo-bon/observatory-bpns-crate/blob/218de52ff20a8147a6174a1ba6330f306b76b39a/extra-metadata.json
 $:
+  prefix:
+    dcat: "http://www.w3.org/ns/dcat#"
+    dct: "http://purl.org/dc/terms/"
 
 ro-crate-metadata.json:
   $type: CreativeWork
@@ -8,18 +10,49 @@ ro-crate-metadata.json:
   about: ./
 
 ./:
-  $type: Dataset
-  description: Official rainfall readings for Katoomba, NSW 2022, Australia
-  datePublished: "2022-12-01"
-  license: http://spdx.org/licenses/CC0-1.0
+  $type:
+    - Dataset
+    - dcat:Dataset
+  description: The sampling activity logsheets for this given observatory
+  license: https://creativecommons.org/licenses/by/4.0/
+  datePublished: 2023-06-23
+  name: !resolve "{REPO_NAME}"
+  dcat:contactPoint: https://orcid.org/0000-0002-8559-3508
+  dct:relation: https://github.com/emo-bon/sequencing-data
+  temporalCoverage: 2021-07-01/2024-10-22
+  publisher": https://www.embrc.eu/emo-bon
+  maintainer":
+    - https://www.embrc.eu/emo-bon
+    - https://orcid.org/0000-0002-8559-3508
+  provider:
+    - https://www.vliz.be
+    - https://www.ugent.be
+  keywords:
+    - sample
+    - measurement
+    - biodiversity
+    - long-term-changes
+    - marine-environment
+    - genetics
+    - sediment-samples
+    - water-samples
+    - benthic-communities
 
-https://ror.org/04dkp1p98:
-  $type: Organization
-  name: Bureau of Meteorology
-  description: Australian Government Bureau of Meteorology
-  url: '"http://www.bom.gov.au/"^^xsd:string'
+https://orcid.org/0000-0002-8559-3508:
+  $type: Person
+  name: Klaas Deneudt
+  email: klaas.deneudt@vliz.be
+  affiliation: https://www.vliz.be
 
-https://creativecommons.org/licenses/by-nc-sa/3.0/au/:
-  $type: CreativeWork
-  name: CC BY-NC-SA 3.0 AU
-  description: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Australia
+https://www.vliz.be:
+    $type: Organization
+    name: Flanders Marine Institute
+
+https://www.ugent.be:
+    $type: Organization
+    name: Ghent University
+
+https://www.embrc.eu/emo-bon:
+  $type: Project
+  name: EMO BON
+  email: emobon@embrc.eu
