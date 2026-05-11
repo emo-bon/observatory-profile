@@ -5,7 +5,7 @@
             "@id": "./",
             "@type": ["Dataset", "Profile"],
             "datePublished": "2023-05-10T11:38:29+00:00",
-            "downloadUrl": "https://github.com/emo-bon/observatory-profile/archive/refs/tags/latest.zip"
+            "distribution": {"@id": "https://github.com/emo-bon/observatory-profile/archive/refs/tags/latest.zip"}
         },
         {
             "@id": "ro-crate-metadata.json",
@@ -17,6 +17,11 @@
                 {"@id": "https://w3id.org/ro/crate/1.2-DRAFT"},
                 {"@id": "https://open-science.vliz.be/pysembench-profile"}
             ]
+        },
+        {
+            "@id": "https://github.com/emo-bon/observatory-profile/archive/refs/tags/latest.zip",
+            "@type": "DataDownload",
+            "encodingFormat": "application/zip"
         }
     ]
 }
