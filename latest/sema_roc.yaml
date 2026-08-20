@@ -1,8 +1,11 @@
-# minimal example derived from https://github.com/emo-bon/observatory-bpns-crate/blob/218de52ff20a8147a6174a1ba6330f306b76b39a/extra-metadata.json
 $:
   prefix:
+    schema: "http://schema.org/"
     dcat: "http://www.w3.org/ns/dcat#"
     dct: "http://purl.org/dc/terms/"
+  glob_ignore:
+    - ".git/**"
+    - "sema-workspace/**"
 
 ro-crate-metadata.json:
   $type: CreativeWork
@@ -15,13 +18,13 @@ ro-crate-metadata.json:
     - dcat:Dataset
   description: The sampling activity logsheets for this given observatory
   license: https://creativecommons.org/licenses/by/4.0/
-  datePublished: 2023-06-23
+  datePublished: "2023-06-23"
   name: !resolve "{REPO_NAME}"
   dcat:contactPoint: https://orcid.org/0000-0002-8559-3508
   dct:relation: https://github.com/emo-bon/sequencing-data
-  temporalCoverage: 2021-07-01/2024-10-22
-  publisher": https://www.embrc.eu/emo-bon
-  maintainer":
+  temporalCoverage: "2021-07-01/2024-10-22"
+  publisher: https://www.embrc.eu/emo-bon
+  maintainer:
     - https://www.embrc.eu/emo-bon
     - https://orcid.org/0000-0002-8559-3508
   provider:
@@ -38,6 +41,10 @@ ro-crate-metadata.json:
     - water-samples
     - benthic-communities
 
+"**/*.ttl":
+  $type: File
+  encodingFormat: text/turtle
+
 https://orcid.org/0000-0002-8559-3508:
   $type: Person
   name: Klaas Deneudt
@@ -45,12 +52,12 @@ https://orcid.org/0000-0002-8559-3508:
   affiliation: https://www.vliz.be
 
 https://www.vliz.be:
-    $type: Organization
-    name: Flanders Marine Institute
+  $type: Organization
+  name: Flanders Marine Institute
 
 https://www.ugent.be:
-    $type: Organization
-    name: Ghent University
+  $type: Organization
+  name: Ghent University
 
 https://www.embrc.eu/emo-bon:
   $type: Project
