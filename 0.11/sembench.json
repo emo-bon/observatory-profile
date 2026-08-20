@@ -1,0 +1,70 @@
+[
+    {
+        "type": "pysubyt",
+        "input": "logsheets-transformed/sediment_measured.csv",
+        "output": "rdf/sediment/measured/{source_mat_id}.ttl",
+        "template": {
+            "jinja_root": "templates",
+            "file_name": "sediment_measured.ldt.ttl.j2"
+        },
+        "sets": {
+            "observatory": "logsheets-transformed/sediment_observatory.csv",
+            "schema": "~sembench_data_cache/logsheet_schema_extended.csv"
+        }
+    },
+    {
+        "type": "pysubyt",
+        "input": "logsheets-transformed/sediment_observatory.csv",
+        "output": "rdf/sediment/observatory/{obs_id}.ttl",
+        "template": {
+            "jinja_root": "templates",
+            "file_name": "sediment_observatory.ldt.ttl.j2"
+        }
+    },
+    {
+        "type": "pysubyt",
+        "input": "logsheets-transformed/sediment_sampling.csv",
+        "output": "rdf/sediment/sampling/{sampling_event}.ttl",
+        "template": {
+            "jinja_root": "templates",
+            "file_name": "sediment_sampling.ldt.ttl.j2"
+        },
+        "sets": {
+            "observatory": "logsheets-transformed/sediment_observatory.csv"
+        }
+    },
+    {
+        "type": "pysubyt",
+        "input": "logsheets-transformed/water_measured.csv",
+        "output": "rdf/water/measured/{source_mat_id}.ttl",
+        "template": {
+            "jinja_root": "templates",
+            "file_name": "water_measured.ldt.ttl.j2"
+        },
+        "sets": {
+            "observatory": "logsheets-transformed/water_observatory.csv",
+            "schema": "~sembench_data_cache/logsheet_schema_extended.csv"
+        }
+    },
+    {
+        "type": "pysubyt",
+        "input": "logsheets-transformed/water_observatory.csv",
+        "output": "rdf/water/observatory/{obs_id}.ttl",
+        "template": {
+            "jinja_root": "templates",
+            "file_name": "water_observatory.ldt.ttl.j2"
+        }
+    },
+    {
+        "type": "pysubyt",
+        "input": "logsheets-transformed/water_sampling.csv",
+        "output": "rdf/water/sampling/{sampling_event}.ttl",
+        "template": {
+            "jinja_root": "templates",
+            "file_name": "water_sampling.ldt.ttl.j2"
+        },
+        "sets": {
+            "observatory": "logsheets-transformed/water_observatory.csv"
+        }
+    }
+]

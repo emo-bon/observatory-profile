@@ -1,0 +1,41 @@
+{#- 
+Template name: water_measured.ldt.ttl.j2 
+Description: 'Template to generate triples from {SampleType}_measured.csv data collected in context of EMOBON.' 
+Input-file: /observatory-bpns-data/downloads/gdoc-csv/water_measured.csv
+Set-files:
+    -/templates/measured_mapping.csv as 'mapping' ~ mapping between column-name and standard terms
+Key-value pairs:
+    - obs_id
+    - env_package 
+
+somekindofuuid!!
+-#}
+
+{%- if ctrl.isFirst %}
+{%- include 'includes/prefixes.ttl' %}
+{%- endif %}
+
+{#Observations made from the Sample#}
+{%- for row in sets['mapping']%}
+{%- if row['special'] != 'x' and not row['column_title'].endswith('_method') and _[row['column_title']] %}
+
+<{{uritexpand("http://www.embrc.eu/emobon/id/{obs_id}/{env_package}/{sampling_event}/{source_material_id}/some-kind-of-uuid", _)}}>
+    a sosa:Observation ; 
+    {%- if row['observed_property'] %}
+    sosa:observedProperty <{{ row['observed_property'] | safe }}> ;
+    {%- else %}
+    sosa:observedProperty {{ row['column_title'] | ttl("xsd:string") | safe }} ;
+    {%- endif %}
+    sosa:hasSimpleResult {{ _[row['column_title']] | ttl("xsd:string") | safe }} ; 
+    {#-units are not given in data (we cannot know these) ~ so simpleResult suffices 
+    + formatting as xsd:string becuse mix of double & string (pysubyt gives error) #}
+    {%- if row['column_title']+'_method' and _[row['column_title']+'_method'] %}
+    sosa:usedProcedure {{ _[row['column_title']+'_method'] | ttl("xsd:string") | safe }} ; 
+    {%- endif %}
+    
+    {#- link back to sample uri (see sediment_sampling.ldt.ttl.j2) #}
+    sosa:hasFeatureOfInterest <{{uritexpand("http://www.embrc.eu/emobon/id/{obs_id}/{env_package}/{sampling_event}/{source_material_id}", _)}}> ; 
+.
+
+{%- endif %}
+{%- endfor %}

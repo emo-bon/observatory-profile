@@ -1,0 +1,2838 @@
+@prefix rdfs : <http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix dct : <http://purl.org/dc/terms/> .
+@prefix schema : <https://schema.org/> . 
+@prefix sosa: <http://www.w3.org/ns/sosa/> . 
+@prefix ssn: <http://www.w3.org/ns/ssn/> . 
+@prefix qudt: <http://qudt.org/schema/qudt/> . 
+@prefix emobon: <http://www.embrc.eu/emobon/EmoBonOntology#> . 
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '16.848'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.088'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '7,49'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '0.99965457685'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '16.848'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.088'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '7,49'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '0.99965457685'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '16.848'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.088'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '7,49'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '0.99965457685'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '16.848'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.088'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '7,49'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '0.99965457685'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210701-330-SoSOP3-Meio-R4> 
+
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '18.919'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.348'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '7,19'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01100419442'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '18.919'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.348'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '7,19'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01100419442'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '18.919'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.348'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '7,19'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01100419442'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '18.919'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.348'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '7,19'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01100419442'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '18.919'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.348'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '7,19'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01100419442'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '18.919'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.348'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '7,19'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01100419442'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-210825-330-SoSOP3-Micro-B2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Micro-B2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-So3-Macro-B> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '14.097'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.855'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '8,14'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '7'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00014803849'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211028-BPNS-SoSOP3-Meio-B> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5,96'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-R2%0A/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5,96'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-R2%0A> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5,96'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5,96'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5,96'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-B1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5,96'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-211223-BPNS-So3-Micro-B2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '8.259'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '31.932'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,7011765'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '8,02'^^xsd:string ;
+    sosa:usedProcedure 'LLG PH METER 5'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01445842586'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '8.259'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '31.932'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,7011765'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '8,02'^^xsd:string ;
+    sosa:usedProcedure 'LLG PH METER 5'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01445842586'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '8.259'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '31.932'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,7011765'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '8,02'^^xsd:string ;
+    sosa:usedProcedure 'LLG PH METER 5'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01445842586'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '8.259'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '31.932'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,7011765'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '8,02'^^xsd:string ;
+    sosa:usedProcedure 'LLG PH METER 5'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01445842586'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '8.259'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '31.932'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,7011765'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '8,02'^^xsd:string ;
+    sosa:usedProcedure 'LLG PH METER 5'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01445842586'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '8.259'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '31.932'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,7011765'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '8,02'^^xsd:string ;
+    sosa:usedProcedure 'LLG PH METER 5'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.01445842586'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220322-BPNS-So3-Micro-B2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Micro-B2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-So3-Macro-B> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '9.931'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '32.282'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'diss_oxygen'^^xsd:string ;
+    sosa:hasSimpleResult '9,3230265'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6.83'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00172711572'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220420-BPNS-SoSOP3-Meio-B> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-So3-Micro-B2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_temp'^^xsd:string ;
+    sosa:hasSimpleResult '15.655'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '5.63'^^xsd:string ;
+    sosa:usedProcedure 'Hanna Instruments 991001 ph meter'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-B> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-B/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220601-BPNS-SoSOP3-Meio-B> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-220819-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'sea_surf_salinity'^^xsd:string ;
+    sosa:hasSimpleResult '33.264'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220819-BPNS-So3-Micro-R1> 
+
+.
+
+<http://www.embrc.eu/emobon/id////EMOBON-220819-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'pressure'^^xsd:string ;
+    sosa:hasSimpleResult '1.00626696'^^xsd:string ;
+    sosa:usedProcedure 'CTD'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-220819-BPNS-So3-Micro-R1> 
+
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-R1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6,6'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-R1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-R2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6,6'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-R2> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-R3/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6,6'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-R3> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-R4/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6,6'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-R4> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-B1/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6,6'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-B1> 
+
+.
+
+
+
+<http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-B2/some-kind-of-uuid>
+    a sosa:Observation ;
+    sosa:observedProperty 'ph'^^xsd:string ;
+    sosa:hasSimpleResult '6,6'^^xsd:string ;
+    sosa:hasFeatureOfInterest <http://www.embrc.eu/emobon/id////EMOBON-221212-BPNS-So3-Micro-B2> 
+
+.
+
+
+
+
+
+
+
+
+
+
+

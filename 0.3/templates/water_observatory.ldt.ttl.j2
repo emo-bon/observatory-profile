@@ -1,0 +1,101 @@
+{#- 
+Template name: water_observatory.ldt.ttl.j2 
+Description: 'Template to generate triples from {SampleType}_observatory.csv data collected in context of EMOBON.' 
+Input-file: /observatory-bpns-data/downloads/gdoc-csv/water_observatory.csv
+-#}
+
+{% include 'includes/prefixes.ttl' %}
+
+<{{uritexpand("http://www.embrc.eu/emobon/id/{obs_id}/{env_package}", _)}}> {# need to agree on baseuri for this #}
+    a emobon:Observatory ;
+    {%- if _.wa_id %} {# water #}
+    emobon:sampleType emobon:Water ;
+    {%- elif _.so_id %} {# sediment #}
+    emobon:sampleType emobon:Soil ;
+    {%- elif _.se_id %} {# soil? acronym in csv of third type? ~ sediment ~ hence se_id? #}
+    emobon:sampleType emobon:Hard ;
+    {%- endif %}
+
+    emobon:observatoryId {{ _.obs_id | ttl("xsd:string") | safe }} ; 
+    emobon:observatorySampleId {{ (_.wa_id or _.so_id or _.se_id) | ttl("xsd:string") | safe }} ; {#alert: column name differs between observatory types #} 
+
+    dct:isPartOf {{_.project_name | ttl("xsd:string") | safe }} ; 
+    dct:description '''{{ _.extra_site_info}}'''^^"xsd:string" ; 
+
+
+    {%- for item in _.env_broad_biome.split(';') %}
+    emobon:broadBiome {{item.strip() | ttl("xsd:string") | safe }} ;
+    {%- endfor %}
+    {%- for item in _.env_local.split(';') %}
+    emobon:localBiome {{item.strip() | ttl("xsd:string") | safe }} ;
+    {%- endfor %}
+
+
+    {#- marine region info #}
+    {%- if _.loc_broad_ocean_mrgid %}
+    emobon:marineRegion {{uritexpand("http://marineregions.org/mrgid/{loc_broad_ocean_mrgid}", _)}} ; {#not always present! #}
+    {%- endif %}
+    {#- loc_broad_ocean --> always present, but no clear predicate available to point to #}
+    {%- if _.loc_regional_mrgid %}
+    emobon:marineRegion {{uritexpand("http://marineregions.org/mrgid/{loc_regional_mrgid}", _)}} ;  {#not always present! #}
+    {%- endif %}
+    {#- loc_regional --> always present, but no clear predicate available to point to #}
+    {%- if _.loc_loc_mrgid %}
+    emobon:marineRegion {{uritexpand("http://marineregions.org/mrgid/{loc_loc_mrgid}", _)}} ;{#not always present! #}
+    {%- endif %}
+    {#- loc_loc --> always present, but no clear predicate available to point to #}
+
+    emobon:geoLocation [ 
+        a sf:Point ; 
+        geo:asWKT "<http://www.opengis.net/def/crs/OGC/1.3/CRS84> Point ({{_.latitude}} {{_.longitude}})" ;
+    ]; 
+
+    {#- assumptions: 
+        - lists of equal length 
+        - ','-separated --> is this ensured when files are generated in the workflow?
+        + note: organization-related column split by ',' (not ';') 
+    -#}
+    {%- for item in _.organization.split(';') %} 
+    schema:contactPoint [ 
+        a emobon:Organization ; 
+        schema:legalName {{ item.strip() | ttl("xsd:string") | safe }} ; 
+        emobon:edmoId {{ _.organization_edmoid.split(';')[loop.index0].strip() | ttl("xsd:integer") | safe }} ; {# xsd:integer ~  pysubyt processing failed due to <int format does not round-trip [  449 <> 449 ]>#}
+        schema:address [
+            a schema:PostalAddress ; 
+            schema:addressCountry {{ _.organization_country | ttl("xsd:string") | safe }} ; 
+            {#- schema:postalCode {{}} ; #} 
+            {#- schema:streetAddress {{}} ; #}
+        {%- if loop.index0 == 0 and (_.contact_name or _.contact_email or _.contact_orchid) %} {# making the assumption the contact person is always linked to the first institute #}
+        schema:member [
+            a schema:Person ; 
+            {%- if _.contact_name %}
+            schema:name {{ _.contact_name | ttl("xsd:string") | safe }} ; 
+            {%- endif %}
+            {%- if _.contact_email %}
+            schema:email {{ _.contact_email | ttl("xsd:string") | safe }} ; 
+            {%- endif %}
+            {%- if _.contact_orchid %}
+            schema:identifier <{{uritexpand("https://{contact_orchid}", _) }}> ; 
+            {#typo difference between example files: contact_orcid in water_observatory.csv files 
+            vs. contact_orchid in sediment_observatory.csv files #}
+            {%- endif %}
+        ]
+        {%- endif %}
+        ] ; 
+    ]
+    {%- endfor %}
+    
+
+    {#
+    unassigned columns:
+    geo_loc_name
+
+    tot_depth_water_col,
+    dist_shore,
+
+    ENA_accesion_number_umbrella ~ ideally predicate from ENA
+    ENA_accesion_number_project
+
+    sediment_type ~ restricted to sediment_observatory.csv + not always empty
+    #}
+.
