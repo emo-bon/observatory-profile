@@ -5,7 +5,7 @@ $:
     dct: "http://purl.org/dc/terms/"
   glob_ignore:
     - ".git/**"
-    - "sema-workspace/**"
+    - "data-quality-control/**"
 
 ro-crate-metadata.json:
   $type: CreativeWork
@@ -15,7 +15,6 @@ ro-crate-metadata.json:
 ./:
   $type:
     - Dataset
-    - dcat:Dataset
   description: The sampling activity logsheets for this given observatory
   license: https://creativecommons.org/licenses/by/4.0/
   datePublished: "2023-06-23"
@@ -41,9 +40,15 @@ ro-crate-metadata.json:
     - water-samples
     - benthic-communities
 
-"**/*.ttl":
+# Aggregated triples
+"all-triples.ttl":
   $type: File
   encodingFormat: text/turtle
+
+# Transformed CSV logsheets
+"logsheets/transformed/*.csv":
+  $type: File
+  encodingFormat: text/csv
 
 https://orcid.org/0000-0002-8559-3508:
   $type: Person
