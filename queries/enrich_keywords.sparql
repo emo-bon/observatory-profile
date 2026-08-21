@@ -1,6 +1,6 @@
 PREFIX emobon-core: <https://data.emobon.embrc.eu/ns/core#>
 PREFIX emobon-sampling: <https://data.emobon.embrc.eu/ns/sampling#>
-PREFIX schema: <http://schema.org/>
+PREFIX schema: <https://schema.org/>
 
 CONSTRUCT {
     <./> schema:keywords ?biomeUri ;
