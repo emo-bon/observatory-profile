@@ -10,8 +10,9 @@ CONSTRUCT {
 }
 WHERE {
     ?activity prov:wasAssociatedWith ?person .
-    ?person a schema:Person ;
-            schema:name ?name ;
-            schema:identifier ?orcid .
+    { ?person a <https://schema.org/Person> } UNION { ?person a <http://schema.org/Person> }
+    { ?person <https://schema.org/name> ?name } UNION { ?person <http://schema.org/name> ?name }
+    { ?person <https://schema.org/identifier> ?orcid } UNION { ?person <http://schema.org/identifier> ?orcid }
+    FILTER(STR(?name) != "")
     BIND(URI(STR(?orcid)) AS ?personUri)
 }
