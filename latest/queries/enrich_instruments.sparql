@@ -1,5 +1,5 @@
 PREFIX sosa: <http://www.w3.org/ns/sosa/>
-PREFIX schema: <http://schema.org/>
+PREFIX schema: <https://schema.org/>
 
 CONSTRUCT {
     <./> schema:measurementTechnique ?technique ;
