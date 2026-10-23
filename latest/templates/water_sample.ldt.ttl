@@ -23,8 +23,10 @@ Sets:
     {# sampling-event #}
     sosa:isResultOf {{ ("/observatory-" ~ obsID_low ~ "-crate/" ~ env ~ "/sampling-event/" ~ samplingEvent) | uri }} ;
     {# properties #}
+    {%- if _.source_mat_id_orig and _.source_mat_id_orig != "NA" %}
     emobon-sampling:origEmobonId {{ _.source_mat_id_orig | xsd("string") }} ; 
     {#rdfs:label {{ _.source_mat_id_orig | xsd("string") }} ; #}
+    {%- endif %}
     {%- if _.samp_description and _.samp_description != "NA" %}
     dct:description {{ _.samp_description | xsd("string") }} ; 
     {%- endif %}
@@ -43,7 +45,7 @@ Sets:
     {%- if _.long_store %}
     emobon-sampling:longStorage {{_.long_store | xsd("boolean")}} ; 
     {%- endif %}
-    {%- if _.failure %} {#double check whether this is used abbrev#}
+    {%- if _.failure and _.failure != "NA" %} {#double check whether this is used abbrev#}
     emobon-sampling:failure {{_.failure | xsd("boolean")}} ;
     {%- endif %}
     {%- if _.failure_comment and _.failure_comment != "NA" %}
@@ -211,7 +213,7 @@ Sets:
         {%- if _.store_person_orcid and _.store_person_orcid != "NA" %}
         schema:identifier {{_.store_person_orcid | xsd("anyURI") }} ;
         {%- endif %}
-    ] {% if _.other_person %}, [
+    ] {% if _.other_person  and _.other_person != "NA" %}, [
         a prov:Person, schema:Person ;
         {%- if _.other_person and _.other_person != "NA" %}
         schema:name {{ _.other_person | xsd("string") }} ;
@@ -428,7 +430,7 @@ Sets:
     ] ; 
 
     {#- provenance trail -- CASE 1: sample collected and stored locally #}
-    {%- elif _.samp_store_date %}
+    {%- elif _.samp_store_date and _.samp_store_date != "NA" %}
     prov:wasGeneratedBy [
         {#- local storage sample prov #}
         a prov:Activity ;
